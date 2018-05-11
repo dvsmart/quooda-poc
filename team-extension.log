@@ -1,0 +1,23 @@
+2018-05-11T19:57:00.029Z - info:   [05284] *** FOLDER: e:\MyGit\quooda-poc ***
+2018-05-11T19:57:00.033Z - info:   [05284] VSTSVSCode/1.122.0 (VSCode 1.23.1; Windows_NT 10.0.15063; Node 7.9.0)
+2018-05-11T19:57:00.043Z - debug:  [05284] Looking for an External Context at e:\MyGit\quooda-poc
+2018-05-11T19:57:00.043Z - debug:  [05284] No External Context at e:\MyGit\quooda-poc
+2018-05-11T19:57:00.061Z - debug:  [05284] Looking for TFVC repository at e:\MyGit\quooda-poc
+2018-05-11T19:57:00.062Z - debug:  [05284] TFVC Creating Tfvc object with localPath='undefined'
+2018-05-11T19:57:00.064Z - debug:  [05284] Using TFS proxy: 
+2018-05-11T19:57:00.064Z - debug:  [05284] TFVC Retrieved from settings; localPath='C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\tf.exe'
+2018-05-11T19:57:00.110Z - debug:  [05284] TFVC Repository created with repositoryRootFolder='e:\MyGit\quooda-poc'
+2018-05-11T19:57:00.111Z - debug:  [05284] TFVC Repository.CheckVersion
+2018-05-11T19:57:00.114Z - debug:  [05284] TFVC: tf add -noprompt -?
+2018-05-11T19:57:00.285Z - debug:  [05284] TFVC: spawned new process (duration: 169ms)
+2018-05-11T19:57:00.349Z - debug:  [05284] TFVC: spawned new process (duration: 62ms)
+2018-05-11T19:57:22.501Z - debug:  [05284] TFVC: add exit code: 0 (duration: 22387ms)
+2018-05-11T19:57:22.505Z - debug:  [05284] TFVC Minimum required version: 14.102.0
+2018-05-11T19:57:22.505Z - debug:  [05284] TFVC (TF.exe, TF.cmd) version: 15.123.27127.4
+2018-05-11T19:57:22.507Z - debug:  [05284] TFVC Repository.FindWorkspace with localPath='e:\MyGit\quooda-poc'
+2018-05-11T19:57:22.508Z - debug:  [05284] TFVC: tf workfold -noprompt ********
+2018-05-11T19:57:22.624Z - debug:  [05284] TFVC: spawned new process (duration: 115ms)
+2018-05-11T19:57:29.149Z - debug:  [05284] TFVC: workfold exit code: 100 (duration: 6641ms)
+2018-05-11T19:57:29.152Z - debug:  [05284] TFVC errors (via stderr): Unable to determine the workspace. You may be able to correct this by running 'tf workspaces /collection:TeamProjectCollectionUrl'.
+
+2018-05-11T19:57:29.153Z - error:  [05284] Execution of the TFVC command line failed unexpectedly. Unable to determine the workspace. You may be able to correct this by running 'tf workspaces /collection:TeamProjectCollectionUrl'.
