@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GridModel } from '../../viewmodel/GridModel';
+import { CustomerService } from '../../services/customerService';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  customerGrid: GridModel;
+  constructor(private customerService:CustomerService) {
+  }
 
   ngOnInit() {
+    this.customerGrid= this.customerService.getCustomerGridModel();
   }
 
 }

@@ -35,6 +35,10 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { GridComponent } from './components/grid/grid.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomerService } from '../services/customerService';
+import { ConfirmmodalComponent } from './components/confirmmodel/confirmmodel.component';
 
 @NgModule({
   imports: [
@@ -71,7 +75,9 @@ import { CommonModule } from '@angular/common';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    CdkTableModule
+    CdkTableModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CdkTableModule,
@@ -106,8 +112,11 @@ import { CommonModule } from '@angular/common';
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    GridComponent
   ],
-  declarations: []
+  providers:[CustomerService],
+  entryComponents:[ConfirmmodalComponent],
+  declarations: [GridComponent,ConfirmmodalComponent]
 })
 export class SharedModule { }

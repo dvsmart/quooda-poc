@@ -1,4 +1,14 @@
 <mat-nav-list>
+  <mat-list-item *ngFor="let link of menuItems" [ngClass]="link.cssClassName">
+     <a matLine [routerLink]="link.routerLink">
+        <button mat-icon-button>
+            <mat-icon>{{link.iconClass}}</mat-icon>
+         </button>
+      {{ link.caption }}</a>
+  </mat-list-item>
+</mat-nav-list>
+
+<mat-nav-list>
     <mat-list-item>
       <a [routerLink]="['/home']" style="flex-direction: row; box-sizing: border-box; display: flex;">
         <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">home</mat-icon>

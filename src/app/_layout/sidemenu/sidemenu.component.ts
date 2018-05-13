@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../../services/menu.service';
+import { Menu } from '../../viewmodel/menuModel';
 
 @Component({
   selector: 'app-sidemenu',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidemenu.component.scss']
 })
 export class SidemenuComponent implements OnInit {
-
-  constructor() { }
+menuItems:Menu[];
+  constructor(private menuService:MenuService) { }
 
   ngOnInit() {
+    this.menuItems = this.menuService.getMenuItems();
   }
 
 }

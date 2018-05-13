@@ -17,6 +17,8 @@ import { SiteLayoutComponent } from './_layout/site-layout/site-layout.component
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidemenuComponent } from './_layout/sidemenu/sidemenu.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MenuService } from './services/menu.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,10 @@ import { SidemenuComponent } from './_layout/sidemenu/sidemenu.component';
     MatButtonModule,
     MatCardModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
