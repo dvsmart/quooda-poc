@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { MatTableDataSource, MatSort, MatDialog, MatPaginator, Sort, PageEvent } from '@angular/material';
 import { Element } from '@angular/compiler';
 import { element } from 'protractor';
-import { GridModel, ColumnModel, ColumnType, PagingModel, SortDirection } from '../../../viewmodel/gridModel';
+import { GridModel, ColumnModel, ColumnType, PagingModel, SortDirection } from '../../../viewmodel/grid';
 import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
 import { CustomerService } from '../../../services/customerService';
 

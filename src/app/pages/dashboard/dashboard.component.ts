@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridModel } from '../../viewmodel/GridModel';
+import { GridModel } from '../../viewmodel/grid';
 import { CustomerService } from '../../services/customerService';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GridModel, ColumnModel, ColumnType, PagingModel, SortDirection, ActionModel } from "../viewmodel/gridModel";
+import { GridModel, ColumnModel, ColumnType, PagingModel, SortDirection, ActionModel } from "../viewmodel/grid";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
 
