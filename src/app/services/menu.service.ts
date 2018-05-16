@@ -13,22 +13,22 @@ export class MenuService {
 
   getMenuItems():  any {
     let items: any[] = [
-      { caption: 'Home', id: 1, routerLink: '/home',iconClass:'home' },
-      { caption: 'Dashboard', id: 2, routerLink: '/dashboard', iconClass:'dashboard' },
-      { caption: 'Assets', id: 2, routerLink: '/dashboard', iconClass:'dashboard' },
-      { caption: 'Assessments', id: 3, routerLink: '/home', iconClass:'home' },
+      { caption: 'Home', id: 1, route: '/home',iconName:'home' },
+      { caption: 'Dashboard', id: 2, route: '/dashboard', iconName:'dashboard' },
+      { caption: 'Assets', id: 2, route: '/dashboard', iconName:'dashboard' },
+      { caption: 'Assessments', id: 3, route: '/home', iconName:'home' },
       {
-        caption: 'Risks', id: 4, routerLink: '/home', hasSubMenu: true,
-        submenuItems: [
-          { caption: 'Controlled Risks', id: 7, routerLink: "['/home']" },
-          { caption: 'Uncontrolled Risks', id: 7, routerLink: "['/home']" }], iconClass:'home'
+        caption: 'Risks', id: 4, route: '/home', hasChildren: true,
+        children: [
+          { caption: 'Controlled Risks', id: 7, route: "['/home']" },
+          { caption: 'Uncontrolled Risks', id: 7, route: "['/home']" }], iconName:'home'
       },
-      { caption: 'Checklists', id: 5, routerLink: "['/home']", iconClass:'home' },
+      { caption: 'Checklists', id: 5, route: "['/home']", iconName:'home' },
       {
-        caption: 'Compliance', id: 6, routerLink: "['/home']", hasSubMenu: true,
-        submenuItems: [
-          { caption: 'Controlled Risks', id: 7, routerLink: "['/home']" },
-          { caption: 'Uncontrolled Risks', id: 7, routerLink: "['/home']" }], iconClass:'home'
+        caption: 'Compliance', id: 6, route: "['/home']", hasChildren: true,
+        children: [
+          { caption: 'RAG Status', id: 7, route: "['/home']" },
+          { caption: 'Summary', id: 7, route: "['/home']" }], iconName:'home'
       },
     ];
     return items;

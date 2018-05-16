@@ -1,9 +1,1 @@
-<mat-nav-list>
-  <mat-list-item *ngFor="let link of menuItems" [ngClass]="link.cssClassName">
-     <a matLine [routerLink]="link.routerLink">
-        <button mat-icon-button>
-            <mat-icon>{{link.iconClass}}</mat-icon>
-         </button>
-      {{ link.caption }}</a>
-  </mat-list-item>
-</mat-nav-list>
+<app-menu-item [items]="menuItems"></app-menu-item>
