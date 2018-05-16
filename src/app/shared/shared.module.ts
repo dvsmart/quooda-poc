@@ -113,7 +113,7 @@ import { ConfirmmodalComponent } from './components/confirmmodel/confirmmodel.co
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    GridComponent
+    GridComponent,
   ],
   providers:[CustomerService],
   entryComponents:[ConfirmmodalComponent],

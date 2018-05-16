@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { GridModel, ColumnModel, ColumnType, PagingModel, SortDirection, ActionModel } from "../viewmodel/grid";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
+import { EditRiskComponent } from "../pages/dashboard/widget/editrisk.component";
 
  const  data= [
     {id:1,name: "sudha",role: "cse"},
@@ -31,7 +32,7 @@ export class CustomerService{
         var customerGrid = new  GridModel() ;
         let columns = [
         new  ColumnModel("id","Id", ColumnType.Label,"col-lg-2" ),
-        new  ColumnModel("name","Name",ColumnType.Label,"col-lg-6" ),
+        new  ColumnModel("name","Name",ColumnType.Label,"col-lg-5" ),
         new  ColumnModel("role","Role",ColumnType.Label,"col-lg-3" )];
         let actionModels= [new ActionModel("Edit","edit",""),
         new ActionModel("Delete","delete","",true,"Are you sure you want to delete?")];
@@ -48,6 +49,8 @@ export class CustomerService{
         customerGrid.uniqueId="id";
         customerGrid.title="Customer Grid";
         customerGrid.actions=actionModels;
+        customerGrid.showExpandableRow = true;
+        customerGrid.ExpandableComponent=EditRiskComponent;
         customerGrid.displayAddButton = true;
         pageModel.totalRecord = this.customerDetails.length;
         customerGrid.pageModel = pageModel;

@@ -1,3 +1,5 @@
+import { Component } from "@angular/compiler/src/core";
+
 export class GridModel {
   title: string;
   columns: ColumnModel[];
@@ -5,9 +7,12 @@ export class GridModel {
   pageModel: PagingModel;
   uniqueId: any;
   displayAddButton: boolean;
+  showExpandableRow: boolean;
+  ExpandableComponent: any;
   actions: ActionModel[];
   constructor() {
       this.displayAddButton = true;
+      this.showExpandableRow=false;
   }
 
 }

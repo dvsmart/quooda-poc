@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges, ViewChildren, ViewContainerRef, ComponentFactory, ComponentFactoryResolver } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { MatTableDataSource, MatSort, MatDialog, MatPaginator, Sort, PageEvent } from '@angular/material';
@@ -7,6 +7,7 @@ import { element } from 'protractor';
 import { GridModel, ColumnModel, ColumnType, PagingModel, SortDirection } from '../../../viewmodel/grid';
 import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
 import { CustomerService } from '../../../services/customerService';
+import { EditRiskComponent } from '../../../pages/dashboard/widget/editrisk.component';
 
 @Component({
   selector: 'smart-grid',
@@ -26,7 +27,9 @@ export class GridComponent implements OnChanges, OnInit {
   _searchBy: string;
   pagingModel: PagingModel;
 
-  constructor(private customerService: CustomerService, public dialog: MatDialog) {
+  @ViewChildren('matrow', { read: ViewContainerRef }) containers;
+  expandedRow: number;
+  constructor(private customerService: CustomerService, public dialog: MatDialog,private resolver: ComponentFactoryResolver) {
   }
 
 
@@ -34,15 +37,22 @@ export class GridComponent implements OnChanges, OnInit {
   }
   ngOnInit(): void {
     this.customGridModel = this.gridInput;
-    console.log(this.customGridModel);
     if (this.customGridModel == undefined) {
       return;
+    }
+    if( this.customGridModel.showExpandableRow)
+    {
+    this.displayedColumns.push("expand");
     }
     this.customGridModel.columns.map((x: ColumnModel) => {
       this.displayedColumns.push(x.columnDefinition);
     });
+    if( this.customGridModel.actions != null && this.customGridModel.actions !=undefined 
+      && this.customGridModel.actions.length>0)
+    {
     this.displayedColumns.push("action");
-    console.log(this.customGridModel.data);
+    }
+   
     this.dataSource = new MatTableDataSource(this.customGridModel.data);
     this.pagingModel = this.customGridModel.pageModel;
   }
@@ -51,6 +61,7 @@ export class GridComponent implements OnChanges, OnInit {
   ngAfterViewInit() {
   }
   sortData(sort: Sort) {
+    this.clearExbandableRow();
     this.pagingModel.sortDirection = sort.direction == "asc" ? SortDirection.Ascending : SortDirection.Desccending;
     this.pagingModel.sortColumn = sort.active;
     let pagedData = this.customerService.getCustomerDetails(this.pagingModel);
@@ -58,6 +69,7 @@ export class GridComponent implements OnChanges, OnInit {
   }
 
   getPagedProductData(event?: PageEvent) {
+    this.clearExbandableRow();
     if (event.pageSize != this.pagingModel.pageSize) {
       this.pagingModel.pageIndex = 0;
     }
@@ -79,6 +91,7 @@ export class GridComponent implements OnChanges, OnInit {
   }
 
   performFilter(searchBy: string): void {
+    this.clearExbandableRow();
     var users: any;
     this.dataSource = new MatTableDataSource([]);
     this.pagingModel.searchBy = searchBy;
@@ -86,17 +99,46 @@ export class GridComponent implements OnChanges, OnInit {
     this.dataSource = new MatTableDataSource(pagedData);
   }
   reloadGrid(): void {
+    this.clearExbandableRow();
     this.dataSource = new MatTableDataSource([]);
     this.pagingModel = new PagingModel();
     let pagedData = this.customerService.getCustomerDetails(this.pagingModel);
     this.dataSource = new MatTableDataSource(pagedData);
   }
-  editSelected(row): void {
-    this.selectedRowIndex = row.id;
+  
+
+  expandRow(index: number) {
+    console.log(index);
+    if (this.expandedRow != null) {
+      // clear old message
+      this.containers.toArray()[this.expandedRow].clear();
+    }
+    debugger;
+    if (this.expandedRow === index) {
+      this.expandedRow = null;
+    } else {
+      const container = this.containers.toArray()[index];
+      const factory: any = this.resolver.resolveComponentFactory(this.customGridModel.ExpandableComponent);
+      const messageComponent = container.createComponent(factory);
+      
+      messageComponent.instance.rowdata = this.dataSource.data[index];
+      this.expandedRow = index;
+    }
+  }
+ 
+  clearExbandableRow()
+  {
+    if (this.expandedRow != null) {
+      // clear old message
+      this.containers.toArray()[this.expandedRow].clear();
+    }
+    this.expandedRow = null;
   }
   deleteSelected(row):void{
+    this.clearExbandableRow();
     this.openConfirmationDialog(row);
   }
+
   closeInformationDialog = () => {
     this.dialog.closeAll();
   }
@@ -122,3 +164,6 @@ export class GridComponent implements OnChanges, OnInit {
     });
   }
 }
+
+
+

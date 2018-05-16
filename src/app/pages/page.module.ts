@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { SidemenuComponent } from '../_layout/sidemenu/sidemenu.component';
+import { EditRiskComponent } from './dashboard/widget/editrisk.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,6 +41,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     SharedModule
   ],
-  declarations: [HomeComponent, AppLayoutComponent, LoginComponent, AboutComponent, ProfileComponent, SidemenuComponent]
+  declarations: [HomeComponent, AppLayoutComponent, LoginComponent, AboutComponent, ProfileComponent, SidemenuComponent,
+    EditRiskComponent],
+    entryComponents:[EditRiskComponent]
 })
 export class PageModule { }
