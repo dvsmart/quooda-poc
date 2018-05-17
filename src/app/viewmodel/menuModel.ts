@@ -7,4 +7,12 @@ export class Menu {
   isVisible: boolean = true;
   cssClassName?:string;
   iconName?:string;
+  parentId?:number;
+  /**
+   *
+   */
+
+
+  constructor() {
+  }
 }

@@ -1,1 +1,34 @@
-<app-menu-item [items]="menuItems"></app-menu-item>
+<!-- <span *ngFor="let item of menuItems">
+  <!-- Handle branch node buttons here
+  <span *ngIf="item.children && item.children.length > 0">
+    <button mat-button [matMenuTriggerFor]="menu.childMenu">
+      {{item.caption}}
+      <mat-icon>arrow_right</mat-icon>
+    </button>
+    <appitem #menu [items]="item.children"></appitem>
+  </span>
+
+  <span *ngIf="!item.children || item.children.length === 0">
+    <button mat-button [routerLink]="item.route">
+      {{item.caption}}
+    </button>
+  </span>
+</span> -->
+
+<mat-nav-list>
+  <mat-list-item *ngFor="let item of menuItems">
+    <!-- Handle branch node buttons here -->
+    <a matLine *ngIf="item.children && item.children.length > 0">
+      <button mat-button [matMenuTriggerFor]="menu.childMenu">
+        {{item.caption}}
+        <mat-icon>arrow_right</mat-icon>
+      </button>
+      <appitem #menu [items]="item.children"></appitem>
+    </a>
+    <a matLine *ngIf="!item.children || item.children.length === 0">
+      <button mat-button [routerLink]="item.route">
+        {{item.caption}}
+      </button>
+    </a>
+  </mat-list-item>
+</mat-nav-list>

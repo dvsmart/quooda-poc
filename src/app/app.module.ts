@@ -19,10 +19,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidemenuComponent } from './_layout/sidemenu/sidemenu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuService } from './services/menu.service';
+import { SideChildmenuComponent } from './_layout/sidemenu/extra-menu-item.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,8 @@ import { MenuService } from './services/menu.service';
     MatCardModule,
     MatListModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [MenuService],
   bootstrap: [AppComponent]

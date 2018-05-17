@@ -13,7 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { SidemenuComponent } from '../_layout/sidemenu/sidemenu.component';
 import { EditRiskComponent } from './dashboard/widget/editrisk.component';
-import { MenuItemComponent } from '../_layout/sidemenu/menu-item.component';
+import { SideChildmenuComponent } from '../_layout/sidemenu/extra-menu-item.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -43,7 +43,7 @@ const routes: Routes = [
     SharedModule
   ],
   declarations: [HomeComponent, AppLayoutComponent, LoginComponent, AboutComponent, ProfileComponent, SidemenuComponent,
-    EditRiskComponent,MenuItemComponent],
+    EditRiskComponent,SideChildmenuComponent],
     entryComponents:[EditRiskComponent]
 })
 export class PageModule { }

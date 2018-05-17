@@ -20,15 +20,15 @@ export class MenuService {
       {
         caption: 'Risks', id: 4, route: '/home', hasChildren: true,
         children: [
-          { caption: 'Controlled Risks', id: 7, route: "['/home']" },
-          { caption: 'Uncontrolled Risks', id: 7, route: "['/home']" }], iconName:'home'
+          { caption: 'Controlled Risks', id: 7, route: "['/home']", parentId: 4 },
+          { caption: 'Uncontrolled Risks', id: 7, route: "['/home']",parentId: 4 }], iconName:'home'
       },
       { caption: 'Checklists', id: 5, route: "['/home']", iconName:'home' },
       {
         caption: 'Compliance', id: 6, route: "['/home']", hasChildren: true,
         children: [
-          { caption: 'RAG Status', id: 7, route: "['/home']" },
-          { caption: 'Summary', id: 7, route: "['/home']" }], iconName:'home'
+          { caption: 'RAG Status', id: 7, route: "['/home']", parentId:6 },
+          { caption: 'Summary', id: 7, route: "['/home']", parentId:6 }], iconName:'home'
       },
     ];
     return items;
