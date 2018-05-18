@@ -15,6 +15,7 @@ export class MenuService {
     let items: any[] = [
       { caption: 'Home', id: 1, route: '/home',iconName:'home' },
       { caption: 'Dashboard', id: 2, route: '/dashboard', iconName:'dashboard' },
+      { caption: 'Profile', id: 2, route: '/profile', iconName:'account_circle' },
       { caption: 'Assets', id: 2, route: '/dashboard', iconName:'dashboard' },
       { caption: 'Assessments', id: 3, route: '/home', iconName:'home' },
       {
