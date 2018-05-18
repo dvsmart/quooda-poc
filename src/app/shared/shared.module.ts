@@ -39,6 +39,10 @@ import { GridComponent } from './components/grid/grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../services/customerService';
 import { ConfirmmodalComponent } from './components/confirmmodel/confirmmodel.component';
+import { PiechartComponent } from './components/charts/piechart/piechart.component';
+import { ChartsModule } from 'ng2-charts';
+import { BarchartComponent } from './components/charts/barchart/barchart.component';
+import { LinechartComponent } from './components/charts/linechart/linechart.component';
 
 @NgModule({
   imports: [
@@ -77,7 +81,8 @@ import { ConfirmmodalComponent } from './components/confirmmodel/confirmmodel.co
     MatTooltipModule,
     CdkTableModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   exports: [
     CdkTableModule,
@@ -114,9 +119,13 @@ import { ConfirmmodalComponent } from './components/confirmmodel/confirmmodel.co
     MatToolbarModule,
     MatTooltipModule,
     GridComponent,
+    ChartsModule,
+    PiechartComponent,
+    BarchartComponent,
+    LinechartComponent
   ],
   providers:[CustomerService],
   entryComponents:[ConfirmmodalComponent],
-  declarations: [GridComponent,ConfirmmodalComponent]
+  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent]
 })
 export class SharedModule { }

@@ -1,34 +1,22 @@
-<!-- <span *ngFor="let item of menuItems">
-  <!-- Handle branch node buttons here
-  <span *ngIf="item.children && item.children.length > 0">
-    <button mat-button [matMenuTriggerFor]="menu.childMenu">
-      {{item.caption}}
-      <mat-icon>arrow_right</mat-icon>
-    </button>
-    <appitem #menu [items]="item.children"></appitem>
-  </span>
-
-  <span *ngIf="!item.children || item.children.length === 0">
-    <button mat-button [routerLink]="item.route">
-      {{item.caption}}
-    </button>
-  </span>
-</span> -->
-
 <mat-nav-list>
   <mat-list-item *ngFor="let item of menuItems">
-    <!-- Handle branch node buttons here -->
-    <a matLine *ngIf="item.children && item.children.length > 0">
-      <button mat-button [matMenuTriggerFor]="menu.childMenu">
-        {{item.caption}}
-        <mat-icon>arrow_right</mat-icon>
+    <a matLine *ngIf="!item.children || item.children.length === 0" [routerLink]="item.route">
+      <button mat-icon-button>
+        <mat-icon>{{item.iconName}}</mat-icon>
       </button>
-      <appitem #menu [items]="item.children"></appitem>
+      {{item.caption}}
     </a>
-    <a matLine *ngIf="!item.children || item.children.length === 0">
-      <button mat-button [routerLink]="item.route">
+    <span *ngIf="item.children && item.children.length > 0">
+      <a matLine [matMenuTriggerFor]="menu.childMenu">
+        <button mat-icon-button>
+          <mat-icon>build</mat-icon>
+        </button>
         {{item.caption}}
-      </button>
-    </a>
+        <button mat-icon-button>
+          <mat-icon>arrow_right</mat-icon>
+        </button>
+        <appitem #menu [items]="item.children"></appitem>
+      </a>
+    </span>
   </mat-list-item>
 </mat-nav-list>

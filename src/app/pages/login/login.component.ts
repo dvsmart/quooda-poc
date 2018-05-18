@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  returnUrl: string;
+  constructor(private router: Router,private authService: AuthService,private route: ActivatedRoute,) { }
 
   ngOnInit() {
-  }
+    // reset login status
+    //this.authService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+}
 
   onLogin(){
-      this.router.navigate(['\home']);
+    var isAuthenticated = this.authService.authenticate();
+    if(isAuthenticated){
+      this.router.navigateByUrl(this.returnUrl);
+    }
   }
 }

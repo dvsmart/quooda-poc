@@ -14,13 +14,16 @@ import { SharedModule } from '../shared/shared.module';
 import { SidemenuComponent } from '../_layout/sidemenu/sidemenu.component';
 import { EditRiskComponent } from './dashboard/widget/editrisk.component';
 import { SideChildmenuComponent } from '../_layout/sidemenu/extra-menu-item.component';
+import { AuthGuard } from '../services/auth.guard';
+import { AuthService } from '../services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-
+  { path: '', component: LoginComponent },
   {
     path: '',
     component: AppLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
@@ -35,15 +38,16 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules}),
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule
   ],
+  providers: [AuthGuard, AuthService, CookieService],
   declarations: [HomeComponent, AppLayoutComponent, LoginComponent, AboutComponent, ProfileComponent, SidemenuComponent,
-    EditRiskComponent,SideChildmenuComponent],
-    entryComponents:[EditRiskComponent]
+    EditRiskComponent, SideChildmenuComponent],
+  entryComponents: [EditRiskComponent]
 })
 export class PageModule { }

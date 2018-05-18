@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -20,6 +19,9 @@ import { SidemenuComponent } from './_layout/sidemenu/sidemenu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuService } from './services/menu.service';
 import { SideChildmenuComponent } from './_layout/sidemenu/extra-menu-item.component';
+import { AuthGuard } from './services/auth.guard';
+import { AuthService } from './services/auth.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { SideChildmenuComponent } from './_layout/sidemenu/extra-menu-item.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule,
     SharedModule,
     PageModule,
     CommonModule,
@@ -40,7 +42,6 @@ import { SideChildmenuComponent } from './_layout/sidemenu/extra-menu-item.compo
     MatListModule,
     FlexLayoutModule,
     HttpClientModule,
-
   ],
   providers: [MenuService],
   bootstrap: [AppComponent]

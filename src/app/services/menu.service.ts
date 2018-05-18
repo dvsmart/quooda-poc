@@ -18,17 +18,23 @@ export class MenuService {
       { caption: 'Assets', id: 2, route: '/dashboard', iconName:'dashboard' },
       { caption: 'Assessments', id: 3, route: '/home', iconName:'home' },
       {
-        caption: 'Risks', id: 4, route: '/home', hasChildren: true,
+        caption: 'Risks', id: 4, route: '/home', hasChildren: true, iconName:'home',
         children: [
-          { caption: 'Controlled Risks', id: 7, route: "['/home']", parentId: 4 },
-          { caption: 'Uncontrolled Risks', id: 7, route: "['/home']",parentId: 4 }], iconName:'home'
+          { caption: 'Controlled Risks', id: 7, route: "['/home']", parentId: 4,iconName:'home' },
+          { caption: 'Uncontrolled Risks', id: 7, route: "['/home']",parentId: 4,hasChildren: true,
+          children: [
+            { caption: 'Controlled Risks 2', id: 7, route: "['/home']", parentId: 4 },
+            { caption: 'Uncontrolled Risks 2', id: 7, route: "['/home']",parentId: 4,hasChildren: true,
+            children: [
+              { caption: 'Controlled Risks 3', id: 7, route: "['/home']", parentId: 4 },
+              { caption: 'Uncontrolled Risks 3', id: 7, route: "['/home']",parentId: 4 }] }] }]
       },
       { caption: 'Checklists', id: 5, route: "['/home']", iconName:'home' },
       {
         caption: 'Compliance', id: 6, route: "['/home']", hasChildren: true,
         children: [
-          { caption: 'RAG Status', id: 7, route: "['/home']", parentId:6 },
-          { caption: 'Summary', id: 7, route: "['/home']", parentId:6 }], iconName:'home'
+          { caption: 'RAG Status', id: 7, route: "['/home']", parentId:6 ,iconName:'home'},
+          { caption: 'Summary', id: 7, route: "['/home']", parentId:6 ,iconName:'home'}], iconName:'home'
       },
     ];
     return items;

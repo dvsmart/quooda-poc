@@ -1,19 +1,18 @@
 
-  <mat-menu #childMenu="matMenu" [overlapTrigger]="false" xPosition="after">
-      <span *ngFor="let child of items">
-        <span *ngIf="child.children && child.children.length > 0">
-          <button mat-menu-item [matMenuTriggerFor]="menu.childMenu">
-            <mat-icon>{{child.iconName}}</mat-icon>
-            {{child.caption}}
-          </button>
-          <appitem #menu [items]="child.children"></appitem>
-        </span>
-        <!-- Handle leaf node menu items -->
-        <span *ngIf="!child.children || child.children.length === 0">
-          <button mat-menu-item [routerLink]="child.route">
-            <mat-icon>{{child.iconName}}</mat-icon>
-            {{child.caption}}
-          </button>
-        </span>
+<mat-menu #childMenu="matMenu" xPosition="after" [overlapTrigger]="false"  class="menuclass">
+    <span *ngFor="let child of items">
+      <span *ngIf="child.children && child.children.length > 0">
+        <a mat-menu-item [matMenuTriggerFor]="menu.childMenu" [routerLink]="child.route">
+          <mat-icon>{{child.iconName}}</mat-icon>
+          {{child.caption}}
+        </a>
+        <appitem #menu [items]="child.children"></appitem>
       </span>
-    </mat-menu>
+      <span *ngIf="!child.children || child.children.length === 0">
+        <a mat-menu-item [routerLink]="child.route">
+          <mat-icon>{{child.iconName}}</mat-icon>
+          {{child.caption}}
+        </a>
+      </span>
+    </span>
+  </mat-menu>
