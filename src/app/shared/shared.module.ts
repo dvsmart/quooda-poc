@@ -44,6 +44,7 @@ import { ChartsModule } from 'ng2-charts';
 import { BarchartComponent } from './components/charts/barchart/barchart.component';
 import { LinechartComponent } from './components/charts/linechart/linechart.component';
 import { TabComponent } from './components/tab/tab.component';
+import { CustomformComponent } from './components/customform/customform.component';
 
 @NgModule({
   imports: [
@@ -124,10 +125,11 @@ import { TabComponent } from './components/tab/tab.component';
     PiechartComponent,
     BarchartComponent,
     LinechartComponent,
-    TabComponent
+    TabComponent,
+    CustomformComponent
   ],
   providers:[CustomerService],
   entryComponents:[ConfirmmodalComponent],
-  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent]
+  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, CustomformComponent]
 })
 export class SharedModule { }

@@ -1,0 +1,18 @@
+<form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
+  <div *ngFor="let prop of objectProps">
+    <label [attr.for]="prop"></label>
+
+    <div [ngSwitch]="prop.type">
+
+      <input *ngSwitchCase="'text'" [formControlName]="prop.key" [id]="prop.key" [type]="prop.type">
+
+    </div>
+  </div>
+  <p>
+    <button type="submit">Save</button>
+  </p>
+</form>
+
+<strong>Form Value</strong>
+<pre>{{ form.value | json }}</pre>
+<strong>Form is valid:</strong> {{form.valid}}
