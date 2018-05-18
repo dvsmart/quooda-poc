@@ -14,7 +14,7 @@
           <div class="user-i">
             <!-- <img alt="" class="rad-full mb-1" height="100" src="assets/images/userpic.jpg" width="100"> -->
             <div>
-                <span>Welcome back</span>
+              <span>Welcome back</span>
               <span>Vijay K</span>
             </div>
           </div>
@@ -51,6 +51,12 @@
         <button mat-icon-button>
           <mat-icon>reorder</mat-icon>
         </button>
+        <button mat-icon-button>
+          <mat-icon>build</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>notification_important</mat-icon>
+        </button>
 
         <button mat-icon-button [matMenuTriggerFor]="notifyMenu">
           <mat-icon>notifications</mat-icon>
@@ -71,8 +77,8 @@
           </button>
         </mat-menu>
         <button mat-icon-button (click)="logout()">
-            <mat-icon>input</mat-icon>
-          </button>
+          <mat-icon>input</mat-icon>
+        </button>
       </mat-toolbar>
       <div class="body-container">
         <router-outlet></router-outlet>

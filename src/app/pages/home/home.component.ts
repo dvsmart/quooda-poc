@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GridModel } from '../../viewmodel/grid';
+import { CustomerService } from '../../services/customerService';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
+  customerGrid: GridModel;
+  constructor(private customerService:CustomerService) {
+  }
   ngOnInit() {
+    this.customerGrid= this.customerService.getCustomerGridModel();
   }
 
 }

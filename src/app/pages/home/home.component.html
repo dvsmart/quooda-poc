@@ -6,3 +6,20 @@
 <div><a>My Planner</a></div>
 <div><a [routerLink]="['/dashboard']">My Dashboard</a></div>
 </div>
+
+
+<mat-grid-list cols="3" rowHeight="1:1">
+    <mat-grid-tile><mat-card style="width: 450px;">
+        <app-piechart></app-piechart>
+    </mat-card></mat-grid-tile>
+    <mat-grid-tile><mat-card style="width: 450px;">
+        <app-barchart></app-barchart>
+    </mat-card></mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card style="width: 450px;">
+          <app-linechart></app-linechart>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <smart-grid [gridInput]="customerGrid"></smart-grid>
