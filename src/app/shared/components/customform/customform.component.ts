@@ -13,17 +13,30 @@ export class CustomformComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.dataObject);
     this.objectProps =
       Object.keys(this.dataObject)
         .map(prop => {
           return Object.assign({}, { key: prop }, this.dataObject[prop]);
         });
     const formGroup = {};
-    for (let prop of Object.keys(this.dataObject)) {
-      formGroup[prop] = new FormControl(this.dataObject[prop].value || '', this.mapValidators(this.dataObject[prop].validation));
-    }
+    // for (let prop of Object.keys(this.dataObject)) {
+    //   debugger;
+    //   console.log(prop);
+    //   formGroup[prop] = new FormControl(this.dataObject[prop].value || '', this.mapValidators(this.dataObject[prop].validation));
+    //   console.log(formGroup[prop]);
+    // }
+
+
+    this.dataObject.forEach(element => {
+      formGroup[element.key] = element.isManadatory ? new FormControl(element.value || '', Validators.required)
+                                              : new FormControl(element.value || '');
+    });
 
     this.form = new FormGroup(formGroup);
+    console.log(this.form);
+
+
   }
 
   private mapValidators(validators) {

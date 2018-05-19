@@ -1,11 +1,10 @@
 <form novalidate (ngSubmit)="onSubmit(form.value)" [formGroup]="form">
   <div *ngFor="let prop of objectProps">
     <label [attr.for]="prop"></label>
-
+    {{prop.label}}
     <div [ngSwitch]="prop.type">
-
-      <input *ngSwitchCase="'text'" [formControlName]="prop.key" [id]="prop.key" [type]="prop.type">
-
+      <input [type]="prop.type" *ngSwitchCase="'text'" [formControlName]="prop.key">
+      <input [type]="prop.type" *ngSwitchCase="'number'" [formControlName]="prop.key">
     </div>
   </div>
   <p>

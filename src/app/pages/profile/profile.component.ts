@@ -7,12 +7,12 @@ import { CustomControl } from '../../viewmodel/customControl';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  customcontrol: CustomControl[] = [];
+  customFields: CustomControl[] = [];
   constructor() { }
 
   ngOnInit() {
     // this.customcontrol = [];
-    let controls: { id: number, key: string, label: string, type: String }[] = [
+    let controls: any[] = [
       {
         id: 1,
         key: 'name',
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
       },
     ]
 
-    // this.customcontrol = controls;
+    this.customFields = controls;
   }
 
 }
