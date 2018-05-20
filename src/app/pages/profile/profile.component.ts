@@ -25,6 +25,31 @@ export class ProfileComponent implements OnInit {
         label: 'Age',
         type: 'number'
       },
+      {
+        id: 3,
+        key: 'gender',
+        label: 'Gender',
+        type: 'radio',
+        options: [{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }]
+      },
+      {
+        id: 4,
+        key: 'city',
+        label: 'City',
+        type: 'select',
+        options: [
+          { label: "(choose one)", value: ''},
+          { label: "Bolzano", value: '39100'},
+          { label: "Meltina", value: '39010'},
+          { label: "Appiano", value: '39057'}
+        ]
+      },
+      {
+        id: 5,
+        key: 'dob',
+        label: 'DOB',
+        type: 'date'
+      }
     ]
 
     this.customFields = controls;

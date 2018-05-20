@@ -5,6 +5,22 @@
     <div [ngSwitch]="prop.type">
       <input [type]="prop.type" *ngSwitchCase="'text'" [formControlName]="prop.key">
       <input [type]="prop.type" *ngSwitchCase="'number'" [formControlName]="prop.key">
+      <div *ngSwitchCase="'select'">
+        <select [formControlName]="prop.key">
+          <option *ngFor="let option of prop.options" [value]="option.value">{{option.label}}
+          </option>
+        </select>
+      </div>
+      <div *ngSwitchCase="'radio'">
+        <label *ngFor="let option of prop.options">
+          <input
+            type="radio"
+            [name]="prop.key"
+            [formControlName]="prop.key"
+            [value]="option.value">
+        </label>
+      </div>
+      <input [type]="prop.type" *ngSwitchCase="'date'" [formControlName]="prop.key">
     </div>
   </div>
   <p>
