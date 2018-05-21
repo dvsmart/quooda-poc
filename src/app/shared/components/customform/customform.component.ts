@@ -21,10 +21,10 @@ export class CustomformComponent implements OnInit {
   get value() { return this.form.value; }
 
   ngOnInit() {
-    // this.objectProps = Object.keys(this.formConfig.fields)
-    //     .map(prop => {
-    //       return Object.assign({}, { key: prop }, this.formConfig.fields[prop]);
-    //     });
+    this.objectProps = Object.keys(this.formConfig.fields)
+        .map(prop => {
+          return Object.assign({}, { key: prop }, this.formConfig.fields[prop]);
+        });
     this.form = this.buildFields();
     this.title = this.formConfig.title;
   }

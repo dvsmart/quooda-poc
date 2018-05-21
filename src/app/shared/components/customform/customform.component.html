@@ -1,5 +1,5 @@
 <mat-card class="customformcard">
-  <mat-card-title>formConfig.title</mat-card-title>
+  <mat-card-title>{{title}}</mat-card-title>
   <mat-card-content>
     <form novalidate [formGroup]="form" (submit)="handleSubmit($event)">
       <div *ngFor="let prop of objectProps">

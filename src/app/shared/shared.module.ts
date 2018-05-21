@@ -46,6 +46,7 @@ import { BarchartComponent } from './components/charts/barchart/barchart.compone
 import { LinechartComponent } from './components/charts/linechart/linechart.component';
 import { TabComponent } from './components/tab/tab.component';
 import { CustomformComponent } from './components/customform/customform.component';
+import { CustomtabComponent } from './components/customtab/customtab.component';
 
 @NgModule({
   imports: [
@@ -129,10 +130,11 @@ import { CustomformComponent } from './components/customform/customform.componen
     BarchartComponent,
     LinechartComponent,
     TabComponent,
-    CustomformComponent
+    CustomformComponent,
+    CustomtabComponent
   ],
   providers:[CustomerService],
   entryComponents:[ConfirmmodalComponent],
-  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, CustomformComponent]
+  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, CustomformComponent, CustomtabComponent]
 })
 export class SharedModule { }
