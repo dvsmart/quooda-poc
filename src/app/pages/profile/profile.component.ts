@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { CustomControl } from '../../viewmodel/customControl';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CustomField } from '../../viewmodel/custom/CustomField';
+import { CustomformComponent } from '../../shared/components/customform/customform.component';
+import { FormModel } from '../../viewmodel/custom/formModel';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -7,8 +10,10 @@ import { CustomControl } from '../../viewmodel/customControl';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  customFields: CustomControl[] = [];
+  customFields: CustomField[] = [];
+  formModel: FormModel;
   constructor() { }
+  @ViewChild(CustomformComponent) form: CustomformComponent;
 
   ngOnInit() {
     // this.customcontrol = [];
@@ -38,10 +43,10 @@ export class ProfileComponent implements OnInit {
         label: 'City',
         type: 'select',
         options: [
-          { label: "(choose one)", value: ''},
-          { label: "Bolzano", value: '39100'},
-          { label: "Meltina", value: '39010'},
-          { label: "Appiano", value: '39057'}
+          { label: "(choose one)", value: '' },
+          { label: "Bolzano", value: '39100' },
+          { label: "Meltina", value: '39010' },
+          { label: "Appiano", value: '39057' }
         ]
       },
       {
@@ -51,8 +56,12 @@ export class ProfileComponent implements OnInit {
         type: 'date'
       }
     ]
-
     this.customFields = controls;
+    this.formModel = new FormModel('Custom Form', this.customFields);
   }
 
+
+  submit(value: { [name: string]: any }) {
+    console.log(value);
+  }
 }

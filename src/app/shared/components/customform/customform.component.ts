@@ -1,52 +1,51 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+
 @Component({
+  exportAs: 'customform',
   selector: 'app-customform',
   templateUrl: './customform.component.html',
   styleUrls: ['./customform.component.scss']
 })
 export class CustomformComponent implements OnInit {
-  @Input() dataObject;
+  @Input() formConfig;
   objectProps;
   form: FormGroup;
+  title: string;
+
   constructor() { }
 
+  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+
+  get value() { return this.form.value; }
+
   ngOnInit() {
-    console.log(this.dataObject);
-    this.objectProps =
-      Object.keys(this.dataObject)
-        .map(prop => {
-          return Object.assign({}, { key: prop }, this.dataObject[prop]);
-        });
+    // this.objectProps = Object.keys(this.formConfig.fields)
+    //     .map(prop => {
+    //       return Object.assign({}, { key: prop }, this.formConfig.fields[prop]);
+    //     });
+    this.form = this.buildFields();
+    this.title = this.formConfig.title;
+  }
+
+  buildFields(): FormGroup{
     const formGroup = {};
-    // for (let prop of Object.keys(this.dataObject)) {
-    //   debugger;
-    //   console.log(prop);
-    //   formGroup[prop] = new FormControl(this.dataObject[prop].value || '', this.mapValidators(this.dataObject[prop].validation));
-    //   console.log(formGroup[prop]);
-    // }
-
-
-    this.dataObject.forEach(element => {
+    this.formConfig.fields.forEach(element => {
       formGroup[element.key] = element.isManadatory ? new FormControl(element.value || '', Validators.required)
-                                              : new FormControl(element.value || '');
+        : new FormControl(element.value || '');
     });
-
-    this.form = new FormGroup(formGroup);
-    console.log(this.form);
-
-
+    return new FormGroup(formGroup);
   }
 
   private mapValidators(validators) {
     const formValidators = [];
 
-    if(validators) {
-      for(const validation of Object.keys(validators)) {
-        if(validation === 'required') {
+    if (validators) {
+      for (const validation of Object.keys(validators)) {
+        if (validation === 'required') {
           formValidators.push(Validators.required);
-        } else if(validation === 'min') {
+        } else if (validation === 'min') {
           formValidators.push(Validators.min(validators[validation]));
         }
       }
@@ -55,8 +54,14 @@ export class CustomformComponent implements OnInit {
     return formValidators;
   }
 
-  onSubmit(formValue){
+  onSubmit(formValue) {
     console.log(formValue);
+  }
+
+  handleSubmit(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.submit.emit(this.value);
   }
 
 }

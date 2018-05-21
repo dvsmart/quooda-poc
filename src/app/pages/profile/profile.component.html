@@ -1,4 +1,3 @@
 <app-tab></app-tab>
 
-<app-customform [dataObject]="customFields"></app-customform>
-
+<app-customform [formConfig]="formModel" #form="customform" (submit)="submit($event)"></app-customform>

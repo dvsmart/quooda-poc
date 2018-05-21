@@ -32,7 +32,8 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatFormFieldModule
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
@@ -82,6 +83,7 @@ import { CustomformComponent } from './components/customform/customform.componen
     MatToolbarModule,
     MatTooltipModule,
     CdkTableModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     ChartsModule
@@ -120,6 +122,7 @@ import { CustomformComponent } from './components/customform/customform.componen
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatFormFieldModule,
     GridComponent,
     ChartsModule,
     PiechartComponent,
