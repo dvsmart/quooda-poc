@@ -13,7 +13,7 @@ export class CustomformComponent implements OnInit {
   objectProps;
   form: FormGroup;
   title: string;
-
+  formName: string;
   constructor() { }
 
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
@@ -21,17 +21,19 @@ export class CustomformComponent implements OnInit {
   get value() { return this.form.value; }
 
   ngOnInit() {
-    this.objectProps = Object.keys(this.formConfig.fields)
-        .map(prop => {
-          return Object.assign({}, { key: prop }, this.formConfig.fields[prop]);
-        });
+    var fields = this.formConfig;
+    this.objectProps = Object.keys(fields)
+      .map(prop => {
+        return Object.assign({}, { key: prop }, fields[prop]);
+      });
     this.form = this.buildFields();
+    this.formName = this.formConfig.id;
     this.title = this.formConfig.title;
   }
 
-  buildFields(): FormGroup{
+  buildFields(): FormGroup {
     const formGroup = {};
-    this.formConfig.fields.forEach(element => {
+    this.formConfig.forEach(element => {
       formGroup[element.key] = element.isManadatory ? new FormControl(element.value || '', Validators.required)
         : new FormControl(element.value || '');
     });

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CustomField } from '../../viewmodel/custom/CustomField';
+import { CustomField, FieldOption } from '../../viewmodel/custom/CustomField';
 import { CustomformComponent } from '../../shared/components/customform/customform.component';
-import { FormModel } from '../../viewmodel/custom/formModel';
-import { Title } from '@angular/platform-browser';
+import { CustomForm } from '../../viewmodel/custom/formModel';
+import { CustomTab } from '../../viewmodel/custom/customTab';
 
 @Component({
   selector: 'app-profile',
@@ -11,12 +11,12 @@ import { Title } from '@angular/platform-browser';
 })
 export class ProfileComponent implements OnInit {
   customFields: CustomField[] = [];
-  formModel: FormModel;
+  customTabs: CustomTab[] = [];
+  formModel: CustomForm;
   constructor() { }
   @ViewChild(CustomformComponent) form: CustomformComponent;
 
   ngOnInit() {
-    // this.customcontrol = [];
     let controls: any[] = [
       {
         id: 1,
@@ -43,10 +43,11 @@ export class ProfileComponent implements OnInit {
         label: 'City',
         type: 'select',
         options: [
-          { label: "(choose one)", value: '' },
-          { label: "Bolzano", value: '39100' },
-          { label: "Meltina", value: '39010' },
-          { label: "Appiano", value: '39057' }
+          new FieldOption('India',12),
+          new FieldOption('London',13),
+          new FieldOption('US',14),
+          new FieldOption('Italy',16),
+          new FieldOption('Spain',89)
         ]
       },
       {
@@ -57,7 +58,80 @@ export class ProfileComponent implements OnInit {
       }
     ]
     this.customFields = controls;
-    this.formModel = new FormModel('Custom Form', this.customFields);
+    this.formModel = new CustomForm(this.customFields,'',false);
+    this.buildTabs(this.customFields)
+
+  }
+
+  buildTabs(customfields: CustomField[]) {
+    var fields1: CustomField[] = [
+      {
+        id: 11,
+        key: 'name',
+        label: 'Name',
+        placeholder: 'Enter your name',
+        type: 'text'
+      },
+      {
+        id: 12,
+        key: 'question1',
+        label: 'Question 1',
+        placeholder: 'Enter your name',
+        type: 'text'
+      },
+      {
+        id: 13,
+        key: 'yesno',
+        label: 'yes no option',
+        options: [new FieldOption('yes',1),new FieldOption('No',2)],
+        type: 'radio'
+      },
+    ]
+
+    let tabs: any[] = [
+      {
+        id: 11,
+        caption: 'Basic',
+        fields: customfields
+      },
+      {
+        id: 12,
+        caption: 'Questionaire',
+        fields: fields1
+      },
+      {
+        id: 32,
+        caption: 'Questionaire 2',
+        fields: fields1
+      },
+      {
+        id: 32,
+        caption: 'Questionaire 2',
+        fields: fields1
+      },
+      {
+        id: 32,
+        caption: 'Questionaire 42',
+        fields: fields1
+      },
+      {
+        id: 32,
+        caption: 'Questionaire 28',
+        fields: fields1
+      },
+      {
+        id: 32,
+        caption: 'Questionaire 32',
+        fields: fields1
+      },
+      {
+        id: 32,
+        caption: 'Questionaire 24',
+        fields: fields1
+      }
+    ];
+
+    this.customTabs = tabs;
   }
 
 

@@ -1,11 +1,13 @@
 import { CustomField } from "./CustomField";
 
-export class FormModel {
-  title: string;
+export class CustomForm {
+  title?: string;
   fields: CustomField[];
+  standalone?: boolean;
 
-  constructor(title:string,fields: CustomField[]) {
+  constructor(fields: CustomField[],title?:string,standalone?:boolean) {
     this.title = title;
     this.fields = fields;
+    this.standalone = standalone
   }
 }
