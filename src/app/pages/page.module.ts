@@ -17,6 +17,7 @@ import { SideChildmenuComponent } from '../_layout/sidemenu/extra-menu-item.comp
 import { AuthGuard } from '../services/auth.guard';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CoreModule } from '../core/core.module';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -43,7 +44,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   providers: [AuthGuard, AuthService, CookieService],
   declarations: [HomeComponent, AppLayoutComponent, LoginComponent, AboutComponent, ProfileComponent, SidemenuComponent,
