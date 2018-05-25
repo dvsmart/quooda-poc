@@ -45,8 +45,8 @@ import { ChartsModule } from 'ng2-charts';
 import { BarchartComponent } from './components/charts/barchart/barchart.component';
 import { LinechartComponent } from './components/charts/linechart/linechart.component';
 import { TabComponent } from './components/tab/tab.component';
-import { CustomformComponent } from './components/customform/customform.component';
-import { CustomtabComponent } from './components/customtab/customtab.component';
+import { TilesComponent } from './components/tiles/tiles.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -87,7 +87,8 @@ import { CustomtabComponent } from './components/customtab/customtab.component';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    RouterModule
   ],
   exports: [
     CdkTableModule,
@@ -130,11 +131,10 @@ import { CustomtabComponent } from './components/customtab/customtab.component';
     BarchartComponent,
     LinechartComponent,
     TabComponent,
-    CustomformComponent,
-    CustomtabComponent
+    TilesComponent
   ],
   providers:[CustomerService],
   entryComponents:[ConfirmmodalComponent],
-  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, CustomformComponent, CustomtabComponent]
+  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, TilesComponent]
 })
 export class SharedModule { }

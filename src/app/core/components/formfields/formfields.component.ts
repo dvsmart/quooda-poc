@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CustomTab } from '../../../viewmodel/custom/customTab';
 import { FormBuilder, FormGroupName, FormGroup, FormControl, Validators } from '@angular/forms';
+import { CustomField } from '../../../viewmodel/custom/CustomField';
 
 @Component({
   selector: 'app-formfields',
@@ -9,23 +10,13 @@ import { FormBuilder, FormGroupName, FormGroup, FormControl, Validators } from '
 })
 export class FormfieldsComponent implements OnInit {
   @Input() tabForm;
-  form: FormGroup;
-  
-  constructor() { 
-    this.form = new FormGroup({
-      firstName: new FormControl()
-   });
+  @Input() mainForm;
+  fields: CustomField[] = [];
+  constructor() {
+
   }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      firstName: new FormControl()
-   });
+    this.fields = this.tabForm.fields;
   }
-
-  buildFormFields(){
-    var fields = this.tabForm.fields;
-  }
-
-
 }

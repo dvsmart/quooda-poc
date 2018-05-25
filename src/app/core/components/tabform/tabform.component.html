@@ -1,18 +1,13 @@
-<!-- <strong>Form Value</strong>
-<pre>{{ form.value | json }}</pre>
-<strong>Form is valid:</strong> {{form.valid}} -->
-
-
-<form>
-    <mat-tab-group>
-        <mat-tab *ngFor="let tab of tabConfig">
-          <ng-template mat-tab-label>
-            {{tab.caption}}
-          </ng-template>
-          <div style="height: 600px;background-color: whitesmoke">
-              <app-formfields [tabForm]="tab"></app-formfields>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-<button type="submit" mat-raised-button color="primary" style="float: right;">Save</button>
+<form [formGroup]="form" (submit)="handleSubmit($event)" (ngSubmit)="onFormSubmit()">
+  <mat-tab-group>
+    <mat-tab *ngFor="let tab of tabs">
+      <ng-template mat-tab-label>
+        {{tab.caption}}
+      </ng-template>
+      <div>
+        <app-formfields [tabForm]="tab" [mainForm]="form"></app-formfields>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <button type="submit" mat-raised-button color="primary" style="float: right;">Save</button>
 </form>

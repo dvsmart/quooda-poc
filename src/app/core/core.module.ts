@@ -4,6 +4,7 @@ import { TabformComponent } from './components/tabform/tabform.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormfieldsComponent } from './components/formfields/formfields.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CustomEntityComponent } from './custom-entity/custom-entity.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  exports:[TabformComponent,FormfieldsComponent],
-  declarations: [TabformComponent, FormfieldsComponent]
+  exports:[TabformComponent,FormfieldsComponent,CustomEntityComponent],
+  declarations: [TabformComponent, FormfieldsComponent, CustomEntityComponent]
 })
 export class CoreModule { }

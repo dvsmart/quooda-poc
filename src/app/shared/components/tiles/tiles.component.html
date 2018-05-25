@@ -1,0 +1,11 @@
+
+<mat-list *ngIf="config">
+    <!-- <h3 matSubheader>{{tileConfig.title}}</h3> -->
+    <mat-list-item *ngFor="let item of config">
+       <mat-icon matListIcon>{{item.iconName}}</mat-icon>
+       <h4 matLine><a [routerLink]="item.route">{{item.caption}}</a></h4>
+       <p matLine class="demo-2"> {{item.addedOn}} </p>
+       <p matLine class="demo-2"> {{item.addedBy}} </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+ </mat-list>

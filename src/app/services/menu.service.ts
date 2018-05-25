@@ -16,6 +16,8 @@ export class MenuService {
       { caption: 'Home', id: 1, route: '/home',iconName:'home' },
       { caption: 'Dashboard', id: 2, route: '/dashboard', iconName:'dashboard' },
       { caption: 'Profile', id: 2, route: '/profile', iconName:'account_circle' },
+      { caption: 'About', id: 2, route: '/about', iconName:'account_circle' },
+      { caption: 'Checklist', id: 5, route: '/checklist', iconName:'home' },
       { caption: 'Assets', id: 2, route: '/dashboard', iconName:'dashboard' },
       { caption: 'Assessments', id: 3, route: '/home', iconName:'home' },
       {
@@ -30,7 +32,6 @@ export class MenuService {
               { caption: 'Controlled Risks 3', id: 7, route: "['/home']", parentId: 4 },
               { caption: 'Uncontrolled Risks 3', id: 7, route: "['/home']",parentId: 4 }] }] }]
       },
-      { caption: 'Checklists', id: 5, route: "['/home']", iconName:'home' },
       {
         caption: 'Compliance', id: 6, route: "['/home']", hasChildren: true,
         children: [
