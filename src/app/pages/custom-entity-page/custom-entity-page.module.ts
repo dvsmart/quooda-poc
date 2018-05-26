@@ -7,7 +7,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { CustomComponent } from './custom/custom.component';
 
 const routes: Routes = [
-  {  path: '', component: CustomComponent},
+  {  path: 'checklist', component: CustomComponent},
   {  path: 'checklist/:id', component: CustomEntityPageComponent}
 ];
 

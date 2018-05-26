@@ -10,8 +10,8 @@ import { CustomField } from '../../../viewmodel/custom/CustomField';
 })
 export class TabformComponent implements OnInit {
   @Input() tabs: CustomTab[] = [];
-  form:FormGroup;
-
+  form: FormGroup;
+  childForm: any;
   get changes() { return this.form.valueChanges; }
   get valid() { return this.form.valid; }
   get value() { return this.form.value; }
@@ -22,29 +22,13 @@ export class TabformComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.form = this.createGroup();
+    this.form = new FormGroup({});
   }
 
-  createGroup() {
-    const group = this.fb.group({});
-    this.tabs.forEach(t => t.fields.forEach(control => group.addControl(control.key, this.createControl(control))))
-    return group;
-  }
-
-  createControl(config: CustomField) {
-    const { disabled, validation, value } = config;
-    return this.fb.control({ disabled, value }, validation);
-  }
-
-  handleSubmit(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.submit.emit(this.value);
-  }
-
-  onFormSubmit(){
-    alert(JSON.stringify(this.form.value));
-
+  onFormSubmit() {
+    var result = [];
+    this.tabs.forEach(t => result.push(JSON.stringify(t.tabFormGroup.value)));
+    alert(result);
 
   }
 }

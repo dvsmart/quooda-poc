@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomField, FieldOption } from '../../viewmodel/custom/CustomField';
 import { CustomForm } from '../../viewmodel/custom/formModel';
 import { CustomTab } from '../../viewmodel/custom/customTab';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -87,16 +88,8 @@ export class ProfileComponent implements OnInit {
 
 
     var tabs: CustomTab[] = [
-      {
-        id: 12,
-        caption: 'Questionaire',
-        fields: fields1
-      },
-      {
-        id: 32,
-        caption: 'Questionaire 2',
-        fields: fields2
-      }
+      new CustomTab(12,'Questionaire',fields1),
+      new CustomTab(32,'Questionaire 2',fields2),
     ];
 
     this.tabs = tabs;

@@ -17,10 +17,10 @@ export class CustomComponent implements OnInit {
 
     for (let index = 0; index < count; index++) {
       const element = 'checklist - ' + index;
-      this.categories.push({caption: element, iconName: 'folder',id: index,route:'checklist/'+index});
+      this.categories.push({caption: element, iconName: 'folder',id: index,route:'/checklist/'+index});
     }
   }
 
- 
+
 
 }

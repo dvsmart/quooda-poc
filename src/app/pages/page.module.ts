@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
       { path: 'profile', component: ProfileComponent },
       { path: 'about', component: AboutComponent },
-      { path: 'checklist', loadChildren: 'app/pages/custom-entity-page/custom-entity-page.module#CustomEntityPageModule' },
+      { path: '', loadChildren: 'app/pages/custom-entity-page/custom-entity-page.module#CustomEntityPageModule' },
     ]
   },
   { path: '**', redirectTo: '' }
