@@ -18,6 +18,7 @@ import { AuthGuard } from '../services/auth.guard';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from '../core/core.module';
+import { MaterialModule } from '../UI/material.module';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    MaterialModule,
     CoreModule
   ],
   providers: [AuthGuard, AuthService, CookieService],

@@ -4,13 +4,15 @@ import { TabformComponent } from './components/tabform/tabform.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormfieldsComponent } from './components/formfields/formfields.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from '../UI/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   exports:[TabformComponent,FormfieldsComponent],
   declarations: [TabformComponent, FormfieldsComponent]
