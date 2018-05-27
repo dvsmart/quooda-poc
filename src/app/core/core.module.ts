@@ -4,7 +4,7 @@ import { TabformComponent } from './components/tabform/tabform.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormfieldsComponent } from './components/formfields/formfields.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MaterialModule } from '../UI/material.module';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [

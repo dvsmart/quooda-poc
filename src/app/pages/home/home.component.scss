@@ -5,5 +5,16 @@
 }
 
 .home-widget{
-  background-color: lightblue;margin-right: 10px;height: 250px;width: 300px;
+  background-color: lightblue;height: 250px;
+}
+
+.center-dashboard{
+  margin: auto 0;
+  top: 40%;
+  bottom: 0;
+  display: inline;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
 }

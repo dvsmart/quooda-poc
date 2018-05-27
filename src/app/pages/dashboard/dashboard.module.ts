@@ -4,7 +4,8 @@ import { DashboardComponent } from './dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { WidgetComponent } from './widget/widget.component';
 import { SharedModule } from '../../shared/shared.module';
-import { MaterialModule } from '../../UI/material.module';
+import { MaterialModule } from '../../material.module';
+
 
 const routes: Routes = [{
   path: '', component: DashboardComponent

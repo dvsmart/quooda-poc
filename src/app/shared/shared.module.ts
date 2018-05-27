@@ -12,7 +12,7 @@ import { TabComponent } from './components/tab/tab.component';
 import { TilesComponent } from './components/tiles/tiles.component';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from './components/loader/loader.component';
-import { MaterialModule } from '../UI/material.module';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [

@@ -1,7 +1,7 @@
-<!-- <div class="row">
+<div class="row">
   <div class="col-md-4 col-xs-12">
-    <div style="background-color: lightblue;margin-right: 10px;height: 250px;">
-      <div class="center-box">
+    <div class="home-widget">
+      <div class="center-dashboard">
         <span>
           <mat-icon>date_range</mat-icon>
         </span>
@@ -10,8 +10,8 @@
     </div>
   </div>
   <div class="col-md-4 col-xs-12">
-    <div style="background-color: lightblue;margin-right: 10px;height: 250px;">
-      <div class="center-box" [routerLink]="['/dashboard']">
+    <div class="home-widget">
+      <div class="center-dashboard">
         <span>
           <mat-icon>dashboard</mat-icon>
         </span>
@@ -20,21 +20,21 @@
     </div>
   </div>
   <div class="col-md-4 col-xs-12">
-    <div style="background-color: lightblue;margin-right: 10px;height: 250px;">
-      <div class="center-box">
-        <mat-icon>
-          table_chart
-        </mat-icon>
+    <div class="home-widget">
+      <div class="center-dashboard">
+        <span>
+          <mat-icon>date_range</mat-icon>
+        </span>
         <h3>My Workspace</h3>
       </div>
     </div>
   </div>
-</div> -->
-
+</div>
+<!--
 <mat-grid-list cols="3" rowHeight="1:1">
   <mat-grid-tile colspan="1">
     <div class="home-widget">
-      <div>
+      <div class="center-dashboard">
         <span>
           <mat-icon>date_range</mat-icon>
         </span>
@@ -44,7 +44,7 @@
   </mat-grid-tile>
   <mat-grid-tile>
     <div class="home-widget">
-      <div [routerLink]="['/dashboard']">
+      <div [routerLink]="['/dashboard']" class="center-dashboard">
         <span>
           <mat-icon>dashboard</mat-icon>
         </span>
@@ -55,14 +55,16 @@
   <mat-grid-tile>
     <div class="home-widget">
       <div>
-        <mat-icon>
-          table_chart
-        </mat-icon>
+          <span>
+              <mat-icon>
+                  table_chart
+                </mat-icon>
+            </span
         <h3>My Workspace</h3>
       </div>
     </div>
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
 
 <!-- <mat-grid-list cols="3" rowHeight="1:1">
     <mat-grid-tile><mat-card style="width: 450px;">

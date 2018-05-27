@@ -18,7 +18,7 @@ import { AuthGuard } from '../services/auth.guard';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from '../core/core.module';
-import { MaterialModule } from '../UI/material.module';
+import { MaterialModule } from '../material.module';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },

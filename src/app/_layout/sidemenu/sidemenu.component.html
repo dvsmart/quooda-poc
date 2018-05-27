@@ -1,22 +1,24 @@
-<mat-nav-list>
-  <mat-list-item *ngFor="let item of menuItems">
-    <a matLine *ngIf="!item.children || item.children.length === 0" [routerLink]="item.route">
-      <button mat-icon-button>
-        <mat-icon>{{item.iconName}}</mat-icon>
-      </button>
-      {{item.caption}}
-    </a>
-    <span *ngIf="item.children && item.children.length > 0">
-      <a matLine [matMenuTriggerFor]="menu.childMenu">
-        <button mat-icon-button>
-          <mat-icon>build</mat-icon>
-        </button>
-        {{item.caption}}
-        <button mat-icon-button>
-          <mat-icon>arrow_right</mat-icon>
-        </button>
-        <appitem #menu [items]="item.children"></appitem>
-      </a>
-    </span>
-  </mat-list-item>
-</mat-nav-list>
+<div class="sidebar-container">
+    <mat-nav-list>
+        <mat-list-item *ngFor="let item of menuItems">
+          <a matLine *ngIf="!item.children || item.children.length === 0" [routerLink]="item.route">
+            <button mat-icon-button>
+              <mat-icon>{{item.iconName}}</mat-icon>
+            </button>
+            {{item.caption}}
+          </a>
+          <span *ngIf="item.children && item.children.length > 0">
+            <a matLine [matMenuTriggerFor]="menu.childMenu">
+              <button mat-icon-button>
+                <mat-icon>build</mat-icon>
+              </button>
+              {{item.caption}}
+              <button mat-icon-button>
+                <mat-icon>arrow_right</mat-icon>
+              </button>
+              <appitem #menu [items]="item.children"></appitem>
+            </a>
+          </span>
+        </mat-list-item>
+      </mat-nav-list>
+</div>

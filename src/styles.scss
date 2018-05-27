@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+//@import '/src/app/themes/_custom-theme.scss';
+@import 'src/_custom-theme.scss';
+
+//@import 'src/app/_layout/app-layout/sidenav-theme';
+
+
+
+// .example-sidenav{
+//   background-color: mat-color($custom-theme-primary);
+//   border-color: mat-color($custom-theme-primary, A400);
+//   color: mat-color($custom-theme-primary, '100-contrast');
+// }
+
 
 body {
   margin: 0;
@@ -18,6 +31,12 @@ html{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: cornflowerblue;
+  // background-color: cornflowerblue;
 }
 
+
+.loading-app{
+  position: absolute;
+  background: url(./assets/images/loading.gif) center center no-repeat;
+  background-color: aqua;
+}
