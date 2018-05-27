@@ -1,0 +1,14 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.mat-card{
+  // width: 580px;
+  height: 520px;
+}
+
+.example-container > * {
+  width: 50%;
+}
