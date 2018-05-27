@@ -3,9 +3,9 @@
     <h2 class="example-h2">Profile</h2>
     <mat-tab-group class="demo-tab-group">
       <mat-tab label="Update Profile">
-        <div class="demo-tab-content">
-          <form>
-            <div class="example-container">
+        <div class="demo-tab-content" style='float:left'>
+          <div style='float:left;' class="example-container">
+            <form>
               <mat-form-field>
                 <input matInput #input maxlength="20" placeholder="User Name">
               </mat-form-field>
@@ -30,11 +30,23 @@
                   <mat-option value="3">Consultant</mat-option>
                 </mat-select>
               </mat-form-field>
-            </div>
-            <div align="end">
-              <button mat-raised-button color="primary">Save changes</button>
-            </div>
-          </form>
+              <div align="end">
+                <button mat-raised-button color="primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+          <div>
+            <form>
+              <mat-form-field>
+                <mat-select placeholder="Role">
+                  <mat-option value="1">1st Line Support</mat-option>
+                  <mat-option value="2">Admin</mat-option>
+                  <mat-option value="3">Consultant</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+          </div>
+
         </div>
       </mat-tab>
       <mat-tab label="Change Password">

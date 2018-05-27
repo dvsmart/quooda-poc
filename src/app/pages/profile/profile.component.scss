@@ -2,13 +2,18 @@
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  float: left;
 }
 
 .mat-card{
-  // width: 580px;
   height: 520px;
 }
 
 .example-container > * {
-  width: 50%;
+  width: 100%;
+}
+
+.example-container-right{
+  float: right;
+  clear: both;
 }
