@@ -22,6 +22,7 @@ import { SideChildmenuComponent } from './_layout/sidemenu/extra-menu-item.compo
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { RouterModule } from '@angular/router';
+import { GenericService } from './services/generic.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     CommonModule,
   ],
-  providers: [MenuService],
+  providers: [MenuService, GenericService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
