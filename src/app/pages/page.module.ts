@@ -21,6 +21,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { AuthService } from '../auth/auth.service';
 import { NavbarComponent } from '../_layout/navbar/navbar.component';
 import { SideuserComponent } from '../_layout/sideuser/sideuser.component';
+import { TaskService } from '../services/task.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
