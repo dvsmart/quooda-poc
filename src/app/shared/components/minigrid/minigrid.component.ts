@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs/Observable';
 import { MatPaginator } from '@angular/material/paginator';
@@ -11,6 +11,7 @@ import {map} from 'rxjs/operators/map';
 import {startWith} from 'rxjs/operators/startWith';
 import {switchMap} from 'rxjs/operators/switchMap';
 import {DataSource} from '@angular/cdk/collections';
+import { GridOption } from '../../models/miniGrid';
 
 @Component({
   selector: 'minigrid',
@@ -18,7 +19,8 @@ import {DataSource} from '@angular/cdk/collections';
   styleUrls: ['./minigrid.component.scss']
 })
 export class MinigridComponent implements AfterViewInit {
-  displayedColumns = ['created', 'state', 'number', 'title'];
+
+  displayedColumns: any;//['created', 'state', 'number', 'title'];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
@@ -28,11 +30,20 @@ export class MinigridComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @Input() config : GridOption;
+  constructor(private http: HttpClient) {
 
-  constructor(private http: HttpClient) {}
+    //this.displayedColumns = this.config.columns.map(x=>x.field);
+  }
+
+  ngOnInit() {
+    debugger;
+    this.displayedColumns = JSON.stringify(this.config.columns.map(x=>x.field));
+
+  }
 
   ngAfterViewInit(){
-    this.exampleDatabase = new ExampleHttpDao(this.http);
+    this.exampleDatabase = new ExampleHttpDao(this.http,this.config.url);
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
@@ -75,7 +86,7 @@ export interface GithubIssue {
 
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleHttpDao extends DataSource<any>{
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private url:string) {
     super();
   }
 

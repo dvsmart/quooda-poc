@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GridOption, ColumnOption } from '../../../shared/models/miniGrid';
+import { TaskService } from '../../../services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -6,8 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
+  gridData: any;
+  columns: ColumnOption[];
+  constructor(private taskservice: TaskService) {
+    this.columns = [{
+      field: 'id',
+      title:'Id',
+    },{
+      field:'name',
+      title:'name'
+    },{
+      field:'taskId',
+      title:'Task Id'
+    }]
 
-  constructor() { }
+    let url = 'somurl';
+
+    this.gridData = new GridOption(this.columns,url);
+
+   }
 
   ngOnInit() {
   }
