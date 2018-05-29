@@ -1,0 +1,26 @@
+<div *ngIf="success" style="display: flex;">
+  <div class="toaster-icon">
+    <mat-icon color="accent">check</mat-icon>
+  </div>
+  <span>{{message}}</span>
+</div>
+<div *ngIf="failure">
+  <div class="toaster-icon">
+    <mat-icon color="warn">close</mat-icon>
+  </div>
+  <span>{{message}}</span>
+</div>
+<div *ngIf="loading" style="display: flex;">
+  <div class="toaster-icon">
+    <mat-spinner color="accent" mode="Indeterminate" diameter="20" strokeWidth="2">
+    </mat-spinner>
+  </div>
+  <div>{{message}}</div>
+  <!-- <button mat-button
+          color="accent"
+          (click)="onAction()">{{ action }}</button>
+
+  <button mat-button
+          color="accent"
+          (click)="onDismiss()">{{ dismiss }}</button> -->
+</div>

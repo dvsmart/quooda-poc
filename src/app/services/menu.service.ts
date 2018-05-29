@@ -24,6 +24,7 @@ export class MenuService extends GenericService<Menu> {
       { caption: 'About', id: 2, route: '/about', iconName:'account_circle' },
       { caption: 'Checklist', id: 5, route: '/checklist', iconName:'home' },
       { caption: 'Assets', id: 2, route: '/dashboard', iconName:'dashboard' },
+      { caption: 'Tasks', id: 2, route: '/task', iconName:'dashboard' },
       { caption: 'Assessments', id: 3, route: '/home', iconName:'home' },
       {
         caption: 'Risks', id: 4, route: '/home', hasChildren: true, iconName:'home',

@@ -13,6 +13,9 @@ import { TilesComponent } from './components/tiles/tiles.component';
 import { RouterModule } from '@angular/router';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MaterialModule } from '../material.module';
+import { ToasterService } from './services/toaster.service';
+import { LoadingService } from './services/loading.service';
+import { ToasterComponent } from './components/toaster/toaster.component';
 
 @NgModule({
   imports: [
@@ -32,8 +35,8 @@ import { MaterialModule } from '../material.module';
     TabComponent,
     TilesComponent
   ],
-  providers:[CustomerService],
-  entryComponents:[ConfirmmodalComponent],
-  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, TilesComponent, LoaderComponent]
+  providers:[CustomerService,ToasterService, LoadingService],
+  entryComponents:[ConfirmmodalComponent,ToasterComponent],
+  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, TilesComponent, LoaderComponent, ToasterComponent]
 })
 export class SharedModule { }

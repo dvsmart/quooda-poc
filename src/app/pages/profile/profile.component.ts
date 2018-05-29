@@ -3,6 +3,8 @@ import { CustomField, FieldOption } from '../../viewmodel/custom/CustomField';
 import { CustomForm } from '../../viewmodel/custom/formModel';
 import { CustomTab } from '../../viewmodel/custom/customTab';
 import { FormBuilder } from '@angular/forms';
+import { ToasterService } from '../../shared/services/toaster.service';
+import { LoadingService } from '../../shared/services/loading.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,10 +13,17 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   tabs: CustomTab[];
-  constructor() { }
+  constructor(private toaster: ToasterService,private loader: LoadingService) { }
 
   ngOnInit() {
     this.buildTabs();
+  }
+
+  updateProfile() {
+    debugger;
+    this.loader.show();
+    this.toaster.showToasterComponent("Updating your profile. Please wait...", '', 1000, 'loading');
+    this.toaster.showToasterComponent("Updated successfully.", '', 1000, 'success');
   }
 
   buildTabs() {
@@ -37,7 +46,7 @@ export class ProfileComponent implements OnInit {
         id: 13,
         key: 'yesno',
         label: 'yes no option',
-        options: [new FieldOption('yes',1),new FieldOption('No',2)],
+        options: [new FieldOption('yes', 1), new FieldOption('No', 2)],
         type: 'radio'
       },
     ]
@@ -61,9 +70,9 @@ export class ProfileComponent implements OnInit {
         label: 'Gender',
         type: 'radio',
         options: [
-          new FieldOption('Male',1),
-          new FieldOption('Female',2)
-      ]
+          new FieldOption('Male', 1),
+          new FieldOption('Female', 2)
+        ]
       },
       {
         id: 4,
@@ -71,11 +80,11 @@ export class ProfileComponent implements OnInit {
         label: 'City',
         type: 'select',
         options: [
-          new FieldOption('India',12),
-          new FieldOption('London',13),
-          new FieldOption('US',14),
-          new FieldOption('Italy',16),
-          new FieldOption('Spain',89)
+          new FieldOption('India', 12),
+          new FieldOption('London', 13),
+          new FieldOption('US', 14),
+          new FieldOption('Italy', 16),
+          new FieldOption('Spain', 89)
         ]
       },
       {
@@ -88,8 +97,8 @@ export class ProfileComponent implements OnInit {
 
 
     var tabs: CustomTab[] = [
-      new CustomTab(12,'Questionaire',fields1),
-      new CustomTab(32,'Questionaire 2',fields2),
+      new CustomTab(12, 'Questionaire', fields1),
+      new CustomTab(32, 'Questionaire 2', fields2),
     ];
 
     this.tabs = tabs;

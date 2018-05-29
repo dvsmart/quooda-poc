@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <button (click)="sidenav.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Quooda POC</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>messages</mat-icon>
+      <span class="notification-label">2</span>
+    </button>
+    <mat-menu #appMenu="matMenu" yPosition="above">
+      <button mat-menu-item>Settings</button>
+      <button mat-menu-item>Help</button>
+    </mat-menu>
+    <button mat-icon-button>
+      <mat-icon>reorder</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>build</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>notification_important</mat-icon>
+    </button>
+    <button mat-icon-button (click)="logout()">
+      <mat-icon>input</mat-icon>
+    </button>
+  </mat-toolbar>

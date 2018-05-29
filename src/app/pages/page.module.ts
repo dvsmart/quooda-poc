@@ -14,11 +14,13 @@ import { SharedModule } from '../shared/shared.module';
 import { SidemenuComponent } from '../_layout/sidemenu/sidemenu.component';
 import { EditRiskComponent } from './dashboard/widget/editrisk.component';
 import { SideChildmenuComponent } from '../_layout/sidemenu/extra-menu-item.component';
-import { AuthGuard } from '../services/auth.guard';
-import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from '../core/core.module';
 import { MaterialModule } from '../material.module';
+import { AuthGuard } from '../auth/auth.guard';
+import { AuthService } from '../auth/auth.service';
+import { NavbarComponent } from '../_layout/navbar/navbar.component';
+import { SideuserComponent } from '../_layout/sideuser/sideuser.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -32,6 +34,7 @@ const routes: Routes = [
       { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
       { path: 'profile', component: ProfileComponent },
       { path: 'about', component: AboutComponent },
+      { path: 'task', loadChildren: 'app/pages/task/task.module#TaskModule' },
       { path: '', loadChildren: 'app/pages/custom-entity-page/custom-entity-page.module#CustomEntityPageModule' },
     ]
   },
@@ -52,7 +55,7 @@ const routes: Routes = [
   ],
   providers: [AuthGuard, AuthService, CookieService],
   declarations: [HomeComponent, AppLayoutComponent, LoginComponent, AboutComponent, ProfileComponent, SidemenuComponent,
-    EditRiskComponent, SideChildmenuComponent],
+    EditRiskComponent, SideChildmenuComponent,NavbarComponent, SideuserComponent],
   entryComponents: [EditRiskComponent]
 })
 export class PageModule { }

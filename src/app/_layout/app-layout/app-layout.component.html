@@ -9,58 +9,14 @@
           <span> Quooda</span>
         </h2>
       </div>
-      <div class="user-pro-wrap">
-        <div class="user-profile-thumb text-center">
-          <div class="user-i">
-            <!-- <img alt="" class="rad-full mb-1" height="100" src="assets/images/userpic.jpg" width="100"> -->
-            <div>
-              <span>Welcome back</span>
-              <span>Vijay K</span>
-            </div>
-          </div>
-        </div>
-        <div class="most-used text-center">
-          <a class="most-link" color="primary">
-            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">person</mat-icon>
-          </a>
-          <a class="most-link" color="primary">
-            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">home</mat-icon>
-          </a>
-          <a class="most-link" color="primary">
-            <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">settings</mat-icon>
-          </a>
-        </div>
-      </div>
+      <mat-divider class="side-menu-seperator"></mat-divider>
       <app-sidemenu></app-sidemenu>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button (click)="sidenav.toggle()" mat-icon-button>
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>Quooda POC</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-          <mat-icon>messages</mat-icon>
-          <span class="notification-label">2</span>
-        </button>
-        <mat-menu #appMenu="matMenu" yPosition="above">
-          <button mat-menu-item>Settings</button>
-          <button mat-menu-item>Help</button>
-        </mat-menu>
-        <button mat-icon-button>
-          <mat-icon>reorder</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon>build</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon>notification_important</mat-icon>
-        </button>
-        <button mat-icon-button (click)="logout()">
-          <mat-icon>input</mat-icon>
-        </button>
-      </mat-toolbar>
+      <app-navbar [sidenav]="sidenav"></app-navbar>
+      <div class="loading-overlay" #spinnerElement style="opacity: 0;">
+        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+      </div>
       <div class="body-container">
         <router-outlet></router-outlet>
       </div>

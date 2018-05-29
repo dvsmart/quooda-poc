@@ -1,0 +1,26 @@
+
+  .example-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  mat-toolbar .notification-label {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    font-size: .75rem;
+    font-weight: 700;
+    line-height: .8125rem;
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+    background-color: #f44336;
+    color: #fff;
+    text-align: center;
+}
