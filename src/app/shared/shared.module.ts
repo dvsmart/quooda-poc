@@ -16,6 +16,7 @@ import { MaterialModule } from '../material.module';
 import { ToasterService } from './services/toaster.service';
 import { LoadingService } from './services/loading.service';
 import { ToasterComponent } from './components/toaster/toaster.component';
+import { MinigridComponent } from './components/minigrid/minigrid.component';
 
 @NgModule({
   imports: [
@@ -33,10 +34,11 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     BarchartComponent,
     LinechartComponent,
     TabComponent,
-    TilesComponent
+    TilesComponent,
+    MinigridComponent
   ],
   providers:[CustomerService,ToasterService, LoadingService],
   entryComponents:[ConfirmmodalComponent,ToasterComponent],
-  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, TilesComponent, LoaderComponent, ToasterComponent]
+  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, TilesComponent, LoaderComponent, ToasterComponent, MinigridComponent]
 })
 export class SharedModule { }
