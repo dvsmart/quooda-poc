@@ -32,15 +32,18 @@ export class MinigridComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @Input() config : GridOption;
   constructor(private http: HttpClient) {
-
-    //this.displayedColumns = this.config.columns.map(x=>x.field);
   }
 
   ngOnInit() {
     debugger;
-    this.displayedColumns = JSON.stringify(this.config.columns.map(x=>x.field));
+    this.displayedColumns = this.config.columns.map(x=>x.field);
 
   }
+
+  cellcode(element: any) {
+    debugger;
+    return eval('element.' + element);
+}
 
   ngAfterViewInit(){
     this.exampleDatabase = new ExampleHttpDao(this.http,this.config.url);

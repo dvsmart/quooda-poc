@@ -12,21 +12,23 @@ export class TaskListComponent implements OnInit {
   columns: ColumnOption[];
   constructor(private taskservice: TaskService) {
     this.columns = [{
-      field: 'id',
-      title:'Id',
+      field: 'created',
+      title:'Created',
     },{
-      field:'name',
-      title:'name'
+      field:'state',
+      title:'state'
     },{
-      field:'taskId',
+      field:'number',
       title:'Task Id'
+    }
+    ,{
+      field:'title',
+      title:'Title'
     }]
-
     let url = 'somurl';
-
     this.gridData = new GridOption(this.columns,url);
-
    }
+   //created', 'state', 'number', 'title'
 
   ngOnInit() {
   }
