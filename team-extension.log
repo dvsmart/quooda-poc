@@ -553,3 +553,26 @@
 2018-05-30T22:10:24.099Z - debug:  [13652] TFVC errors (via stderr): Unable to determine the workspace. You may be able to correct this by running 'tf workspaces /collection:TeamProjectCollectionUrl'.
 
 2018-05-30T22:10:24.099Z - error:  [13652] Execution of the TFVC command line failed unexpectedly.
+2018-05-31T19:47:42.030Z - info:   [02952] *** FOLDER: c:\Users\Dhakshanya\Documents\GitHub\quooda-poc ***
+2018-05-31T19:47:42.046Z - info:   [02952] VSTSVSCode/1.136.0 (VSCode 1.23.1; Windows_NT 10.0.17134; Node 7.9.0)
+2018-05-31T19:47:42.046Z - debug:  [02952] Looking for an External Context at c:\Users\Dhakshanya\Documents\GitHub\quooda-poc
+2018-05-31T19:47:42.046Z - debug:  [02952] No External Context at c:\Users\Dhakshanya\Documents\GitHub\quooda-poc
+2018-05-31T19:47:42.093Z - debug:  [02952] Looking for TFVC repository at c:\Users\Dhakshanya\Documents\GitHub\quooda-poc
+2018-05-31T19:47:42.093Z - debug:  [02952] TFVC Creating Tfvc object with localPath='undefined'
+2018-05-31T19:47:42.093Z - debug:  [02952] Using TFS proxy: 
+2018-05-31T19:47:42.093Z - debug:  [02952] TFVC Retrieved from settings; localPath='C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\tf.exe'
+2018-05-31T19:47:42.093Z - debug:  [02952] TFVC Repository created with repositoryRootFolder='c:\Users\Dhakshanya\Documents\GitHub\quooda-poc'
+2018-05-31T19:47:42.093Z - debug:  [02952] TFVC Repository.CheckVersion
+2018-05-31T19:47:42.093Z - debug:  [02952] TFVC: tf add -noprompt -?
+2018-05-31T19:47:42.108Z - debug:  [02952] TFVC: spawned new process (duration: 0ms)
+2018-05-31T19:47:42.124Z - debug:  [02952] TFVC: spawned new process (duration: 16ms)
+2018-05-31T19:47:49.490Z - debug:  [02952] TFVC: add exit code: 0 (duration: 7382ms)
+2018-05-31T19:47:49.494Z - debug:  [02952] TFVC Minimum required version: 14.102.0
+2018-05-31T19:47:49.494Z - debug:  [02952] TFVC (TF.exe, TF.cmd) version: 15.123.27127.4
+2018-05-31T19:47:49.494Z - debug:  [02952] TFVC Repository.FindWorkspace with localPath='c:\Users\Dhakshanya\Documents\GitHub\quooda-poc'
+2018-05-31T19:47:49.494Z - debug:  [02952] TFVC: tf workfold -noprompt ********
+2018-05-31T19:47:49.497Z - debug:  [02952] TFVC: spawned new process (duration: 0ms)
+2018-05-31T19:47:50.463Z - debug:  [02952] TFVC: workfold exit code: 100 (duration: 969ms)
+2018-05-31T19:47:50.467Z - debug:  [02952] TFVC errors (via stderr): Unable to determine the workspace. You may be able to correct this by running 'tf workspaces /collection:TeamProjectCollectionUrl'.
+
+2018-05-31T19:47:50.467Z - error:  [02952] Execution of the TFVC command line failed unexpectedly.

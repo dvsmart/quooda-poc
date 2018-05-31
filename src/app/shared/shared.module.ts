@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../services/customerService';
@@ -17,6 +17,8 @@ import { ToasterService } from './services/toaster.service';
 import { LoadingService } from './services/loading.service';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { MinigridComponent } from './components/minigrid/minigrid.component';
+import { FormatCellPipe } from './pipes/format-cell.pipe';
+import { StyleCellDirective } from './directives/cell.directive';
 
 @NgModule({
   imports: [
@@ -37,8 +39,19 @@ import { MinigridComponent } from './components/minigrid/minigrid.component';
     TilesComponent,
     MinigridComponent
   ],
-  providers:[CustomerService,ToasterService, LoadingService],
+  providers:[CustomerService,ToasterService, LoadingService, CurrencyPipe],
   entryComponents:[ConfirmmodalComponent,ToasterComponent],
-  declarations: [GridComponent,ConfirmmodalComponent, PiechartComponent, BarchartComponent, LinechartComponent, TabComponent, TilesComponent, LoaderComponent, ToasterComponent, MinigridComponent]
+  declarations: [
+      GridComponent,
+      ConfirmmodalComponent,
+      PiechartComponent,
+      BarchartComponent,
+      LinechartComponent,
+      TabComponent,
+      TilesComponent,
+      LoaderComponent,
+      ToasterComponent,
+      MinigridComponent,
+      FormatCellPipe,StyleCellDirective ]
 })
 export class SharedModule { }
