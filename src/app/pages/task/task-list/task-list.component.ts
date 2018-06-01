@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GridOption, ColumnOption } from '../../../shared/models/miniGrid';
 import { TaskService } from '../../../services/task.service';
 import { ColumnSetting } from '../../../shared/models/columnsetting';
 import { GithubIssue, GithubApi } from '../../../shared/components/minigrid/minigrid.component';
 import { Observable } from 'rxjs/Observable';
-import { Task } from '../../../viewmodel/task';
+import { Task, PeriodicElement, ELEMENT_DATA } from '../../../viewmodel/task';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-task-list',
@@ -15,6 +16,9 @@ export class TaskListComponent implements OnInit {
   data: Task[];
   columns: ColumnOption[];
   projectSettings: ColumnSetting[];
+  
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private taskservice: TaskService) {
     this.data = this.taskservice.getTasks();
     this.projectSettings =
@@ -29,26 +33,37 @@ export class TaskListComponent implements OnInit {
         },
         {
           primaryKey: 'name',
-          header: 'name'
+          header: 'Task Name'
         },
         {
           primaryKey: 'addedOn',
-          header: 'Added On'
+          header: 'Added On',
+          format: 'date'
         },
         {
           primaryKey: 'priority',
           header: 'Priority',
-          format:'currency'
+          format: 'currency'
         },
         {
           primaryKey: 'tasktype',
-          header: 'Task Type'
+          header: 'Task Type',
+          format: 'enum'
+        },
+        {
+          primaryKey: 'addedBy',
+          header: 'Added By',
+        },
+        {
+          primaryKey: 'status',
+          header: 'Status',
         }
       ];
   }
 
   ngOnInit() {
-
+    //this.dataSource.paginator = this.paginator;
   }
 
 }
+

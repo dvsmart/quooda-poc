@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerService } from '../services/customerService';
@@ -39,7 +39,7 @@ import { StyleCellDirective } from './directives/cell.directive';
     TilesComponent,
     MinigridComponent
   ],
-  providers:[CustomerService,ToasterService, LoadingService, CurrencyPipe],
+  providers:[CustomerService,ToasterService, LoadingService, CurrencyPipe, DatePipe],
   entryComponents:[ConfirmmodalComponent,ToasterComponent],
   declarations: [
       GridComponent,
@@ -52,6 +52,7 @@ import { StyleCellDirective } from './directives/cell.directive';
       LoaderComponent,
       ToasterComponent,
       MinigridComponent,
-      FormatCellPipe,StyleCellDirective ]
+      FormatCellPipe,
+      StyleCellDirective ]
 })
 export class SharedModule { }

@@ -23,17 +23,18 @@ export class TaskService {
 
   getTasks() {
     this.tasks = [];
-    for (let index = 0; index < 1000; index++) {
+    for (let index = 0; index < 20; index++) {
       this.tasks.push(
         {
           id: index,
           dataId: 'TA' + index.toString(),
-          description: 'Some Task Description',
+          description: 'Some Task Description' + ' Task Name ' + index.toString(),
           name: 'Task Name ' + index.toString(),
           priority: Priority.Moderate,
           tasktype: TaskType.OneOff,
           addedOn: new Date,
-          addedBy: 'Vijay'
+          addedBy: 'Vijay '+index,
+          status: TaskStatus.InProgress
         }
       )
     }

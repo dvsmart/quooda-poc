@@ -2,6 +2,7 @@ export class ColumnSetting {
   primaryKey: string;
   header?: string;
   format?: string;
+  width?:number;
   alternativeKeys?: string[];
 }
 
@@ -9,13 +10,20 @@ export class ColumnMap {
   primaryKey: string;
   private _header: string;
   private _format: string;
+  private _width:number;
   alternativeKeys?: string[];
+
   constructor(settings) {
     this.primaryKey = settings.primaryKey;
     this.header = settings.header;
     this.format = settings.format;
     this.alternativeKeys = settings.alternativeKeys;
   }
+
+  set width(setting: number){
+    this._width = setting ? setting : this.width;
+  }
+
   set header(setting: string) {
     this._header = setting ?
       setting :
