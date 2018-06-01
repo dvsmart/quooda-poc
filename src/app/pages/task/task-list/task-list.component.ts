@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { GridOption, ColumnOption } from '../../../shared/models/miniGrid';
 import { TaskService } from '../../../services/task.service';
 import { ColumnSetting } from '../../../shared/models/columnsetting';
-import { GithubIssue, GithubApi } from '../../../shared/components/minigrid/minigrid.component';
 import { Observable } from 'rxjs/Observable';
-import { Task, PeriodicElement, ELEMENT_DATA } from '../../../viewmodel/task';
+import { Task} from '../../../viewmodel/task';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
@@ -14,7 +12,6 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 })
 export class TaskListComponent implements OnInit {
   data: Task[];
-  columns: ColumnOption[];
   projectSettings: ColumnSetting[];
   
 

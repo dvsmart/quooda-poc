@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Task, Priority, TaskStatus, TaskType } from '../viewmodel/task';
 import { Observable } from 'rxjs/Observable';
 import { GridModel, ColumnModel, ColumnType, ActionModel, PagingModel, SortDirection } from '../viewmodel/grid';
-import { GithubApi } from '../shared/components/minigrid/minigrid.component';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -11,14 +10,6 @@ export class TaskService {
   tasks: Task[];
   constructor(private http: HttpClient) {
     this.tasks = this.getTasks();
-  }
-
-  getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
-    const requestUrl =
-      `${href}?q=repo:angular/material2&sort=${sort}&order=${order}&page=${page + 1}`;
-
-    return this.http.get<GithubApi>(requestUrl);
   }
 
   getTasks() {
