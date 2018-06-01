@@ -3,6 +3,11 @@ import { Task, Priority, TaskStatus, TaskType } from '../viewmodel/task';
 import { Observable } from 'rxjs/Observable';
 import { GridModel, ColumnModel, ColumnType, ActionModel, PagingModel, SortDirection } from '../viewmodel/grid';
 import { HttpClient } from '@angular/common/http';
+import { DataSource } from '@angular/cdk/table';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { CollectionViewer } from '@angular/cdk/collections';
+import { of } from 'rxjs/observable/of';
+import { catchError, finalize } from "rxjs/operators";
 
 @Injectable()
 export class TaskService {
@@ -12,9 +17,14 @@ export class TaskService {
     this.tasks = this.getTasks();
   }
 
+
+  // getLatestTasks(pageIndex: number, pageSize: number, filter?: string, sort?: string): Observable<Task[]> {
+  //   return this.tasks;
+  // }
+
   getTasks() {
     this.tasks = [];
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 5; index++) {
       this.tasks.push(
         {
           id: index,
@@ -24,7 +34,7 @@ export class TaskService {
           priority: Priority.Moderate,
           tasktype: TaskType.OneOff,
           addedOn: new Date,
-          addedBy: 'Vijay '+index,
+          addedBy: 'Vijay ' + index,
           status: TaskStatus.InProgress
         }
       )
@@ -119,4 +129,40 @@ export class TaskService {
 
     return retVal;
   }
+}
+
+export class TaskDataSource implements DataSource<Task> {
+
+  private tasksSubject = new BehaviorSubject<Task[]>([]);
+
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+
+  public loading$ = this.tasksSubject.asObservable();
+
+  constructor(private taskservice: TaskService) {
+
+  }
+
+  loadTasks() {
+
+    this.loadingSubject.next(true);
+
+    // this.taskservice.getTasks().pipe(
+    //     catchError(() => of([])),
+    //     finalize(() => this.loadingSubject.next(false))
+    //   )
+    //   .subscribe(tasks => this.tasksSubject.next(tasks));
+      this.tasksSubject.next(this.taskservice.getTasks());
+  }
+
+  connect(collectionViewer: CollectionViewer): Observable<Task[]> {
+    console.log("Connecting data source");
+    return this.tasksSubject.asObservable();
+  }
+
+  disconnect(collectionViewer: CollectionViewer): void {
+    this.tasksSubject.complete();
+    this.loadingSubject.complete();
+  }
+
 }
