@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskStatus } from './model/statusEnum';
 
 @Component({
   selector: 'app-task',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-
+  filters: string[] = ["InProgress","Not Started","On Hold","Completed","Abandoned"];
   constructor() { }
 
   ngOnInit() {

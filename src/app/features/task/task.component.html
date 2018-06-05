@@ -1,39 +1,42 @@
-<div style="background-color: lightblue;position: absolute;
+<div style="background-color: #03a9f4;
+position: absolute;
 z-index: 1;
+background-image: url('../../../assets/images/small-header.png');
 top: 0;
 right: 0;
 left: 0;
-height: 200px;background-size: cover;">
+height: 200px;
+background-size: cover;">
 
 </div>
+<!-- //background-image: linear-gradient(to right bottom, #458287, #d1fbff, #08838f, #076770, #054c53); -->
 <mat-sidenav-container style="position: static;">
   <mat-sidenav #sidenav mode="side" opened style="background: transparent!important;">
-    <!-- <div style="width: 230px;" class="header">
-      <mat-card>
-        <mat-list role="list">
-          <mat-list-item role="listitem">Item 1</mat-list-item>
-          <mat-list-item role="listitem">Item 2</mat-list-item>
-          <mat-list-item role="listitem">Item 3</mat-list-item>
-        </mat-list>
-      </mat-card>
-    </div> -->
     <div class="header sidenav-sub">
       <div class="logo">
         <mat-icon style="font-size: 32px!important;width:32px!important;height: 32px!important;margin: 0 16px 0 0;">check_box</mat-icon>
         <span style="font-size: 24px;line-height: 24px;">Tasks</span>
       </div>
     </div>
-    <div style="width: 230px; height: 136px;">
-      <mat-list role="list">
-        <mat-list-item role="listitem">Item 1</mat-list-item>
-        <mat-list-item role="listitem">Item 2</mat-list-item>
-        <mat-list-item role="listitem">Item 3</mat-list-item>
-      </mat-list>
+    <div class="p-24">
+      <button class="mat-accent add-todo-button w-100-p mat-raised-button" aria-label="ADD TASK" mat-raised-button="">
+        <span class="mat-button-wrapper"> ADD TASK </span>
+        <div class="mat-button-ripple mat-ripple"></div>
+        <div class="mat-button-focus-overlay"></div>
+      </button>
+    </div>
+    <div class="nav">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let filter of filters">
+          <mat-icon mat-list-icon>folder</mat-icon>
+          <a matLine href="...">{{filter}}</a>
+        </mat-list-item>
+      </mat-nav-list>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="header">
-      <mat-toolbar color="primary">
+      <mat-toolbar style="background-color: white;">
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
       </mat-toolbar>
     </div>
