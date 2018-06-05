@@ -1,0 +1,48 @@
+.page-layout.carded .top-bg {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 200px;
+    background-color: lightblue;
+    background-size: cover;
+}
+
+.page-layout.carded {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    width: 100%;
+    min-width: 100%;
+}
+
+[_nghost-c35] .center[_ngcontent-c35] .header[_ngcontent-c35] .search-wrapper[_ngcontent-c35] .search[_ngcontent-c35] input[_ngcontent-c35] {
+    height: 56px;
+    padding-left: 16px;
+    color: rgba(0,0,0,.54);
+    border: none;
+    outline: 0;
+}
+
+[_nghost-c35] .center[_ngcontent-c35] .header[_ngcontent-c35] .search-wrapper[_ngcontent-c35] .search[_ngcontent-c35] {
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    padding: 18px;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    z-index: 3;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.mat-sidenav-content-wrapper{
+    margin-left: 240px;
+    margin-right: 0;
+}

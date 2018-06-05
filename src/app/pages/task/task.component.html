@@ -1,8 +1,11 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened #sidenav style="background-color: white!important;">
-    <div style="background-color: lightskyblue;height: 200px;">
+<div style="background-color: lavender;">
+
+</div>
+<!-- <mat-sidenav-container>
+  <mat-sidenav mode="side" opened #sidenav style="background-color: white!important;width: 230px;">
+    <div style="background-color: lightskyblue">
       <mat-card>
-        <div style="height: 200px;">
+        <div>
           <mat-icon>checkbox</mat-icon>
           <span style="text-align: center">Tasks</span>
         </div>
@@ -26,19 +29,14 @@
       </mat-card>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <div style="background-color: lightskyblue;    flex-direction: row;    box-sizing: border-box;
-    display: flex;    max-height: 100%; align-items: center;">
-      <mat-toolbar>
+  <mat-sidenav-content class="mat-sidenav-content-wrapper">
+    <mat-toolbar color="primary">
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-        <div>
-            <mat-icon>search</mat-icon>
-          <input matInput type="text">
-        </div>
-      </mat-toolbar>
-    </div>
+    </mat-toolbar>
     <div>
-      <app-task-list></app-task-list>
+      <mat-card>
+        <app-task-list></app-task-list>
+      </mat-card>
     </div>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

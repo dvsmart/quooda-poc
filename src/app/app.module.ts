@@ -18,6 +18,7 @@ import { GenericService } from './services/generic.service';
 import { AuthService } from './auth/auth.service';
 import { MaterialModule } from './material.module';
 import { SideuserComponent } from './_layout/sideuser/sideuser.component';
+import { FeatureModule } from './features/feature.module';
 
 
 @NgModule({
@@ -27,8 +28,7 @@ import { SideuserComponent } from './_layout/sideuser/sideuser.component';
   imports: [
     BrowserModule,
     RouterModule,
-    SharedModule,
-    PageModule,
+    FeatureModule,
     HttpClientModule,
     CommonModule,
     MaterialModule

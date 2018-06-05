@@ -1,0 +1,46 @@
+<div style="background-color: lightblue;position: absolute;
+z-index: 1;
+top: 0;
+right: 0;
+left: 0;
+height: 200px;background-size: cover;">
+
+</div>
+<mat-sidenav-container style="position: static;">
+  <mat-sidenav #sidenav mode="side" opened style="background: transparent!important;">
+    <!-- <div style="width: 230px;" class="header">
+      <mat-card>
+        <mat-list role="list">
+          <mat-list-item role="listitem">Item 1</mat-list-item>
+          <mat-list-item role="listitem">Item 2</mat-list-item>
+          <mat-list-item role="listitem">Item 3</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div> -->
+    <div class="header sidenav-sub">
+      <div class="logo">
+        <mat-icon style="font-size: 32px!important;width:32px!important;height: 32px!important;margin: 0 16px 0 0;">check_box</mat-icon>
+        <span style="font-size: 24px;line-height: 24px;">Tasks</span>
+      </div>
+    </div>
+    <div style="width: 230px; height: 136px;">
+      <mat-list role="list">
+        <mat-list-item role="listitem">Item 1</mat-list-item>
+        <mat-list-item role="listitem">Item 2</mat-list-item>
+        <mat-list-item role="listitem">Item 3</mat-list-item>
+      </mat-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="header">
+      <mat-toolbar color="primary">
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </mat-toolbar>
+    </div>
+    <div class="content-card mat-white-bg">
+      <mat-card>
+        <app-tasklist></app-tasklist>
+      </mat-card>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
