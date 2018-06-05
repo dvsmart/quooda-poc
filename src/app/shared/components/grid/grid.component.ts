@@ -7,7 +7,6 @@ import { element } from 'protractor';
 import { GridModel, ColumnModel, ColumnType, PagingModel, SortDirection } from '../../../viewmodel/grid';
 import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
 import { CustomerService } from '../../../services/customerService';
-import { EditRiskComponent } from '../../../pages/dashboard/widget/editrisk.component';
 
 @Component({
   selector: 'smart-grid',
@@ -47,12 +46,12 @@ export class GridComponent implements OnChanges, OnInit {
     this.customGridModel.columns.map((x: ColumnModel) => {
       this.displayedColumns.push(x.columnDefinition);
     });
-    if( this.customGridModel.actions != null && this.customGridModel.actions !=undefined 
+    if( this.customGridModel.actions != null && this.customGridModel.actions !=undefined
       && this.customGridModel.actions.length>0)
     {
     this.displayedColumns.push("action");
     }
-   
+
     this.dataSource = new MatTableDataSource(this.customGridModel.data);
     this.pagingModel = this.customGridModel.pageModel;
   }
@@ -105,7 +104,7 @@ export class GridComponent implements OnChanges, OnInit {
     let pagedData = this.customerService.getCustomerDetails(this.pagingModel);
     this.dataSource = new MatTableDataSource(pagedData);
   }
-  
+
 
   expandRow(index: number) {
     console.log(index);
@@ -120,12 +119,12 @@ export class GridComponent implements OnChanges, OnInit {
       const container = this.containers.toArray()[index];
       const factory: any = this.resolver.resolveComponentFactory(this.customGridModel.ExpandableComponent);
       const messageComponent = container.createComponent(factory);
-      
+
       messageComponent.instance.rowdata = this.dataSource.data[index];
       this.expandedRow = index;
     }
   }
- 
+
   clearExbandableRow()
   {
     if (this.expandedRow != null) {
