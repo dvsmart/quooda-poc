@@ -37,23 +37,14 @@ background-size: cover;">
       </div>
       <div class="nav">
         <div class="nav-item">
-          <a class="nav-link" routerlinkactive="active" href="/apps/todo/all">
+          <a class="nav-link" routerlinkactive="active" href="#">
             <mat-icon class="nav-link-icon">view_headline</mat-icon>
             <span class="ng-tns-c36-211">All</span>
           </a>
           <div class="nav-subheader">FILTERS</div>
         </div>
-        <!-- <mat-nav-list>
-          <mat-list-item *ngFor="let filter of taskFilters">
-            <mat-icon mat-list-icon>{{filter.iconName}}</mat-icon>
-            <a matLine href="...">{{filter.caption}}</a>
-          </mat-list-item>
-        </mat-nav-list>
-        <div *ngFor="let filter of taskFilters">
-
-        </div> -->
         <div class="nav-item" *ngFor="let filter of taskFilters">
-          <a class="nav-link mat-ripple" mat-ripple routerlinkactive="active" href="/apps/todo/filter/starred">
+          <a class="nav-link mat-ripple" mat-ripple routerlinkactive="active" href="#">
             <mat-icon _ngcontent-c36="" class="nav-link-icon mat-icon">{{filter.iconName}}</mat-icon>
             <span>{{filter.caption}}</span>
           </a>
