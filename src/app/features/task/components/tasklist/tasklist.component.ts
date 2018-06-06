@@ -11,7 +11,9 @@ import { ColumnSetting } from '../../../../shared/models/columnsetting';
 export class TasklistComponent implements OnInit {
   data: Task[];
   projectSettings: ColumnSetting[];
-  constructor(private taskservice: TaskService) { }
+  constructor(private taskservice: TaskService, ) { }
+
+
 
   ngOnInit() {
     this.data = this.taskservice.getTasks();

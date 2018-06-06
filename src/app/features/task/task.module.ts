@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TaskService } from './service/task.service';
 import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../material.module';
+import { FormdialogComponent } from '../../shared/components/formdialog/formdialog.component';
 
 const routes: Routes = [{
   path: '', component: TaskComponent
@@ -21,6 +22,7 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ],
   providers:[TaskService],
-  declarations: [TaskComponent, TasklistComponent, TaskdetailComponent]
+  declarations: [TaskComponent, TasklistComponent, TaskdetailComponent],
+  entryComponents:[FormdialogComponent]
 })
 export class TaskModule { }
