@@ -10,6 +10,10 @@ $custom-dark-theme: mat-dark-theme($custom-theme-primary, $custom-theme-accent, 
         background-color: #2d323e !important;
         color: rgba(255, 255, 255, .87) !important;
     }
+    .mat-list .mat-list-item, .custom-light-theme .mat-nav-list .mat-list-item, .custom-light-theme .mat-selection-list .mat-list-item {
+        color:  rgba(255, 255, 255, .87) !important;
+    }
+
     @include angular-material-theme($custom-light-theme);
 }
 

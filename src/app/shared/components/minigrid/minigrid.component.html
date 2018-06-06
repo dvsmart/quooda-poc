@@ -1,17 +1,13 @@
 <h3>
     <caption *ngIf="caption">{{ caption }}</caption>
 </h3>
-
-
 <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
-
     <ng-container *ngFor="let map of columnMaps" matColumnDef="{{map.primaryKey}}">
         <mat-header-cell *matHeaderCellDef class="col-lg-3" mat-sort-header={{map.primaryKey}}> {{map.header}}</mat-header-cell>
         <mat-cell *matCellDef="let row" class="col-lg-3"> {{ row[map.primaryKey] | formatCell:map.format }} </mat-cell>
     </ng-container>
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" >
+<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
 </mat-paginator>
