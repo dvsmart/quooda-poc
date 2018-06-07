@@ -1,4 +1,13 @@
 .menuclass{
-  background-color: lightblue;
   position: relative;
+}
+
+.active {
+  border-left: 3.5px solid #03a9f4;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+
+  a{
+    color: #03a9f4 !important;
+  }
 }

@@ -2,14 +2,14 @@
 <mat-menu #childMenu="matMenu" xPosition="after" [overlapTrigger]="false"  class="menuclass">
     <span *ngFor="let child of items">
       <span *ngIf="child.children && child.children.length > 0">
-        <a mat-menu-item [matMenuTriggerFor]="menu.childMenu" [routerLink]="child.route">
+        <a mat-menu-item [matMenuTriggerFor]="menu.childMenu" [routerLink]="child.route" routerLinkActive="active">
           <mat-icon>{{child.iconName}}</mat-icon>
           {{child.caption}}
         </a>
         <appitem #menu [items]="child.children"></appitem>
       </span>
       <span *ngIf="!child.children || child.children.length === 0">
-        <a mat-menu-item [routerLink]="child.route">
+        <a mat-menu-item [routerLink]="child.route" routerLinkActive="active">
           <mat-icon>{{child.iconName}}</mat-icon>
           {{child.caption}}
         </a>
