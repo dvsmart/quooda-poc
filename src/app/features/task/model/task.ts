@@ -7,11 +7,11 @@ export class Task{
     dataId:string;
     name:string;
     description:string;
-    tasktype?:TaskType;
+    tasktype?:string;
     startDate?:Date;
     dueDate?:Date;
-    status?: TaskStatus = TaskStatus.NotStarted;
-    priority?: Priority = Priority.Low;
+    status?: string;
+    priority?: string;
     addedBy:string;
     addedOn:Date;
     updatedBy?:string;

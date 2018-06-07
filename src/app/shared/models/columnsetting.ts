@@ -3,6 +3,7 @@ export class ColumnSetting {
   header?: string;
   format?: string;
   width?:number;
+  type?:any;
   alternativeKeys?: string[];
 }
 
@@ -36,6 +37,7 @@ export class ColumnMap {
   set format(setting: string) {
     this._format = setting ? setting : 'default';
   }
+
   get format() {
     return this._format;
   }

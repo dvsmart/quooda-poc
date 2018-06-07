@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs/Observable';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { HttpClient } from '@angular/common/http';
 import { MatSort, Sort } from '@angular/material/sort';
 import { merge } from 'rxjs/observable/merge';
@@ -29,16 +29,31 @@ export class MinigridComponent implements OnChanges {
   @ViewChild(MatSort) sort: MatSort;
   //selection = new SelectionModel<any>(true, []);
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+  pageEvent: PageEvent;
   displayedColumns;
   dataSource;
-
+  public pageSize = 5;
+  public currentPage = 0;
+  public totalSize = 0;
   ngOnChanges() {
     this.populateGrid();
-    this.displayedColumns = this.columnMaps.map(x=>x.primaryKey);
+    this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
     this.dataSource = this.records;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.paginator.length = this.records.length;
+    this.totalSize = this.records.length;
+    this.iterator();
+  }
+
+  public getServerData(event?: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.iterator();
+  }
+
+  private iterator() {
+    const end = (this.currentPage + 1) * this.pageSize;
+    const start = this.currentPage * this.pageSize;
+    const part = this.records.slice(start, end);
+    this.dataSource = part;
   }
 
   ngAfterViewInit() {
@@ -66,11 +81,11 @@ export class MinigridComponent implements OnChanges {
 
   sortData(sort: Sort) {
     let sortDir = sort.direction == "asc" ? "asc" : "desc";
-    if(sort.direction == "asc"){
-      this.records = this.sortObjectsArray(this.records,sort.active);
+    if (sort.direction == "asc") {
+      this.records = this.sortObjectsArray(this.records, sort.active);
       this.dataSource = new MatTableDataSource(this.records);
     }
-    else{
+    else {
       this.records = this.records.reverse();
       this.dataSource = new MatTableDataSource(this.records);
     }

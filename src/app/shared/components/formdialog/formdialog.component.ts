@@ -29,7 +29,7 @@ export class FormdialogComponent implements OnInit {
     this.dialogRef.close(this.form.value);
   }
 
-  close() {
+  close(): void {
     this.dialogRef.close();
   }
 

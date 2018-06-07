@@ -18,13 +18,13 @@ background-size: cover;">
         <span style="font-size: 24px;line-height: 24px;">Tasks</span>
       </div>
       <div>
-          <mat-form-field color="accent">
-              <mat-select placeholder="Types" >
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                  {{ food.viewValue }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-select placeholder="Types" (change)="onDueTypechange($event)">
+            <mat-option *ngFor="let dueType of dueTypes" [value]="dueType.value">
+              {{ dueType.caption }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </div>
     <div class="content">
@@ -37,19 +37,18 @@ background-size: cover;">
       </div>
       <div class="nav">
         <div class="nav-item">
-          <a class="nav-link" routerlinkactive="active" href="#">
+          <a class="nav-link" routerlinkactive="active" (click)="onFilterchange('all')">
             <mat-icon class="nav-link-icon">view_headline</mat-icon>
             <span class="ng-tns-c36-211">All</span>
           </a>
           <div class="nav-subheader">FILTERS</div>
         </div>
         <div class="nav-item" *ngFor="let filter of taskFilters">
-          <a class="nav-link mat-ripple" mat-ripple routerlinkactive="active" href="#">
-            <mat-icon _ngcontent-c36="" class="nav-link-icon mat-icon">{{filter.iconName}}</mat-icon>
+          <a class="nav-link mat-ripple" mat-ripple routerlinkactive="active" (click)="onFilterchange(filter)">
+            <mat-icon class="nav-link-icon mat-icon">{{filter.iconName}}</mat-icon>
             <span>{{filter.caption}}</span>
           </a>
         </div>
-
       </div>
     </div>
   </mat-sidenav>
@@ -57,13 +56,14 @@ background-size: cover;">
     <div class="header">
       <mat-toolbar style="background-color: white;">
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        <span>{{caption}}</span>
       </mat-toolbar>
     </div>
     <div class="content-card mat-white-bg">
       <div class="content" fxflexalign="row">
-          <mat-card>
-              <app-tasklist></app-tasklist>
-            </mat-card>
+        <mat-card>
+          <app-tasklist [filter]="selectedFilter" [dueType]="selectedDuetype"></app-tasklist>
+        </mat-card>
       </div>
     </div>
   </mat-sidenav-content>
