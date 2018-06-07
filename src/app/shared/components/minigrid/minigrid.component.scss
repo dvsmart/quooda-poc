@@ -27,7 +27,8 @@
 
 .table-div {
     overflow: hidden;
-    height: 550px;
+    //height: 550px;
+    height: calc(100% + 10px);
 }
 
 .table-div:hover {

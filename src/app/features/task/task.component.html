@@ -44,7 +44,7 @@ background-size: cover;">
           <div class="nav-subheader">FILTERS</div>
         </div>
         <div class="nav-item" *ngFor="let filter of taskFilters">
-          <a class="nav-link mat-ripple" mat-ripple routerlinkactive="active" (click)="onFilterchange(filter)">
+          <a class="nav-link" mat-ripple routerlinkactive="active" (click)="onFilterchange(filter)" style="cursor: pointer;">
             <mat-icon class="nav-link-icon mat-icon">{{filter.iconName}}</mat-icon>
             <span>{{filter.caption}}</span>
           </a>
@@ -56,7 +56,7 @@ background-size: cover;">
     <div class="header">
       <mat-toolbar style="background-color: white;">
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-        <span>{{caption}}</span>
+        <span style="margin-left: 16px;" *ngIf="caption">{{caption}} Tasks </span>
       </mat-toolbar>
     </div>
     <div class="content-card mat-white-bg">

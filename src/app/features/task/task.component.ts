@@ -54,7 +54,7 @@ export class TaskComponent implements OnInit {
 
     dialogConfig.data = {
       id: 1,
-      title: 'Angular For Beginners'
+      title: 'Edit Task'
     };
 
     const dialogRef = this.dialog.open(FormdialogComponent, dialogConfig);
