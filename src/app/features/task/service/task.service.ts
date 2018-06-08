@@ -16,7 +16,7 @@ export class TaskService {
   }
 
   getTasks() {
-    for (let index = 0; index < 50; index++) {
+    for (let index = 1; index < 50; index++) {
       this.tasks.push(
         {
           id: index,
@@ -34,7 +34,7 @@ export class TaskService {
 
 
 
-    for (let index = 0; index < 40; index++) {
+    for (let index = 1; index < 40; index++) {
       this.tasks.push(
         {
           id: index,
@@ -50,7 +50,7 @@ export class TaskService {
       )
     }
 
-    for (let index = 0; index < 60; index++) {
+    for (let index = 1; index < 60; index++) {
       this.tasks.push(
         {
           id: index,
@@ -66,7 +66,7 @@ export class TaskService {
       )
     }
 
-    for (let index = 0; index < 30; index++) {
+    for (let index = 1; index < 30; index++) {
       this.tasks.push(
         {
           id: index,
@@ -82,7 +82,7 @@ export class TaskService {
       )
     }
 
-    for (let index = 0; index < 70; index++) {
+    for (let index = 1; index < 70; index++) {
       this.tasks.push(
         {
           id: index,

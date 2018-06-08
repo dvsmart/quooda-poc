@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef,  NgZone, Renderer  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef,  NgZone, Renderer, HostListener  } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { RouterEvent, NavigationStart, Router, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { MatSidenav } from '@angular/material';
+import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { Subscription } from 'rxjs/Subscription';
 
 
 
@@ -11,21 +14,33 @@ import { RouterEvent, NavigationStart, Router, NavigationEnd, NavigationCancel, 
   styleUrls: ['./app-layout.component.scss']
 })
 export class AppLayoutComponent implements OnInit {
+  watcher: Subscription;
+  activeMediaQuery = "";
   ngOnInit(): void {
   }
 
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
 
   @ViewChild('spinnerElement')
+
+
   spinnerElement: ElementRef
 
   constructor(private router: Router,
               private ngZone: NgZone,
               private renderer: Renderer,
+              media: ObservableMedia
               ) {
     router.events.subscribe((event: RouterEvent) => {
       this._navigationInterceptor(event)
-    })
+    });
+    this.watcher = media.subscribe((change: MediaChange) => {
+      this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
+      if ( change.mqAlias == 'xs') {
+         this.sidenav.close();
+      }
+    });
   }
 
 
@@ -75,6 +90,6 @@ export class AppLayoutComponent implements OnInit {
   navigatetoAbout(){
     this.router.navigate(['/about']);
   }
-
+ 
 
 }

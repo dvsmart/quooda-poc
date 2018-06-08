@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, ViewEncapsulation, ViewChildren, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs/Observable';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -25,6 +25,8 @@ export class MinigridComponent implements OnChanges {
   @Input() caption: string;
   keys: string[];
   @Input() settings: ColumnSetting[];
+  @Input() detailComponent: any;
+
   columnMaps: ColumnSetting[];
   @ViewChild(MatSort) sort: MatSort;
   //selection = new SelectionModel<any>(true, []);
@@ -35,13 +37,51 @@ export class MinigridComponent implements OnChanges {
   public pageSize = 5;
   public currentPage = 0;
   public totalSize = 0;
+
+  @ViewChildren('matrow', { read: ViewContainerRef }) containers;
+  expandedRow: number;
+
+  
+
+  constructor(private resolver: ComponentFactoryResolver) {
+      
+  }
+
+
   ngOnChanges() {
     this.populateGrid();
     this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
+    this.displayedColumns.unshift('expand');
     this.dataSource = this.records;
     this.totalSize = this.records.length;
     this.iterator();
   }
+
+  expandRow(index: number) {
+    console.log(index);
+    if (this.expandedRow != null) {
+      this.containers.toArray()[this.expandedRow].clear();
+    }
+    if (this.expandedRow === index) {
+      this.expandedRow = null;
+    } else {
+      const container = this.containers.toArray()[index];
+      const factory: any = this.resolver.resolveComponentFactory(this.detailComponent);
+      const messageComponent = container.createComponent(factory);
+
+      messageComponent.instance.rowdata = this.dataSource[index];
+      this.expandedRow = index;
+    }
+  }
+
+  clearExbandableRow()
+  {
+    if (this.expandedRow != null) {
+      this.containers.toArray()[this.expandedRow].clear();
+    }
+    this.expandedRow = null;
+  }
+
 
   public getServerData(event?: PageEvent) {
     this.currentPage = event.pageIndex;

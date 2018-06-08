@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from '../_layout/navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
   providers: [AuthGuard, AuthService, CookieService],

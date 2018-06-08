@@ -1,19 +1,30 @@
 <h3>
     <caption *ngIf="caption">{{ caption }}</caption>
 </h3>
-<div class="table-div">
+<div class="table-container">
     <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+
+        <ng-container matColumnDef="expand">
+            <mat-header-cell *matHeaderCellDef>Expand</mat-header-cell>
+            <mat-cell *matCellDef="let element; let index=index" class="expand-buttons">
+                <a (click)="expandRow(index)" href="javascript:void(0)">
+                    <i class="material-icons arrows" *ngIf="expandedRow === undefined || expandedRow !== index">add</i>
+                    <i class="material-icons arrows" *ngIf="expandedRow === index">remove</i>
+                </a>
+            </mat-cell>
+        </ng-container>
+
         <ng-container *ngFor="let map of columnMaps" matColumnDef="{{map.primaryKey}}">
-            <mat-header-cell *matHeaderCellDef class="col-lg-3" mat-sort-header={{map.primaryKey}}> {{map.header}}</mat-header-cell>
-            <mat-cell *matCellDef="let row" class="col-lg-3"> {{ row[map.primaryKey] | formatCell:map.format }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header={{map.primaryKey}}> {{map.header}}</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row[map.primaryKey] | formatCell:map.format }}</mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns; let index=index;" class="example-row" #matrow></mat-row>
     </mat-table>
     <div class="ps__rail-y" style="top: 100px; right: 0px; height: 584px;">
         <div class="ps__thumb-y" tabindex="0" style="top: 27px; height: 162px;"></div>
     </div>
 </div>
-<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [pageIndex]="currentPage"
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]" [showFirstLastButtons]="true" [pageIndex]="currentPage"
     [length]="totalSize" (page)="pageEvent = getServerData($event)">
 </mat-paginator>

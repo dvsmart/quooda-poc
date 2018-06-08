@@ -5,6 +5,7 @@ import { ColumnSetting } from '../../../../shared/models/columnsetting';
 import { TaskType } from '../../model/TypeEnum';
 import { TaskStatus } from '../../model/statusEnum';
 import { DatePipe } from '@angular/common';
+import { TaskdetailComponent } from '../taskdetail/taskdetail.component';
 
 @Component({
   selector: 'app-tasklist',
@@ -12,6 +13,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./tasklist.component.scss']
 })
 export class TasklistComponent implements OnInit {
+  expandableComponent: any;
   data: Task[];
   projectSettings: ColumnSetting[];
   @Input() filter: any;
@@ -79,6 +81,7 @@ export class TasklistComponent implements OnInit {
           format: 'date'
         }
       ];
+      this.expandableComponent = TaskdetailComponent;
   }
 
 }

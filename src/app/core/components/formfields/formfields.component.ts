@@ -21,7 +21,7 @@ export class FormfieldsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fields = this.tabForm.fields;
+    this.fields = this.tabForm.length == 1 ? this.tabForm[0].fields : this.tabForm.fields;
     this.mainForm.valueChanges.subscribe(() => {
       this.formChanges.emit(this.mainForm.value)
     });

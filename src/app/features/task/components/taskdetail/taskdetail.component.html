@@ -1,3 +1,13 @@
-<p>
-  taskdetail works!
-</p>
+<div class="example-container">
+  <form #taskForm="ngForm" (ngSubmit)="saveTask(taskForm.form);">
+    <!-- <mat-form-field>
+      <input matInput placeholder="Task Name" [(ngModel)]="" name="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Description" [(ngModel)]="" name="description"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit">Update</button> -->
+  </form>
+</div>
