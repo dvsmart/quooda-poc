@@ -1,13 +1,21 @@
 <div class="example-container">
-  <form #taskForm="ngForm" (ngSubmit)="saveTask(taskForm.form);">
-    <!-- <mat-form-field>
-      <input matInput placeholder="Task Name" [(ngModel)]="" name="name">
-    </mat-form-field>
-
+  <form (ngSubmit)="saveTask()" novalidate [formGroup]="taskForm">
     <mat-form-field>
-      <textarea matInput placeholder="Description" [(ngModel)]="" name="description"></textarea>
+      <input matInput placeholder="Task Name" formControlName="name">
     </mat-form-field>
-
-    <button mat-raised-button type="submit">Update</button> -->
+    <mat-form-field>
+      <input matInput placeholder="Description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="startDate" placeholder="Start Date" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dueDate" placeholder="Due Date" formControlName="dueDate">
+      <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+      <mat-datepicker #dueDate></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Update</button>
   </form>
 </div>

@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { CustomTab } from '../../../../viewmodel/custom/customTab';
-import { CustomField } from '../../../../viewmodel/custom/CustomField';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Task } from '../../model/task';
 
 @Component({
@@ -12,20 +10,23 @@ import { Task } from '../../model/task';
 export class TaskdetailComponent implements OnInit {
   @Input() rowdata;
   taskForm: FormGroup;
-  constructor() { }
+  model:Task;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    debugger;
-    console.log(this.rowdata);
-    this.taskForm = new FormGroup({
-      
-    })
+    this.setForm();
+  }
 
+  setForm() {
+    let group = {};
+    Object.keys(this.rowdata).forEach(k => {
+      group[k] = new FormControl(this.rowdata[k]);
+    })
+    this.taskForm = new FormGroup(group);
   }
 
   saveTask() {
-    debugger;
-    console.log(this.taskForm);
+    alert(JSON.stringify(this.taskForm.value));
   }
 
 

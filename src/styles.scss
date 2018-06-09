@@ -2,7 +2,6 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'src/_custom-theme.scss';
-
 body {
     margin: 0;
     font-size: 14px;
@@ -46,4 +45,8 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #056a99;
+}
+
+.mat-list .mat-list-item .mat-line, .mat-nav-list .mat-list-item .mat-line, .mat-selection-list .mat-list-item .mat-line {
+    font-size: 14px !important;
 }

@@ -27,7 +27,8 @@ export class TaskService {
           addedBy: 'Vijay ' + index,
           tasktype: TaskType[TaskType.Scheduled],
           status: TaskStatus[TaskStatus.InProgress],
-          dueDate: new Date(2018, 5, 20)
+          dueDate: new Date(2018, 5, 20),
+          startDate: new Date(2017,12,12)
         }
       )
     }
@@ -45,7 +46,8 @@ export class TaskService {
           addedBy: 'Vijayk ' + index,
           tasktype: TaskType[TaskType.Scheduled],
           status: TaskStatus[TaskStatus.NotStarted],
-          dueDate: new Date(2018, 7, 30)
+          dueDate: new Date(2018, 7, 30),
+          startDate: new Date(2017,12,12)
         }
       )
     }
@@ -77,7 +79,8 @@ export class TaskService {
           addedBy: 'Vijayk ' + index,
           tasktype: TaskType[TaskType.OneOff],
           status: TaskStatus[TaskStatus.OnHold],
-          dueDate: new Date(2018, 6, 10)
+          dueDate: new Date(2018, 6, 10),
+          startDate: new Date(2017,12,12)
         }
       )
     }
@@ -93,7 +96,8 @@ export class TaskService {
           addedBy: 'Vijayk ' + index,
           tasktype: TaskType[TaskType.OneOff],
           status: TaskStatus[TaskStatus.Abandoned],
-          dueDate: new Date(2017, 7, 30)
+          dueDate: new Date(2017, 7, 30),
+          startDate: new Date(2017,12,12)
         }
       )
     }
