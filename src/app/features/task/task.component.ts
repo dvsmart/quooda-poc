@@ -14,30 +14,24 @@ import { TaskService } from './service/task.service';
 })
 export class TaskComponent implements OnInit {
   taskFilters: TaskFilterList[] = [];
-  foods = [
-    { value: 'steak-0', viewValue: 'Risk Actions' },
-    { value: 'pizza-1', viewValue: 'Checklist' },
-    { value: 'tacos-2', viewValue: 'Others' }
-  ];
 
   dueTypes: DueType[] = [];
-  constructor(private dialog: MatDialog,private taskservice: TaskService) { }
-  selectedFilter:any;
-  caption:string;
-  selectedDuetype:any;
+  constructor(private dialog: MatDialog, private taskservice: TaskService) { }
+  selectedFilter: any;
+  caption: string;
+  selectedDuetype: any;
   ngOnInit() {
     const keys = Object.keys(TaskStatus).filter(k => typeof TaskStatus[k as any] === "number");
     keys.forEach(k => { this.taskFilters.push(new TaskFilterList(k, 'task/' + k)) });
-
     this.dueTypes = this.taskservice.getDueTypes();
   }
 
-  onFilterchange(e:any){
+  onFilterchange(e: any) {
     this.selectedFilter = e.filterId;
     this.caption = e.caption;
   }
 
-  onDueTypechange(event){
+  onDueTypechange(event) {
     this.selectedDuetype = event.value;
   }
 

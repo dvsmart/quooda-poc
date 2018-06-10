@@ -21,9 +21,6 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns; let index=index;" class="example-row" #matrow></mat-row>
     </mat-table>
-    <div class="ps__rail-y" style="top: 100px; right: 0px; height: 584px;">
-        <div class="ps__thumb-y" tabindex="0" style="top: 27px; height: 162px;"></div>
-    </div>
 </div>
 <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]" [showFirstLastButtons]="true" [pageIndex]="currentPage"
     [length]="totalSize" (page)="pageEvent = getServerData($event)">

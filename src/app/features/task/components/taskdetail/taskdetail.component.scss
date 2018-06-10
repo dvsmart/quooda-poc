@@ -1,8 +1,21 @@
 .example-container {
     display: grid;
     flex-direction: column;
-  }
+    justify-content: center
+}
 
-  .example-container > * {
+.example-container>* {
     width: 100%;
-  }
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.box div {
+    width: 500px;
+    height: auto;
+}
