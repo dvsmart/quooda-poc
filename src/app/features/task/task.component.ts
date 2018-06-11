@@ -19,6 +19,7 @@ export class TaskComponent implements OnInit {
   constructor(private dialog: MatDialog, private taskservice: TaskService) { }
   selectedFilter: any;
   caption: string;
+  searchValue:string;
   selectedDuetype: any;
   ngOnInit() {
     const keys = Object.keys(TaskStatus).filter(k => typeof TaskStatus[k as any] === "number");
@@ -35,6 +36,11 @@ export class TaskComponent implements OnInit {
     this.selectedDuetype = event.value;
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.searchValue = filterValue;
+  }
 
 
   openDialog() {

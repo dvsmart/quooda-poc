@@ -1,9 +1,12 @@
-import { Component, ViewChild, Input, OnChanges, ViewChildren, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, ViewChild, Input, OnChanges, ViewChildren, ViewContainerRef, ComponentFactoryResolver, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { ColumnSetting, ColumnMap } from '../../models/columnsetting';
 import { TableConfig } from '../../models/TableConfig';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatDialog } from '@angular/material';
+import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
 
 @Component({
   selector: 'minigrid',
@@ -14,7 +17,7 @@ export class MinigridComponent implements OnChanges {
 
   @Input() config: any;
   keys: string[];
-  caption:string;
+  caption: string;
   columnMaps: ColumnSetting[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -24,15 +27,36 @@ export class MinigridComponent implements OnChanges {
   public pageSize = 5;
   public currentPage = 0;
   public totalSize = 0;
-
+  @Input() data: any;
+  @Input() filter: string;
   @ViewChildren('matrow', { read: ViewContainerRef }) containers;
   expandedRow: number;
+  @Output() deletedRow = new EventEmitter<any>();
 
-  constructor(private resolver: ComponentFactoryResolver) {
+  selection = new SelectionModel<any>(true, []);
+
+  constructor(private resolver: ComponentFactoryResolver, public dialog: MatDialog, ) {
   }
 
   ngOnChanges() {
-    this.populateGrid();
+    if (this.dataSource != null && this.filter != "") {
+      this.dataSource.filter = this.filter;
+      this.dataSource = this.dataSource.filteredData
+    } else {
+      this.populateGrid();
+    }
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.forEach(row => this.selection.select(row));
   }
 
   expandRow(index: number) {
@@ -58,6 +82,7 @@ export class MinigridComponent implements OnChanges {
   }
 
 
+
   public getServerData(event?: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
@@ -67,7 +92,7 @@ export class MinigridComponent implements OnChanges {
   private iterator() {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
-    const part = this.config.data.slice(start, end);
+    const part = this.data.slice(start, end);
     this.dataSource = part;
   }
 
@@ -77,13 +102,12 @@ export class MinigridComponent implements OnChanges {
   }
 
   populateGrid() {
-    this.dataSource = this.config.data;
-    this.totalSize = this.config.data.length;
+    let config = this.config;
     if (this.config.columns) {
-      this.columnMaps = this.config.columns
+      this.columnMaps = config.columns
         .map(col => new ColumnMap(col));
     } else {
-      this.columnMaps = Object.keys(this.config.data[0])
+      this.columnMaps = Object.keys(config.data[0])
         .map(key => {
           return new ColumnMap({
             primaryKey: key,
@@ -94,26 +118,64 @@ export class MinigridComponent implements OnChanges {
         });
     }
     this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
-    if (this.config.canExpand) {
+    if (config.canExpand) {
       this.displayedColumns.unshift('expand');
     }
-    if (this.config.canSelect) {
+    if (config.canSelect) {
       this.displayedColumns.unshift('select');
     }
+    if (config.canDelete) {
+      this.displayedColumns.push('action');
+    }
+    console.log(this.displayedColumns);
+    this.caption = config.caption;
+    this.dataSource = new MatTableDataSource(this.data);
 
+
+    this.totalSize = this.data.length;
     this.iterator();
-    this.caption = this.config.caption;
   }
 
   sortData(sort: Sort) {
     if (sort.direction == "asc") {
-      this.config.data = this.sortObjectsArray(this.config.data, sort.active);
-      this.dataSource = new MatTableDataSource(this.config.data);
+      this.config.data = this.sortObjectsArray(this.data, sort.active);
+      this.dataSource = new MatTableDataSource(this.data);
     }
     else {
       this.config.data = this.config.data.reverse();
-      this.dataSource = new MatTableDataSource(this.config.data);
+      this.dataSource = new MatTableDataSource(this.data);
     }
+  }
+
+  deleteSelected(row): void {
+    this.clearExbandableRow();
+    this.openConfirmationDialog(row);
+  }
+
+  closeInformationDialog = () => {
+    this.dialog.closeAll();
+  }
+  openConfirmationDialog = (row) => {
+    var rowId = row.id;
+    let dialogref = this.dialog.open(ConfirmmodalComponent, {
+      height: 'auto',
+      width: '400px',
+      data: { modalTitle: "Delete Task Confirmation", modalBody: "Are you sure you want to delete this task - " + row.dataId.toUpperCase() + "?"}
+    })
+    dialogref.afterClosed().subscribe(result => {
+
+      if (result) {
+        // this.customerService.deleteCustomer(rowId).subscribe(x => {
+        //   this.closeInformationDialog();
+        //   if (x) {
+        //     this.reloadGrid();
+        //   }
+        //   else {
+        //   }
+        // });
+        this.deletedRow.emit(row);
+      }
+    });
   }
 
   sortObjectsArray = (objectsArray, sortKey) => {

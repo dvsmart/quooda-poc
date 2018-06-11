@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    debugger;
     this.loader.show();
     this.toaster.showToasterComponent("Updating your profile. Please wait...", '', 1000, 'loading');
     this.toaster.showToasterComponent("Updated successfully.", '', 1000, 'success');

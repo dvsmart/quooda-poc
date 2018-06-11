@@ -1,5 +1,5 @@
 .mat-dialog-content {
-    min-height: 100px;
+    min-height: 50px;
     text-align: center;
 }
 
@@ -21,4 +21,19 @@
     position: absolute;
     top: 50%;
     margin-top: -4.05em;
+}
+
+.title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 48px;
+    margin-bottom: 24px;
+    align-items: center;
+}
+
+.header-title-img {
+    height: 48px;
+    vertical-align: center;
+    padding-right: 35px;
 }

@@ -5,6 +5,7 @@ import { ColumnSetting } from '../../../../shared/models/columnsetting';
 import { DatePipe } from '@angular/common';
 import { TaskdetailComponent } from '../taskdetail/taskdetail.component';
 import { TableConfig } from '../../../../shared/models/TableConfig';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-tasklist',
@@ -15,32 +16,36 @@ export class TasklistComponent implements OnInit {
   tableConfig: TableConfig = new TableConfig();
   @Input() filter: any;
   @Input() dueType: any;
+  @Input() filterValue:string;
+  data:Task[] | Observable<Task[]>;
+
   constructor(private taskservice: TaskService,private datePipe: DatePipe) {
   }
 
   ngOnChanges() {
-    this.tableConfig.data = [];
+    this.data = [];
     if (this.filter != null && this.filter != "" && this.filter != undefined) {
-      this.tableConfig.data= this.taskservice.getTasks().filter(x => x.status == this.filter);
+      this.data = this.taskservice.getTasks().filter(x => x.status == this.filter);
     }
     if (this.filter === 'all') {
-      this.tableConfig.data = this.taskservice.getTasks();
+      this.data = this.taskservice.getTasks();
     }
     if (this.dueType != null && this.dueType != undefined) {
       if (typeof parseInt(this.dueType) === "number") {
-        this.tableConfig.data = this.taskservice.getTasks().filter(x => x.dueDate.toLocaleDateString() <= this.datePipe.transform(new Date() + this.dueType,'dd/MM/yyyy'));
+        this.data = this.taskservice.getTasks().filter(x => x.dueDate.toLocaleDateString() <= this.datePipe.transform(new Date() + this.dueType,'dd/MM/yyyy'));
       } else if (this.dueType == 'today') {
-        this.tableConfig.data = this.taskservice.getTasks().filter(x => x.dueDate.toLocaleDateString() <= this.datePipe.transform(new Date,'dd/MM/yyyy'));
+        this.data = this.taskservice.getTasks().filter(x => x.dueDate.toLocaleDateString() <= this.datePipe.transform(new Date,'dd/MM/yyyy'));
       } else if (this.dueType == 'all') {
-        this.tableConfig.data = this.taskservice.getTasks();
+        this.data = this.taskservice.getTasks();
       } else if (this.dueType == 'overdue') {
-        this.tableConfig.data = this.taskservice.getTasks().filter(x => x.dueDate.toLocaleDateString() > this.datePipe.transform(new Date,'dd/MM/yyyy'));
+        this.data = this.taskservice.getTasks().filter(x => x.dueDate.toLocaleDateString() > this.datePipe.transform(new Date,'dd/MM/yyyy'));
       }
     }
   }
 
   ngOnInit() {
-    this.tableConfig.data = this.taskservice.getTasks();
+    this.data = this.taskservice.getTasks();
+    this.tableConfig.pageSize = 5;
     let columns =
       [
         {
@@ -82,6 +87,20 @@ export class TasklistComponent implements OnInit {
       this.tableConfig.detailComponent = TaskdetailComponent;
       this.tableConfig.canExpand = true;
       this.tableConfig.canSort = true;
+      this.tableConfig.canSelect = true;
+      this.tableConfig.canDelete = true;
   }
-
+  
+  deleteTask($event) {
+    var item = this.taskservice.getTasks().indexOf($event);
+    if(item > -1){
+      let freshData  = this.taskservice.getTasks();
+      console.log(freshData.length);
+      freshData.splice(item,1);
+      console.log(freshData.length);
+      //console.log(this.data.length);
+      this.data = freshData;
+    }
+  }
+  
 }

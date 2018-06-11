@@ -1,6 +1,7 @@
 <h3>
     <caption *ngIf="caption">{{ caption }}</caption>
 </h3>
+
 <div class="table-container">
     <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
@@ -13,11 +14,31 @@
                 </a>
             </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
 
         <ng-container *ngFor="let map of columnMaps" matColumnDef="{{map.primaryKey}}">
-            <mat-header-cell *matHeaderCellDef mat-sort-header={{map.primaryKey}}> {{map.header}}</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row[map.primaryKey] | formatCell:map.format }}</mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header={{map.primaryKey}} class="col-md-3"> {{map.header}}</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="col-md-3">{{ row[map.primaryKey] | formatCell:map.format }}</mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="action-buttons">
+                <a (click)="deleteSelected(element)" href="javascript:void(0)">
+                    <i class="material-icons arrows">delete</i>
+                </a>
+            </mat-cell>
+        </ng-container>
+
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns; let index=index;" class="example-row" #matrow></mat-row>
     </mat-table>

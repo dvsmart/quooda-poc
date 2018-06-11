@@ -56,13 +56,13 @@
         </button>
         <div class="search" flex="" fxlayout="row" fxlayoutalign="start center">
           <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">search</mat-icon>
-          <input class="ng-tns-c35-27 ng-untouched ng-pristine ng-valid" fxflex="" placeholder="Search for a task" style="flex: 1 1 0%; box-sizing: border-box;">
+          <input class="ng-tns-c35-27 ng-untouched ng-pristine ng-valid" (keyup)="applyFilter($event.target.value)" fxflex="" placeholder="Search for a task" style="flex: 1 1 0%; box-sizing: border-box;">
         </div>
       </div>
     </div>
     <div class="content-card mat-white-bg">
       <div fxflexalign="row">
-        <app-tasklist [filter]="selectedFilter" [dueType]="selectedDuetype"></app-tasklist>
+        <app-tasklist [filter]="selectedFilter" [dueType]="selectedDuetype" [filterValue]="searchValue"></app-tasklist>
       </div>
     </div>
   </mat-sidenav-content>

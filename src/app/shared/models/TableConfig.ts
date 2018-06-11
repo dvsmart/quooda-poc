@@ -8,5 +8,7 @@ export class TableConfig {
   canExpand?: boolean;
   canSort?:boolean;
   canSelect?:boolean;
+  canDelete?:boolean = true;
   detailComponent?:any;
+  pageSize?:number = 5;
 }

@@ -112,7 +112,6 @@ export class GridComponent implements OnChanges, OnInit {
       // clear old message
       this.containers.toArray()[this.expandedRow].clear();
     }
-    debugger;
     if (this.expandedRow === index) {
       this.expandedRow = null;
     } else {
