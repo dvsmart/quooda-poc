@@ -20,6 +20,7 @@ import { MinigridComponent } from './components/minigrid/minigrid.component';
 import { FormatCellPipe } from './pipes/format-cell.pipe';
 import { StyleCellDirective } from './directives/cell.directive';
 import { FormdialogComponent } from './components/formdialog/formdialog.component';
+import { DoughnutComponent } from './components/charts/doughnut/doughnut.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { FormdialogComponent } from './components/formdialog/formdialog.componen
       MinigridComponent,
       FormatCellPipe,
       StyleCellDirective,
-      FormdialogComponent ]
+      FormdialogComponent,
+      DoughnutComponent ]
 })
 export class SharedModule { }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Chart } from '../../../models/chart';
 
 @Component({
   selector: 'app-linechart',
@@ -7,15 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LinechartComponent {
 // lineChart
-public lineChartData:Array<any> = [
-  {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-  {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-  {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
+@Input() data : Chart[]; 
+public lineChartData:Array<any> =  [
+  {data: [65, 59, 80, 81, 56, 55, 40], label: 'In Progress'},
+  {data: [28, 48, 40, 19, 86, 27, 90], label: 'Not Started'},
+  {data: [18, 48, 77, 9, 100, 27, 40], label: 'Completed'}
 ];
-public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+public lineChartLabels:Array<any> = ['In Progress', 'Not Started', 'Completed'];
 public lineChartOptions:any = {
   responsive: true
 };
+
+ngOnChanges(){
+  this.data.forEach(x=>{
+    this.lineChartLabels.push(x.label),
+    this.lineChartData.push({ data: x.data,label: x.label})
+  })
+  this.lineChartOptions = {
+    legend:{
+      position:'right'
+    }
+  }
+}
 public lineChartColors:Array<any> = [
   { // grey
     backgroundColor: 'rgba(148,159,177,0.2)',

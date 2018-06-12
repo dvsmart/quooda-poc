@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Chart } from '../../../models/chart';
 
 @Component({
   selector: 'app-piechart',
@@ -7,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PiechartComponent {
   // Pie
-  pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  pieChartData:number[] = [300, 500, 100];
+  @Input() data : Chart[]; 
+
+  pieChartLabels:string[] = [];//['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  pieChartData:number[] = [];//[300, 500, 100];
   pieChartType:string = 'pie';
+  options :any = [];
  
+  ngOnChanges(){
+    this.data.forEach(x=>{
+      this.pieChartLabels.push(x.label),
+      this.pieChartData.push(x.data)
+    })
+    this.options = {
+      legend:{
+        position:'right'
+      }
+    }
+  }
+
   // events
   chartClicked(e:any):void {
     console.log(e);

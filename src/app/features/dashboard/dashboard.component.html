@@ -1,3 +1,23 @@
 <p>
   dashboard works!
 </p>
+<div class="row">
+  <div class="col-md-4">
+      <mat-card style="width: 500px;">
+          <app-piechart [data]="chartData"></app-piechart>
+      </mat-card>
+  </div>
+  <div class="col-md-4">
+      <mat-card style="width: 500px;">
+          <app-linechart></app-linechart>
+      </mat-card>
+  </div>
+  <div class="col-md-4">
+      <mat-card style="width: 500px;">
+          <app-barchart></app-barchart>
+      </mat-card>
+  </div>
+  
+</div>
+
+
