@@ -19,7 +19,7 @@ export class FormdialogComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       description: '',
-      taskName:'',
+      name:'',
       startDate:new Date,
       endDate:new Date
     });

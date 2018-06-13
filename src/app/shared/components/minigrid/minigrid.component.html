@@ -42,6 +42,9 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns; let index=index;" class="example-row" #matrow></mat-row>
     </mat-table>
+    <div *ngIf="loading" style="display: flex;justify-content: center;align-items: center;">
+            <mat-spinner></mat-spinner>
+     </div>
 </div>
 <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]" [showFirstLastButtons]="true" [pageIndex]="currentPage"
     [length]="totalSize" (page)="pageEvent = getServerData($event)">

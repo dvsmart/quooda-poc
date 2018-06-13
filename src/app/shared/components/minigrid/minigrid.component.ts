@@ -15,6 +15,7 @@ import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
 })
 export class MinigridComponent implements OnChanges {
 
+  loading: boolean;
   @Input() config: any;
   keys: string[];
   caption: string;
@@ -24,7 +25,7 @@ export class MinigridComponent implements OnChanges {
   pageEvent: PageEvent;
   displayedColumns;
   dataSource;
-  public pageSize = 5;
+  public pageSize;
   public currentPage = 0;
   public totalSize = 0;
   @Input() data: any;
@@ -36,10 +37,11 @@ export class MinigridComponent implements OnChanges {
   selection = new SelectionModel<any>(true, []);
 
   constructor(private resolver: ComponentFactoryResolver, public dialog: MatDialog, ) {
+    this.dataSource = new MatTableDataSource<any>();
   }
 
   ngOnChanges() {
-    if (this.dataSource != null && this.filter != "") {
+    if (this.dataSource != null && this.filter != "" && this.filter != undefined) {
       this.dataSource.filter = this.filter;
       this.dataSource = this.dataSource.filteredData
     } else {
@@ -107,7 +109,9 @@ export class MinigridComponent implements OnChanges {
       this.columnMaps = config.columns
         .map(col => new ColumnMap(col));
     } else {
-      this.columnMaps = Object.keys(config.data[0])
+      if(this.data != undefined && this.data.length > 0){
+        this.loading = false;
+        this.columnMaps = Object.keys(this.data[0])
         .map(key => {
           return new ColumnMap({
             primaryKey: key,
@@ -116,24 +120,29 @@ export class MinigridComponent implements OnChanges {
             format: 'default',
           });
         });
+      }else{
+        this.loading = true;
+      }
     }
-    this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
-    if (config.canExpand) {
+    if(this.columnMaps != null && this.columnMaps != undefined){
+      this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
+    }
+    if (config.canExpand && this.displayedColumns != null) {
       this.displayedColumns.unshift('expand');
     }
-    if (config.canSelect) {
+    if (config.canSelect && this.displayedColumns != null) {
       this.displayedColumns.unshift('select');
     }
-    if (config.canDelete) {
+    if (config.canDelete && this.displayedColumns != null) {
       this.displayedColumns.push('action');
     }
-    console.log(this.displayedColumns);
     this.caption = config.caption;
-    this.dataSource = new MatTableDataSource(this.data);
-
-
-    this.totalSize = this.data.length;
-    this.iterator();
+    if(this.data != undefined && this.data.length > 0){
+      this.dataSource = new MatTableDataSource(this.data);
+      this.totalSize = this.data.length;
+      this.pageSize = this.config.pageSize;
+      this.iterator();
+    }
   }
 
   sortData(sort: Sort) {

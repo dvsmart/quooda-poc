@@ -3,16 +3,35 @@ import { Task } from '../model/task';
 import { TaskType } from '../model/TypeEnum';
 import { TaskStatus } from '../model/statusEnum';
 import { DueType } from '../model/dueType';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class TaskService {
   tasks: Task[] = [];
+  taskList: any;
   duetypes: DueType[] = [];
-  constructor() { }
+  api = environment.apiUrl + 'task';
+  private source = new BehaviorSubject(this.tasks);
+  latestTasks = this.source.asObservable();
+
+  constructor(private http: HttpClient) { }
 
   getDueTypes() {
     this.duetypes = [new DueType('Show All'), new DueType('overdue'), new DueType('', "7"), new DueType('', "31"), new DueType('', "15")];
     return this.duetypes;
+  }
+
+  getTasksData(){
+    return this.http.get(this.api);
+  }
+
+  addTask(taskModel: any){
+    return this.http.post(this.api,taskModel);
+    // this.getTasksData().subscribe(x=> this.taskList = x);
+    // this.source.next(this.taskList);
   }
 
   getTasks() {

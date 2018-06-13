@@ -62,7 +62,8 @@
     </div>
     <div class="content-card mat-white-bg">
       <div fxflexalign="row">
-        <app-tasklist [filter]="selectedFilter" [dueType]="selectedDuetype" [filterValue]="searchValue"></app-tasklist>
+        <!-- <app-tasklist [filter]="selectedFilter" [dueType]="selectedDuetype" [filterValue]="searchValue" [latestData]="data"></app-tasklist> -->
+        <minigrid [config]="tableConfig" [data]="data" (deletedRow)="deleteTask($event)"></minigrid>
       </div>
     </div>
   </mat-sidenav-content>

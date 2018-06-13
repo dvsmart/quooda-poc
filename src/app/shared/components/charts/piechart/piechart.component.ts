@@ -10,8 +10,8 @@ export class PiechartComponent {
   // Pie
   @Input() data : Chart[]; 
 
-  pieChartLabels:string[] = [];//['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  pieChartData:number[] = [];//[300, 500, 100];
+  pieChartLabels:string[] = [];
+  pieChartData:number[] = [];
   pieChartType:string = 'pie';
   options :any = [];
  

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from './task.component';
-import { TasklistComponent } from './components/tasklist/tasklist.component';
 import { TaskdetailComponent } from './components/taskdetail/taskdetail.component';
 import { Routes, RouterModule } from '@angular/router';
 import { TaskService } from './service/task.service';
@@ -25,7 +24,7 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ],
   providers:[TaskService],
-  declarations: [TaskComponent, TasklistComponent, TaskdetailComponent],
+  declarations: [TaskComponent, TaskdetailComponent],
   entryComponents:[FormdialogComponent,TaskdetailComponent]
 })
 export class TaskModule { }
