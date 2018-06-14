@@ -21,6 +21,7 @@ import { FormatCellPipe } from './pipes/format-cell.pipe';
 import { StyleCellDirective } from './directives/cell.directive';
 import { FormdialogComponent } from './components/formdialog/formdialog.component';
 import { DoughnutComponent } from './components/charts/doughnut/doughnut.component';
+import { KeysPipe } from './pipes/enum-key.pipe';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { DoughnutComponent } from './components/charts/doughnut/doughnut.compone
     LinechartComponent,
     TabComponent,
     TilesComponent,
-    MinigridComponent
+    MinigridComponent,
+    KeysPipe
   ],
   providers:[CustomerService,ToasterService, LoadingService, CurrencyPipe, DatePipe],
   entryComponents:[ConfirmmodalComponent,ToasterComponent],
@@ -54,6 +56,7 @@ import { DoughnutComponent } from './components/charts/doughnut/doughnut.compone
       LoaderComponent,
       ToasterComponent,
       MinigridComponent,
+      KeysPipe,
       FormatCellPipe,
       StyleCellDirective,
       FormdialogComponent,

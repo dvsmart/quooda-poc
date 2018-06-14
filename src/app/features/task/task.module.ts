@@ -8,6 +8,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { MaterialModule } from '../../material.module';
 import { FormdialogComponent } from '../../shared/components/formdialog/formdialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddtaskComponent } from './components/addtask/addtask.component';
 
 const routes: Routes = [{
   path: '', component: TaskComponent
@@ -24,7 +25,7 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ],
   providers:[TaskService],
-  declarations: [TaskComponent, TaskdetailComponent],
-  entryComponents:[FormdialogComponent,TaskdetailComponent]
+  declarations: [TaskComponent, TaskdetailComponent, AddtaskComponent],
+  entryComponents:[AddtaskComponent,TaskdetailComponent]
 })
 export class TaskModule { }

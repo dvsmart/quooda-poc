@@ -10,6 +10,7 @@ import { TableConfig } from '../../shared/models/TableConfig';
 import { TaskdetailComponent } from './components/taskdetail/taskdetail.component';
 import { Task } from './model/task';
 import { Observable } from 'rxjs/Observable';
+import { AddtaskComponent } from './components/addtask/addtask.component';
 
 @Component({
   selector: 'app-task',
@@ -29,7 +30,6 @@ export class TaskComponent implements OnInit {
 
 
   ngOnInit() {
-    debugger;
     const keys = Object.keys(TaskStatus).filter(k => typeof TaskStatus[k as any] === "number");
     keys.forEach(k => { this.taskFilters.push(new TaskFilterList(k, 'task/' + k)) });
     this.dueTypes = this.taskservice.getDueTypes();
@@ -81,7 +81,6 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnChanges() {
-    debugger;
     this.taskservice.getTasksData().subscribe(x => this.data = x);
   }
 
@@ -89,11 +88,6 @@ export class TaskComponent implements OnInit {
     var item = this.taskservice.getTasks().indexOf($event);
     if (item > -1) {
       let freshData = this.taskservice.getTasks();
-      console.log(freshData.length);
-      freshData.splice(item, 1);
-      console.log(freshData.length);
-      //console.log(this.data.length);
-      this.data = freshData;
     }
   }
 
@@ -113,31 +107,25 @@ export class TaskComponent implements OnInit {
   }
 
 
-  openDialog() {
-
+  addTask() {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;
-    dialogConfig.width = '600px';
+    dialogConfig.width = '1000px';
+    dialogConfig.height = '600px';
     dialogConfig.hasBackdrop = true;
-
     dialogConfig.data = {
       id: 1,
       title: 'Add Task'
     };
-
-    const dialogRef = this.dialog.open(FormdialogComponent, dialogConfig);
-
+    const dialogRef = this.dialog.open(AddtaskComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       data => {
         if (data != "") {
-          //alert("Dialog output:" + JSON.stringify(data));
-          this.taskservice.addTask(data).subscribe(a => { this.taskservice.getTasksData().subscribe(x => this.data = x); });
-          ;
+          // this.taskservice.addTask(data).subscribe(a => { this.taskservice.getTasksData().subscribe(x => this.data = x); });
+          this.taskservice.getTasksData().subscribe(x => this.data = x);
         }
       }
     );
   }
-
 }

@@ -10,7 +10,7 @@
       </div>
       <div>
         <mat-form-field color="accent">
-          <mat-select placeholder="Types" (change)="onDueTypechange($event)">
+          <mat-select placeholder="Due Tasks" (change)="onDueTypechange($event)" disableOptionCentering>
             <mat-option *ngFor="let dueType of dueTypes" [value]="dueType.value">
               {{ dueType.caption }}
             </mat-option>
@@ -20,7 +20,7 @@
     </div>
     <div class="content">
       <div class="p-24">
-        <button class="mat-primary add-todo-button w-100-p mat-raised-button" (click)="openDialog()" aria-label="ADD TASK" mat-raised-button="">
+        <button class="mat-primary add-todo-button w-100-p mat-raised-button" (click)="addTask()" aria-label="ADD TASK" mat-raised-button="">
           <span class="mat-button-wrapper"> ADD TASK </span>
           <div class="mat-button-ripple mat-ripple"></div>
           <div class="mat-button-focus-overlay"></div>

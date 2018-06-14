@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>{{description}}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-tab-group>
+    <mat-tab label="Details">
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Task Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="startDate" placeholder="Start Date" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="endDate" placeholder="Due Date" formControlName="endDate">
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Task Status" name="status" formControlName="status">
+            <mat-option *ngFor="let item of taskStatus | keys" [value]="item.key">
+              {{item.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Task Priority" name="priority" formControlName="priority">
+              <mat-option *ngFor="let item of taskStatus | keys" [value]="item.key">
+                {{item.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+    </mat-tab>
+    <mat-tab label="Category">Category</mat-tab>
+    <mat-tab label="Comments">Comments Page</mat-tab>
+    <mat-tab label="Documents">Documents Page</mat-tab>
+    <mat-tab label="Images">Images Page</mat-tab>
+    <mat-tab label="Associations">Associations Page</mat-tab>
+
+  </mat-tab-group>
+
+  <!-- <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Task Name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="startDate" placeholder="Start Date" formControlName="startDate">
+      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="endDate" placeholder="Due Date" formControlName="endDate">
+      <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+      <mat-datepicker #endDate></mat-datepicker>
+    </mat-form-field>
+  </div> -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" mat-dialog-close>Cancel</button>
+  <button class="mat-raised-button mat-primary" (click)="save()" type="submit" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

@@ -32,6 +32,9 @@ export class MinigridComponent implements OnChanges {
   @Input() filter: string;
   @ViewChildren('matrow', { read: ViewContainerRef }) containers;
   expandedRow: number;
+
+  toShow: boolean = false;
+
   @Output() deletedRow = new EventEmitter<any>();
 
   selection = new SelectionModel<any>(true, []);
@@ -134,7 +137,7 @@ export class MinigridComponent implements OnChanges {
       this.displayedColumns.unshift('select');
     }
     if (config.canDelete && this.displayedColumns != null) {
-      this.displayedColumns.push('action');
+      this.displayedColumns.push('delete');
     }
     this.caption = config.caption;
     if(this.data != undefined && this.data.length > 0){
@@ -144,6 +147,8 @@ export class MinigridComponent implements OnChanges {
       this.iterator();
     }
   }
+
+
 
   sortData(sort: Sort) {
     if (sort.direction == "asc") {
