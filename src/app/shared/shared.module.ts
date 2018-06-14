@@ -22,6 +22,7 @@ import { StyleCellDirective } from './directives/cell.directive';
 import { FormdialogComponent } from './components/formdialog/formdialog.component';
 import { DoughnutComponent } from './components/charts/doughnut/doughnut.component';
 import { KeysPipe } from './pipes/enum-key.pipe';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -43,7 +44,7 @@ import { KeysPipe } from './pipes/enum-key.pipe';
     MinigridComponent,
     KeysPipe
   ],
-  providers:[CustomerService,ToasterService, LoadingService, CurrencyPipe, DatePipe],
+  providers:[CustomerService,ToasterService, LoadingService, CurrencyPipe, DatePipe, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
   entryComponents:[ConfirmmodalComponent,ToasterComponent],
   declarations: [
       GridComponent,

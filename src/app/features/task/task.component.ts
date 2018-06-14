@@ -85,9 +85,8 @@ export class TaskComponent implements OnInit {
   }
 
   deleteTask($event) {
-    var item = this.taskservice.getTasks().indexOf($event);
-    if (item > -1) {
-      let freshData = this.taskservice.getTasks();
+    if ($event != null) {
+      this.taskservice.deleteTask($event.id).subscribe(x => { this.taskservice.getTasksData().subscribe(t => this.data = t); })
     }
   }
 

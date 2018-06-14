@@ -1,8 +1,13 @@
 .example-container {
     display: flex;
     flex-direction: column;
+    padding: 30px;
 }
 
 .example-container>* {
     width: 100%;
+}
+
+.mat-tab-body-wrapper{
+    padding: 30px !important;
 }

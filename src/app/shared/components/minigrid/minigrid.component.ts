@@ -15,7 +15,7 @@ import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
 })
 export class MinigridComponent implements OnChanges {
 
-  loading: boolean;
+  loading: boolean = false;
   @Input() config: any;
   keys: string[];
   caption: string;
@@ -30,6 +30,9 @@ export class MinigridComponent implements OnChanges {
   public totalSize = 0;
   @Input() data: any;
   @Input() filter: string;
+
+  message: string = "";
+
   @ViewChildren('matrow', { read: ViewContainerRef }) containers;
   expandedRow: number;
 
@@ -40,10 +43,10 @@ export class MinigridComponent implements OnChanges {
   selection = new SelectionModel<any>(true, []);
 
   constructor(private resolver: ComponentFactoryResolver, public dialog: MatDialog, ) {
-    this.dataSource = new MatTableDataSource<any>();
   }
 
   ngOnChanges() {
+    debugger;
     if (this.dataSource != null && this.filter != "" && this.filter != undefined) {
       this.dataSource.filter = this.filter;
       this.dataSource = this.dataSource.filteredData
@@ -86,8 +89,6 @@ export class MinigridComponent implements OnChanges {
     this.expandedRow = null;
   }
 
-
-
   public getServerData(event?: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
@@ -112,35 +113,37 @@ export class MinigridComponent implements OnChanges {
       this.columnMaps = config.columns
         .map(col => new ColumnMap(col));
     } else {
-      if(this.data != undefined && this.data.length > 0){
-        this.loading = false;
+      if (this.data != undefined && this.data.length > 0) {
+        this.message = "";
         this.columnMaps = Object.keys(this.data[0])
-        .map(key => {
-          return new ColumnMap({
-            primaryKey: key,
-            header: key.slice(0, 1).toUpperCase() +
-              key.replace(/_/g, ' ').slice(1),
-            format: 'default',
+          .map(key => {
+            return new ColumnMap({
+              primaryKey: key,
+              header: key.slice(0, 1).toUpperCase() +
+                key.replace(/_/g, ' ').slice(1),
+              format: 'default',
+            });
           });
-        });
-      }else{
-        this.loading = true;
+      } else {
+        this.dataSource = new MatTableDataSource(this.data);
+        this.message = 'No data Found!';
       }
-    }
-    if(this.columnMaps != null && this.columnMaps != undefined){
-      this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
-    }
-    if (config.canExpand && this.displayedColumns != null) {
-      this.displayedColumns.unshift('expand');
-    }
-    if (config.canSelect && this.displayedColumns != null) {
-      this.displayedColumns.unshift('select');
-    }
-    if (config.canDelete && this.displayedColumns != null) {
-      this.displayedColumns.push('delete');
+      
     }
     this.caption = config.caption;
-    if(this.data != undefined && this.data.length > 0){
+    if (this.data != undefined && this.data.length > 0) {
+      if (this.columnMaps != null && this.columnMaps != undefined) {
+        this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
+      }
+      if (config.canExpand && this.displayedColumns != null) {
+        this.displayedColumns.unshift('expand');
+      }
+      if (config.canSelect && this.displayedColumns != null) {
+        this.displayedColumns.unshift('select');
+      }
+      if (config.canDelete && this.displayedColumns != null) {
+        this.displayedColumns.push('delete');
+      }
       this.dataSource = new MatTableDataSource(this.data);
       this.totalSize = this.data.length;
       this.pageSize = this.config.pageSize;
@@ -174,7 +177,7 @@ export class MinigridComponent implements OnChanges {
     let dialogref = this.dialog.open(ConfirmmodalComponent, {
       height: 'auto',
       width: '400px',
-      data: { modalTitle: "Delete Task Confirmation", modalBody: "Are you sure you want to delete this task - " + row.dataId.toUpperCase() + "?"}
+      data: { modalTitle: "Delete Task Confirmation", modalBody: "Are you sure you want to delete this task?" }
     })
     dialogref.afterClosed().subscribe(result => {
 

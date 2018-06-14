@@ -6,11 +6,11 @@
     <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
         <ng-container matColumnDef="expand">
-            <mat-header-cell *matHeaderCellDef>Expand</mat-header-cell>
-            <mat-cell *matCellDef="let element; let index=index" class="expand-buttons">
+            <mat-header-cell *matHeaderCellDef class="col-md-1">Expand</mat-header-cell>
+            <mat-cell *matCellDef="let element; let index=index" class="expand-buttons" class="col-md-1">
                 <a (click)="expandRow(index)" href="javascript:void(0)">
-                    <i class="material-icons arrows" *ngIf="expandedRow === undefined || expandedRow !== index">add</i>
-                    <i class="material-icons arrows" *ngIf="expandedRow === index">remove</i>
+                    <i class="material-icons" *ngIf="expandedRow === undefined || expandedRow !== index">arrow_right</i>
+                    <i class="material-icons" *ngIf="expandedRow === index">arrow_drop_down</i>
                 </a>
             </mat-cell>
         </ng-container>
@@ -42,9 +42,12 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns; let index=index;" class="example-row" #matrow></mat-row>
     </mat-table>
-    <div *ngIf="loading" style="display: flex;justify-content: center;align-items: center;">
-            <mat-spinner></mat-spinner>
-     </div>
+    <div *ngIf="loading" style="display: flex;justify-content: center;align-items: center;height: 100px;">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="message" style="display: flex;justify-content: center;align-items: center;height: 100px;">
+        <span>{{message}}</span>
+    </div>
 </div>
 <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]" [showFirstLastButtons]="true" [pageIndex]="currentPage"
     [length]="totalSize" (page)="pageEvent = getServerData($event)">

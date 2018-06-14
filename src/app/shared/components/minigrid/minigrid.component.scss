@@ -10,11 +10,9 @@
 //     overflow: hidden;
 //     height: 550px;
 // }
-
 // .table-container:hover {
 //     overflow-y: scroll;
 // }
-
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -60,11 +58,9 @@
 // .mat-row {
 //     padding: 10px 10px 10px 24px !important;
 // }
-
 // .mat-header-cell {
 //     padding: 10px 10px 10px 25px !important;
 // }
-
 // .mat-cell .flex-stretch {
 //     display: -ms-flexbox;
 //     display: -webkit-flex;
@@ -77,3 +73,14 @@
 //     -ms-flex-align: center;
 //     align-items: center;
 // }
+.cdk-column-select {
+    flex: 0 0 40px;
+}
+
+.cdk-column-expand {
+    flex: 0 0 100px;
+}
+
+.cdk-column-delete {
+    flex: 0 0 100px;
+}

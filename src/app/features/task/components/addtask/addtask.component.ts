@@ -36,6 +36,7 @@ export class AddtaskComponent implements OnInit {
   }
 
   save() {
+    debugger;
     this.taskservice.addTask(this.form.value).subscribe(a => { this.dialogRef.close(); });
     //this.dialogRef.close(this.form.value);
   }

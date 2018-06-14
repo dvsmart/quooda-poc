@@ -9,6 +9,7 @@ import { MaterialModule } from '../../material.module';
 import { FormdialogComponent } from '../../shared/components/formdialog/formdialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddtaskComponent } from './components/addtask/addtask.component';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 const routes: Routes = [{
   path: '', component: TaskComponent
@@ -24,8 +25,8 @@ const routes: Routes = [{
     FormsModule,
     RouterModule.forChild(routes)
   ],
-  providers:[TaskService],
+  providers: [TaskService, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   declarations: [TaskComponent, TaskdetailComponent, AddtaskComponent],
-  entryComponents:[AddtaskComponent,TaskdetailComponent]
+  entryComponents: [AddtaskComponent, TaskdetailComponent]
 })
 export class TaskModule { }

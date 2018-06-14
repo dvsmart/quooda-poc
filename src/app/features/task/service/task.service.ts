@@ -34,6 +34,10 @@ export class TaskService {
     // this.source.next(this.taskList);
   }
 
+  deleteTask(id: number){
+    return this.http.delete(this.api + '/' +id,);
+  }
+
   getTasks() {
     for (let index = 1; index < 10; index++) {
       this.tasks.push(
