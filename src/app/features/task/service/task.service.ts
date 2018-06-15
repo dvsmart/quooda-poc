@@ -24,8 +24,8 @@ export class TaskService {
     return this.duetypes;
   }
 
-  getTasksData(){
-    return this.http.get(this.api);
+  getTasksData(): Observable<Task[]>{
+    return this.http.get<Task[]>(this.api);
   }
 
   addTask(taskModel: any){
@@ -126,4 +126,5 @@ export class TaskService {
     }
     return this.tasks;
   }
+
 }

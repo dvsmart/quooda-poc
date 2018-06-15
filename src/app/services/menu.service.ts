@@ -13,8 +13,11 @@ export class MenuService extends GenericService<Menu> {
   constructor(httpClient: HttpClient) {
     super(
       httpClient,
-      config.Endpoints.menuApi);
+      'menu');
   }
+
+  
+
 
   getMenuItems():  any {
     let items: any[] = [

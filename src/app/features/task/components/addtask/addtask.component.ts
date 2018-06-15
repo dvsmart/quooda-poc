@@ -28,17 +28,15 @@ export class AddtaskComponent implements OnInit {
     this.form = this.fb.group({
       description: '',
       name: '',
-      startDate: new Date,
-      endDate: new Date,
+      startDate: '',
+      dueDate: '',
       status: '',
       priority : ''
     });
   }
 
   save() {
-    debugger;
     this.taskservice.addTask(this.form.value).subscribe(a => { this.dialogRef.close(); });
-    //this.dialogRef.close(this.form.value);
   }
 
   close(): void {

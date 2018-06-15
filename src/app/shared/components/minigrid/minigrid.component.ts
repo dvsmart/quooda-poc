@@ -7,6 +7,8 @@ import { TableConfig } from '../../models/TableConfig';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material';
 import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/merge';
 
 @Component({
   selector: 'minigrid',
@@ -24,7 +26,7 @@ export class MinigridComponent implements OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   pageEvent: PageEvent;
   displayedColumns;
-  dataSource;
+  dataSource = new MatTableDataSource();
   public pageSize;
   public currentPage = 0;
   public totalSize = 0;
@@ -46,10 +48,9 @@ export class MinigridComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    debugger;
     if (this.dataSource != null && this.filter != "" && this.filter != undefined) {
       this.dataSource.filter = this.filter;
-      this.dataSource = this.dataSource.filteredData
+      this.dataSource.data = this.dataSource.filteredData
     } else {
       this.populateGrid();
     }
@@ -57,14 +58,14 @@ export class MinigridComponent implements OnChanges {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.forEach(row => this.selection.select(row));
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   expandRow(index: number) {
@@ -113,7 +114,7 @@ export class MinigridComponent implements OnChanges {
       this.columnMaps = config.columns
         .map(col => new ColumnMap(col));
     } else {
-      if (this.data != undefined && this.data.length > 0) {
+      if (this.data != null && this.data != undefined && this.data.length > 0) {
         this.message = "";
         this.columnMaps = Object.keys(this.data[0])
           .map(key => {
@@ -125,10 +126,9 @@ export class MinigridComponent implements OnChanges {
             });
           });
       } else {
-        this.dataSource = new MatTableDataSource(this.data);
         this.message = 'No data Found!';
       }
-      
+
     }
     this.caption = config.caption;
     if (this.data != undefined && this.data.length > 0) {

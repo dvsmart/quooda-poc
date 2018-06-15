@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 @Pipe({ name: 'formatCell' })
 export class FormatCellPipe implements PipeTransform {
@@ -22,6 +23,12 @@ export class FormatCellPipe implements PipeTransform {
       }
       if (typeof value === "object") {
         return value.name
+      }
+      if(typeof value === "string"){
+        if(moment(value).isValid()){
+          value = moment(value).format('DD/MM/YYYY')
+        }
+        return value;
       }
     }
     if (format === 'currency') {

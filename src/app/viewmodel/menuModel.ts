@@ -3,7 +3,7 @@ export class Menu {
   id: number;
   route: string;
   hasChildren?: boolean = false;
-  children?: Menu[] = null;
+  childrens?: Menu[] = null;
   isVisible: boolean = true;
   cssClassName?:string;
   iconName?:string;

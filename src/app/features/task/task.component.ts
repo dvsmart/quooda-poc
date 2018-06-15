@@ -20,7 +20,7 @@ import { AddtaskComponent } from './components/addtask/addtask.component';
 export class TaskComponent implements OnInit {
   tableConfig: TableConfig = new TableConfig();
   taskFilters: TaskFilterList[] = [];
-  data: Task[] | Observable<Task[]> | any;
+  data: Observable<Task[]>;
   dueTypes: DueType[] = [];
   constructor(private dialog: MatDialog, private taskservice: TaskService) { }
   selectedFilter: any;
@@ -33,7 +33,7 @@ export class TaskComponent implements OnInit {
     const keys = Object.keys(TaskStatus).filter(k => typeof TaskStatus[k as any] === "number");
     keys.forEach(k => { this.taskFilters.push(new TaskFilterList(k, 'task/' + k)) });
     this.dueTypes = this.taskservice.getDueTypes();
-    this.taskservice.getTasksData().subscribe(x => this.data = x);
+    this.data = this.taskservice.getTasksData();
     this.tableConfig.pageSize = 10;
     let columns =
       [
@@ -80,13 +80,9 @@ export class TaskComponent implements OnInit {
     this.tableConfig.canDelete = true;
   }
 
-  ngOnChanges() {
-    this.taskservice.getTasksData().subscribe(x => this.data = x);
-  }
-
   deleteTask($event) {
     if ($event != null) {
-      this.taskservice.deleteTask($event.id).subscribe(x => { this.taskservice.getTasksData().subscribe(t => this.data = t); })
+      this.taskservice.deleteTask($event.id).subscribe(x => { this.data = this.taskservice.getTasksData(); })
     }
   }
 
@@ -121,10 +117,11 @@ export class TaskComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data != "") {
-          // this.taskservice.addTask(data).subscribe(a => { this.taskservice.getTasksData().subscribe(x => this.data = x); });
-          this.taskservice.getTasksData().subscribe(x => this.data = x);
+          this.data = this.taskservice.getTasksData();
         }
       }
     );
   }
+
+  
 }

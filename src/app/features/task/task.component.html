@@ -45,7 +45,7 @@
   </mat-sidenav>
   <mat-sidenav-content style="flex:1;">
     <div class="header">
-      <div class="search-wrapper mat-white-bg" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; place-content: center flex-start; align-items: center;">
+      <div class="search-wrapper mat-white-bg" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; align-items: center;">
         <button class="sidenav-toggle mat-icon-button" aria-label="Toggle Sidenav" fusematsidenavtoggler="carded-left-sidenav" fxhide.gt-md=""
           mat-icon-button="" style="display: block;">
           <span class="mat-button-wrapper">
@@ -61,9 +61,8 @@
       </div>
     </div>
     <div class="content-card mat-white-bg">
-      <div fxflexalign="row" *ngIf="data != null">
-        <!-- <app-tasklist [filter]="selectedFilter" [dueType]="selectedDuetype" [filterValue]="searchValue" [latestData]="data"></app-tasklist> -->
-        <minigrid [config]="tableConfig" [data]="data" (deletedRow)="deleteTask($event)"></minigrid>
+      <div fxflexalign="row" *ngIf="data | async">
+        <minigrid [config]="tableConfig" [data]="data | async" (deletedRow)="deleteTask($event)"></minigrid>
       </div>
     </div>
   </mat-sidenav-content>
