@@ -1,71 +1,21 @@
 <div class="sidebar-container">
-  <!-- <mat-nav-list>
-    <mat-list-item *ngFor="let item of menu | async" routerLinkActive="active">
-      <a matLine *ngIf="!item.hasChildren || item.children.length === 0 && item.parentId == null" [routerLink]="item.route">
-        <button mat-icon-button>
-          <mat-icon>{{item.iconName}}</mat-icon>
-        </button>
-        {{item.caption}}
-      </a>
-      <span *ngIf="item.hasChildren && item.children.length > 0">
-         <a matLine [matMenuTriggerFor]="menu.childMenu">
-          <button mat-icon-button>
-            <mat-icon>build</mat-icon>
-          </button>
-          {{item.caption}}
-          <button mat-icon-button>
-            <mat-icon>arrow_right</mat-icon>
-          </button>
-          <appitem #menu [items]="item.children"></appitem>
-        </a> 
-      </span>
-    </mat-list-item>
-  </mat-nav-list> -->
-
-  <!-- <pre>{{menu | async | json}}</pre> -->
-  <!-- <mat-nav-list>
-    <mat-list-item *ngFor="let link of menu | async">
-      <a matLine [routerLink]="link.route" *ngIf="link.parentId == null">
-        <button mat-icon-button>
-          <mat-icon>{{link.iconName}}</mat-icon>
-        </button>{{ link.caption }}
-      </a> 
-      <a matLine [routerLink]="link.route" *ngIf="link.parentId">
-        <button mat-icon-button>
-          <mat-icon>{{link.iconName}}</mat-icon>
-        </button>{{ link.caption }}
-      </a>
-    </mat-list-item>
-  </mat-nav-list> -->
   <div *ngFor="let item of menu | async">
     <mat-nav-list>
-      <mat-list-item (click)="onItemSelected(item)">
-        <a matLine *ngIf="item.parentId == null" [routerLink]="item.route">
+      <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null">
+        <a matLine [routerLink]="item.route">
           <button mat-icon-button>
             <mat-icon>{{item.iconName}}</mat-icon>
           </button>
           {{item.caption}}
-          <span fxFlex *ngIf="item.childrens && item.childrens.length">
-                <span fxFlex></span>
-                <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
-                  expand_more
-                </mat-icon>
-              </span>
+          <span *ngIf="item.childrens && item.childrens.length" style="float:right">
+            <!-- <span fxFlex></span> -->
+            <button mat-icon-button [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+              <mat-icon>expand_more</mat-icon>
+            </button>
+          </span>
         </a>
       </mat-list-item>
     </mat-nav-list>
-
-    <!-- <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)" *ngIf="item.parentId == null"
-    [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
-      <mat-icon class="routeIcon">{{item.iconName}}</mat-icon>
-      {{item.caption}}
-      <span fxFlex *ngIf="item.childrens && item.childrens.length">
-        <span fxFlex></span>
-        <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
-          expand_more
-        </mat-icon>
-      </span>
-    </a> -->
     <div *ngIf="expanded">
       <appitem *ngFor="let child of item.childrens" [item]="child" [depth]="depth+1">
       </appitem>
@@ -73,14 +23,3 @@
   </div>
 
 </div>
-
-
-
-<!-- <div *ngIf="link.parentId && link.children && link.children.length > 0">
-    <mat-list-item *ngFor="let subLink of link.children | async">
-        <a matLine [routerLink]="subLink.route">
-            <button mat-icon-button>
-              <mat-icon>{{subLink.iconName}}</mat-icon>
-            </button>{{ subLink.caption }}</a>
-    </mat-list-item>
-  </div> -->

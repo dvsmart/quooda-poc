@@ -22,14 +22,20 @@
     &:hover,
     &:focus {
         >.mat-list-item:not(.expanded) {
-            background-color: #03a9f4 !important;
+            background-color: transparent !important;
         }
     }
 }
 
 .mat-list-item {
-    padding: 8px 0;
+    padding: 2px 0;
     .routeIcon {
         margin-right: 40px;
     }
+}
+
+.submenu{
+  position: absolute;
+  margin-right: 30px;
+  margin-top: 7px;
 }

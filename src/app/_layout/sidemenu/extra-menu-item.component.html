@@ -1,32 +1,22 @@
-<!-- <mat-menu #childMenu="matMenu" xPosition="after" [overlapTrigger]="false"  class="menuclass">
-    <span *ngFor="let child of items">
-      <span *ngIf="child.children && child.children.length > 0">
-        <a mat-menu-item [matMenuTriggerFor]="menu.childMenu" [routerLink]="child.route" routerLinkActive="active">
-          <mat-icon>{{child.iconName}}</mat-icon>
-          {{child.caption}}
-        </a>
-        <appitem #menu [items]="child.children"></appitem>
+<mat-nav-list>
+  <mat-list-item>
+    <a mat-line [ngStyle]="{'padding-left': (depth * 30) + 'px'}" (click)="onItemSelected(item)" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
+      <button mat-icon-button>
+        <mat-icon>{{item.iconName}}</mat-icon>
+      </button>
+      {{item.caption}}
+      <span *ngIf="item.childrens && item.childrens.length" style="float:right">
+        <!-- <span fxFlex></span> -->
+        <!-- <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+          expand_more
+        </mat-icon> -->
+        <button mat-icon-button [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+          <mat-icon>expand_more</mat-icon>
+        </button>
       </span>
-      <span *ngIf="!child.children || child.children.length === 0">
-        <a mat-menu-item [routerLink]="child.route" routerLinkActive="active">
-          <mat-icon>{{child.iconName}}</mat-icon>
-          {{child.caption}}
-        </a>
-      </span>
-    </span>
-  </mat-menu> -->
-
-
-<a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
-  <mat-icon class="routeIcon">{{item.iconName}}</mat-icon>
-  {{item.caption}}
-  <span fxFlex *ngIf="item.children && item.children.length">
-    <span fxFlex></span>
-    <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
-      expand_more
-    </mat-icon>
-  </span>
-</a>
+    </a>
+  </mat-list-item>
+</mat-nav-list>
 <div *ngIf="expanded">
   <appitem *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
   </appitem>
