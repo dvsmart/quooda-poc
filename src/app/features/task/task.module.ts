@@ -13,6 +13,9 @@ import { MAT_DATE_LOCALE } from '@angular/material';
 
 const routes: Routes = [{
   path: '', component: TaskComponent
+},
+{
+  path: 'task/:status', component: TaskComponent
 }];
 
 

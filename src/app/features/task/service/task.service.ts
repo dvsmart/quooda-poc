@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { TaskPriority } from '../model/TaskPriority';
 
 @Injectable()
 export class TaskService {
@@ -28,14 +29,20 @@ export class TaskService {
     return this.http.get<Task[]>(this.api);
   }
 
+  getTaskStatus(): Observable<TaskStatus[]>{
+    return this.http.get<TaskStatus[]>(this.api + '/Taskstatus')
+  }
+
+  getTaskPriorities(): Observable<TaskPriority[]>{
+    return this.http.get<TaskPriority[]>(this.api + '/Taskpriorities')
+  }
+
   addTask(taskModel: any){
     return this.http.post(this.api,taskModel);
-    // this.getTasksData().subscribe(x=> this.taskList = x);
-    // this.source.next(this.taskList);
   }
 
   deleteTask(id: number){
-    return this.http.delete(this.api + '/' +id,);
+    return this.http.delete(this.api + '/' +id);
   }
 
   // getTasks() {

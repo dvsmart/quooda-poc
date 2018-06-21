@@ -102,6 +102,10 @@
     background-color: #039be5;
 }
 
+.active {
+    background-color: #039be5 !important;
+}
+
 .nav-link {
     text-decoration: none !important;
     display: flex;
@@ -183,6 +187,6 @@
     background-size: cover;
 }
 
-.content:hover{
-  overflow-y: scroll;
+.content:hover {
+    overflow-y: scroll;
 }

@@ -1,8 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { TaskStatus } from './model/TaskStatus';
-
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { FormdialogComponent } from '../../shared/components/formdialog/formdialog.component';
 import { TaskFilterList } from './model/TaskFilterList';
 import { DueType } from './model/dueType';
 import { TaskService } from './service/task.service';
@@ -11,6 +8,8 @@ import { TaskdetailComponent } from './components/taskdetail/taskdetail.componen
 import { Task } from './model/task';
 import { Observable } from 'rxjs/Observable';
 import { AddtaskComponent } from './components/addtask/addtask.component';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-task',
@@ -22,7 +21,9 @@ export class TaskComponent implements OnInit {
   taskFilters: TaskFilterList[] = [];
   data: Observable<Task[]>;
   dueTypes: DueType[] = [];
-  constructor(private dialog: MatDialog, private taskservice: TaskService) { }
+  constructor(private dialog: MatDialog, private taskservice: TaskService,private routePath:ActivatedRoute) {
+    this.routePath.params.subscribe( params => console.log(params));
+   }
   selectedFilter: any;
   caption: string;
   searchValue: string;
@@ -30,8 +31,7 @@ export class TaskComponent implements OnInit {
 
 
   ngOnInit() {
-    const keys = Object.keys(TaskStatus).filter(k => typeof TaskStatus[k as any] === "number");
-    keys.forEach(k => { this.taskFilters.push(new TaskFilterList(k, 'task/' + k)) });
+    this.taskservice.getTaskStatus().subscribe(x => { x.forEach(ts => this.taskFilters.push(new TaskFilterList(ts.name, 'task/' + ts.name))); });
     this.dueTypes = this.taskservice.getDueTypes();
     this.data = this.taskservice.getTasksData();
     this.tableConfig.pageSize = 10;
@@ -123,5 +123,5 @@ export class TaskComponent implements OnInit {
     );
   }
 
-  
+
 }

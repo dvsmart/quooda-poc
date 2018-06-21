@@ -40,7 +40,6 @@ export class SidemenuComponent implements OnInit {
   }
 
   onItemSelected(item: Menu) {
-    debugger;
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }

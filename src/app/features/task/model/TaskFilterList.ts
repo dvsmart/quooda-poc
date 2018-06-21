@@ -10,30 +10,26 @@ export class TaskFilterList {
     constructor(caption: string, route?: string, icon?: string) {
         this.route = route;
         this.filterId = caption;
+        this.caption = caption;
         this.getTaskFilters(caption, icon);
     }
 
     getTaskFilters(caption: string, icon?: string) {
         switch (caption) {
-            case 'NotStarted':
+            case 'Not Started':
                 this.iconName = icon ? icon : 'schedule';
-                this.caption = 'Not Started';
                 break;
-            case 'InProgress':
+            case 'In Progress':
                 this.iconName = icon ? icon : 'error';
-                this.caption = 'In Progress';
                 break;
             case 'Completed':
                 this.iconName = icon ? icon : 'check';
-                this.caption = 'Completed';
                 break;
-            case 'OnHold':
+            case 'On Hold':
                 this.iconName = icon ? icon : 'stop';
-                this.caption = 'On Hold';
                 break;
-            case 'Abandoned':
+            case 'Cancelled':
                 this.iconName = icon ? icon : 'delete';
-                this.caption = 'Abandoned';
                 break;
             default:
                 break;

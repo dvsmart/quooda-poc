@@ -35,7 +35,7 @@
           <div class="nav-subheader">FILTERS</div>
         </div>
         <div class="nav-item" *ngFor="let filter of taskFilters">
-          <a class="nav-link" mat-ripple routerlinkactive="active" (click)="onFilterchange(filter)" style="cursor: pointer;">
+          <a class="nav-link" mat-ripple routerlinkactive="active" [routerLink]="filter.route" style="cursor: pointer;">
             <mat-icon class="nav-link-icon mat-icon">{{filter.iconName}}</mat-icon>
             <span>{{filter.caption}}</span>
           </a>
