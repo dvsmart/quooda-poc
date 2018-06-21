@@ -29,11 +29,10 @@ export class SideChildmenuComponent {
   }
 
   onItemSelected(item: Menu) {
-    debugger;
-    if (!item.childrens || !item.childrens.length) {
+    if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }
-    if (item.childrens && item.childrens.length) {
+    if (item.children && item.children.length) {
       this.expanded = !this.expanded;
     }
   }
