@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TaskStatus } from '../../model/statusEnum';
-import { Priority } from '../../model/priority';
+import { TaskStatus } from '../../model/TaskStatus';
+import { Priority } from '../../model/TaskPriority';
 import { TaskService } from '../../service/task.service';
 
 @Component({
@@ -20,8 +20,8 @@ export class AddtaskComponent implements OnInit {
     private dialogRef: MatDialogRef<AddtaskComponent>,
     @Inject(MAT_DIALOG_DATA) data,private taskservice: TaskService ) {
     this.description = data.title;
-    this.taskStatus = TaskStatus;
-    this.taskPriority = Priority;
+    this.taskStatus = this.taskStatus;
+    this.taskPriority = this.taskPriority;
   }
 
   ngOnInit() {

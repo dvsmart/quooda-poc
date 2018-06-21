@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { TaskStatus } from './model/statusEnum';
+import { TaskStatus } from './model/TaskStatus';
 
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormdialogComponent } from '../../shared/components/formdialog/formdialog.component';

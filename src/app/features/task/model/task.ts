@@ -1,6 +1,3 @@
-import { TaskType } from "./TypeEnum";
-import { TaskStatus } from "./statusEnum";
-import { Priority } from "./priority";
 
 export class Task{
     id: number;
