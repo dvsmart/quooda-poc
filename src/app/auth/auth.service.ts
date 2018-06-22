@@ -22,8 +22,9 @@ export class AuthService {
     if (user.username == 'vijay' && user.password == "password") {
       this.cookieService.set('token', 'authenticated');
       return true;
+    }else{
+      return false;
     }
-    return false;
   }
 
   logout() {

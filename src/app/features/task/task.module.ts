@@ -10,13 +10,12 @@ import { FormdialogComponent } from '../../shared/components/formdialog/formdial
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddtaskComponent } from './components/addtask/addtask.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
+import { TaskfilterComponent } from './components/taskfilter/taskfilter.component';
 
-const routes: Routes = [{
-  path: '', component: TaskComponent
-},
-{
-  path: 'task/:status', component: TaskComponent
-}];
+const routes: Routes = [
+  {  path: '', component: TaskComponent },
+  {  path: 'task/:caption', component: TaskComponent }
+];
 
 
 @NgModule({
@@ -29,7 +28,7 @@ const routes: Routes = [{
     RouterModule.forChild(routes)
   ],
   providers: [TaskService, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
-  declarations: [TaskComponent, TaskdetailComponent, AddtaskComponent],
+  declarations: [TaskComponent, TaskdetailComponent, AddtaskComponent, TaskfilterComponent],
   entryComponents: [AddtaskComponent, TaskdetailComponent]
 })
 export class TaskModule { }

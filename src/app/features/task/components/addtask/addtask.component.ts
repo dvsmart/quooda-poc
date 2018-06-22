@@ -2,8 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TaskStatus } from '../../model/TaskStatus';
-import { Priority } from '../../model/TaskPriority';
+import { Priority, TaskPriority } from '../../model/TaskPriority';
 import { TaskService } from '../../service/task.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-addtask',
@@ -13,25 +14,25 @@ import { TaskService } from '../../service/task.service';
 export class AddtaskComponent implements OnInit {
   form: FormGroup;
   description: string;
-  taskStatus;
-  taskPriority;
+  taskStatus: Observable<TaskStatus[]>;
+  taskPriority : Observable<TaskPriority[]>;
 
   constructor(private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddtaskComponent>,
     @Inject(MAT_DIALOG_DATA) data,private taskservice: TaskService ) {
     this.description = data.title;
-    this.taskStatus = this.taskStatus;
-    this.taskPriority = this.taskPriority;
   }
 
   ngOnInit() {
+    this.taskStatus =this.taskservice.getTaskStatus();
+    this.taskPriority = this.taskservice.getTaskPriorities();
     this.form = this.fb.group({
       description: '',
       name: '',
       startDate: '',
       dueDate: '',
-      status: '',
-      priority : ''
+      TaskStatusId: '',
+      TaskPriorityId : ''
     });
   }
 

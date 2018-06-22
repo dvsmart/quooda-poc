@@ -27,8 +27,8 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', loadChildren: 'app/features/dashboard/dashboard.module#DashboardModule' },
       { path: 'profile', loadChildren: 'app/features/profile/profile.module#ProfileModule' },
-      { path: 'task', loadChildren: 'app/features/task/task.module#TaskModule' },
-      { path: 'checklist', loadChildren: 'app/features/checklist/checklist.module#ChecklistModule' },
+      { path: 'task', loadChildren: 'app/features/task/task.module#TaskModule'},
+      { path: 'checklist', loadChildren: 'app/features/checklist/checklist.module#ChecklistModule' }
     ]
   },
   { path: '**', redirectTo: '' }

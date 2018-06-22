@@ -37,6 +37,10 @@ export class TaskService {
     return this.http.get<TaskPriority[]>(this.api + '/Taskpriorities')
   }
 
+  getTasksByStatus(filter:string): Observable<Task[]>{
+    return this.http.get<Task[]>(this.api + '/Tasksbystatus'+ '?statusFilter=' + filter);
+  }
+
   addTask(taskModel: any){
     return this.http.post(this.api,taskModel);
   }

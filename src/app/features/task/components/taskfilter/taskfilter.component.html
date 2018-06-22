@@ -1,0 +1,15 @@
+<div class="nav">
+  <div class="nav-item">
+    <a class="nav-link" routerlinkactive="active" (click)="gotoDetail('all')">
+      <mat-icon class="nav-link-icon">view_headline</mat-icon>
+      <span class="ng-tns-c36-211">All</span>
+    </a>
+  </div>
+  <div class="nav-subheader">FILTERS</div>
+  <div class="nav-item" *ngFor="let filter of taskFilters">
+    <a class="nav-link" mat-ripple routerlinkactive="active" (click)="gotoDetail(filter)" style="cursor: pointer;">
+      <mat-icon class="nav-link-icon mat-icon">{{filter.iconName}}</mat-icon>
+      <span>{{filter.caption}}</span>
+    </a>
+  </div>
+</div>

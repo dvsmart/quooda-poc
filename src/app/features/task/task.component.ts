@@ -8,7 +8,7 @@ import { TaskdetailComponent } from './components/taskdetail/taskdetail.componen
 import { Task } from './model/task';
 import { Observable } from 'rxjs/Observable';
 import { AddtaskComponent } from './components/addtask/addtask.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -24,14 +24,21 @@ export class TaskComponent implements OnInit {
   constructor(private dialog: MatDialog, private taskservice: TaskService,private routePath:ActivatedRoute) {
     this.routePath.params.subscribe( params => console.log(params));
    }
-  selectedFilter: any;
-  caption: string;
+  
   searchValue: string;
   selectedDuetype: any;
 
+  getFilterData(filter){
+    if(filter === undefined){
+      this.data = this.taskservice.getTasksData();
+    }else{
+      this.data = this.taskservice.getTasksByStatus(filter);
+    }
+  }
+  
 
   ngOnInit() {
-    this.taskservice.getTaskStatus().subscribe(x => { x.forEach(ts => this.taskFilters.push(new TaskFilterList(ts.name, 'task/' + ts.name))); });
+    this.taskservice.getTaskStatus().subscribe(x => { x.forEach(ts => this.taskFilters.push(new TaskFilterList(ts.name, '/task/' + ts.name))); });
     this.dueTypes = this.taskservice.getDueTypes();
     this.data = this.taskservice.getTasksData();
     this.tableConfig.pageSize = 10;
@@ -86,10 +93,9 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  onFilterchange(e: any) {
-    this.selectedFilter = e.filterId;
-    this.caption = e.caption;
-  }
+  
+
+  
 
   onDueTypechange(event) {
     this.selectedDuetype = event.value;

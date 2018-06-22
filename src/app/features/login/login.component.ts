@@ -42,7 +42,11 @@ export class LoginComponent implements OnInit {
     if (isAuthenticated) {
       this.router.navigateByUrl(this.returnUrl);
       //return true;
+    }else{
+      this.loading = false;
+      this.errorMessage = "Invalid account";
     }
+    
     // .subscribe(data => {
     //   this.loading = false;
     //   this.router.navigateByUrl(this.returnUrl);
