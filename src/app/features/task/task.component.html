@@ -48,7 +48,7 @@
     </div>
     <div class="content-card mat-white-bg">
       <div fxflexalign="row" *ngIf="data | async">
-        <minigrid [config]="tableConfig" [data]="data | async" (deletedRow)="deleteTask($event)"></minigrid>
+        <minigrid [config]="tableConfig" [data]="data | async" (deletedRow)="deleteTask($event)" (onPageSwitch)="switchPage($event)"></minigrid>
       </div>
     </div>
   </mat-sidenav-content>

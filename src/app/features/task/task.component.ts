@@ -21,27 +21,27 @@ export class TaskComponent implements OnInit {
   taskFilters: TaskFilterList[] = [];
   data: Observable<Task[]>;
   dueTypes: DueType[] = [];
-  constructor(private dialog: MatDialog, private taskservice: TaskService,private routePath:ActivatedRoute) {
-    this.routePath.params.subscribe( params => console.log(params));
-   }
-  
+  constructor(private dialog: MatDialog, private taskservice: TaskService, private routePath: ActivatedRoute) {
+    this.routePath.params.subscribe(params => console.log(params));
+  }
+
   searchValue: string;
   selectedDuetype: any;
 
-  getFilterData(filter){
-    if(filter === undefined){
+  getFilterData(filter) {
+    if (filter === undefined) {
       this.data = this.taskservice.getTasksData();
-    }else{
+    } else {
       this.data = this.taskservice.getTasksByStatus(filter);
     }
   }
-  
+
 
   ngOnInit() {
     this.taskservice.getTaskStatus().subscribe(x => { x.forEach(ts => this.taskFilters.push(new TaskFilterList(ts.name, '/task/' + ts.name))); });
     this.dueTypes = this.taskservice.getDueTypes();
-    this.data = this.taskservice.getTasksData();
-    this.tableConfig.pageSize = 10;
+    this.data = this.taskservice.get(1, 5);
+    this.tableConfig.pageSize = 5;
     let columns =
       [
         {
@@ -93,9 +93,14 @@ export class TaskComponent implements OnInit {
     }
   }
 
-  
+  switchPage(event) {
+    debugger;
+    this.data = this.taskservice.get(event.pageIndex++,event.pageSize);
+  }
 
-  
+
+
+
 
   onDueTypechange(event) {
     this.selectedDuetype = event.value;

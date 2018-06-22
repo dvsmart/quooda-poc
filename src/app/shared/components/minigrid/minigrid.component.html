@@ -50,5 +50,5 @@
     </div>
 </div>
 <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]" [showFirstLastButtons]="true" [pageIndex]="currentPage"
-    [length]="totalSize" (page)="pageEvent = getServerData($event)">
+    [length]="totalSize" (page)="onPageSwitch.emit($event)">
 </mat-paginator>

@@ -29,6 +29,10 @@ export class TaskService {
     return this.http.get<Task[]>(this.api);
   }
 
+  get(page:number,pageSize: number): Observable<Task[]>{
+    return this.http.get<Task[]>(this.api + '/Taskforgrid?page='+ page + '&pageSize=' + pageSize);
+  }
+
   getTaskStatus(): Observable<TaskStatus[]>{
     return this.http.get<TaskStatus[]>(this.api + '/Taskstatus')
   }
@@ -38,7 +42,7 @@ export class TaskService {
   }
 
   getTasksByStatus(filter:string): Observable<Task[]>{
-    return this.http.get<Task[]>(this.api + '/Tasksbystatus'+ '?statusFilter=' + filter);
+    return this.http.get<Task[]>(this.api + '/Tasksbystatus?statusFilter=' + filter);
   }
 
   addTask(taskModel: any){

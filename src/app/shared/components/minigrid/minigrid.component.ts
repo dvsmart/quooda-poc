@@ -33,6 +33,11 @@ export class MinigridComponent implements OnChanges {
   @Input() data: any;
   @Input() filter: string;
 
+
+  @Input() totalCount: number;
+  @Output() onDeleteCustomer = new EventEmitter();
+  @Output() onPageSwitch = new EventEmitter();
+
   message: string = "";
 
   @ViewChildren('matrow', { read: ViewContainerRef }) containers;
