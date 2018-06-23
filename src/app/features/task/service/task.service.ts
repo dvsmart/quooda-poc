@@ -8,6 +8,7 @@ import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { TaskPriority } from '../model/TaskPriority';
+import { map } from 'rxjs/operator/map';
 
 @Injectable()
 export class TaskService {
@@ -28,9 +29,13 @@ export class TaskService {
   getTasksData(): Observable<Task[]>{
     return this.http.get<Task[]>(this.api);
   }
-
+  data : Task[];
   get(page:number,pageSize: number): Observable<Task[]>{
-    return this.http.get<Task[]>(this.api + '/Taskforgrid?page='+ page + '&pageSize=' + pageSize);
+    return this.http.get<Task[]>(this.api + '/Taskforgrid?page='+ page + '&pageSize=' + pageSize)
+  }
+
+  getSample(){
+    this.get(1,5).subscribe(x=> {this.data = x;console.log(x);});
   }
 
   getTaskStatus(): Observable<TaskStatus[]>{

@@ -3,24 +3,24 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { ColumnSetting, ColumnMap } from '../../models/columnsetting';
-import { TableConfig } from '../../models/TableConfig';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material';
 import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/merge';
+import { TableConfig } from '../../models/TableConfig';
+import { MinigridService } from '../../services/minigrid.service';
 
 @Component({
   selector: 'minigrid',
   templateUrl: './minigrid.component.html',
   styleUrls: ['./minigrid.component.scss']
 })
-export class MinigridComponent implements OnChanges {
+export class MinigridComponent {
 
   loading: boolean = false;
-  @Input() config: any;
+  @Input() config: TableConfig;
   keys: string[];
-  caption: string;
+  caption?: string;
   columnMaps: ColumnSetting[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,11 +30,11 @@ export class MinigridComponent implements OnChanges {
   public pageSize;
   public currentPage = 0;
   public totalSize = 0;
-  @Input() data: any;
-  @Input() filter: string;
+  @Input() records: any;
+  // @Input() filter: string;
 
 
-  @Input() totalCount: number;
+  totalCount: number;
   @Output() onDeleteCustomer = new EventEmitter();
   @Output() onPageSwitch = new EventEmitter();
 
@@ -49,16 +49,16 @@ export class MinigridComponent implements OnChanges {
 
   selection = new SelectionModel<any>(true, []);
 
-  constructor(private resolver: ComponentFactoryResolver, public dialog: MatDialog, ) {
+  constructor(private resolver: ComponentFactoryResolver, public dialog: MatDialog) {
   }
 
   ngOnChanges() {
-    if (this.dataSource != null && this.filter != "" && this.filter != undefined) {
-      this.dataSource.filter = this.filter;
-      this.dataSource.data = this.dataSource.filteredData
-    } else {
-      this.populateGrid();
-    }
+    this.populateGrid();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   isAllSelected() {
@@ -98,75 +98,71 @@ export class MinigridComponent implements OnChanges {
   public getServerData(event?: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.iterator();
+    //this.iterator();
   }
 
   private iterator() {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
-    const part = this.data.slice(start, end);
-    this.dataSource = part;
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    //const part = this.data.slice(start, end);
+    //this.dataSource = part;
   }
 
   populateGrid() {
     let config = this.config;
-    if (this.config.columns) {
-      this.columnMaps = config.columns
-        .map(col => new ColumnMap(col));
-    } else {
-      if (this.data != null && this.data != undefined && this.data.length > 0) {
-        this.message = "";
-        this.columnMaps = Object.keys(this.data[0])
-          .map(key => {
-            return new ColumnMap({
-              primaryKey: key,
-              header: key.slice(0, 1).toUpperCase() +
-                key.replace(/_/g, ' ').slice(1),
-              format: 'default',
-            });
-          });
+    let gridResponse = this.records;
+    if (config != null && config != undefined && gridResponse != null && gridResponse != undefined) {
+      if (config.columns != null) {
+        this.columnMaps = config.columns.map(col => new ColumnMap(col));
       } else {
-        this.message = 'No data Found!';
+        debugger;
+        if (gridResponse.data.length > 0) {
+          this.message = "";
+          this.columnMaps = Object.keys(gridResponse.data[0])
+            .map(key => {
+              return new ColumnMap({
+                primaryKey: key,
+                header: key.slice(0, 1).toUpperCase() +
+                  key.replace(/_/g, ' ').slice(1),
+                format: 'default',
+              });
+            });
+        } else {
+          this.message = 'No data Found!';
+        }
       }
-
-    }
-    this.caption = config.caption;
-    if (this.data != undefined && this.data.length > 0) {
-      if (this.columnMaps != null && this.columnMaps != undefined) {
-        this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
+      this.dataSource = new MatTableDataSource(gridResponse.data);
+      this.totalSize = gridResponse.totalCount;
+      this.pageSize = gridResponse.pageSize;
+      this.caption = config != null ? config.caption : "";
+      if (gridResponse.data.length > 0) {
+        if (this.columnMaps != null && this.columnMaps != undefined) {
+          this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
+        }
+        if (config.canExpand && this.displayedColumns != null) {
+          this.displayedColumns.unshift('expand');
+        }
+        if (config.canSelect && this.displayedColumns != null) {
+          this.displayedColumns.unshift('select');
+        }
+        if (config.canDelete && this.displayedColumns != null) {
+          this.displayedColumns.push('delete');
+        }
       }
-      if (config.canExpand && this.displayedColumns != null) {
-        this.displayedColumns.unshift('expand');
-      }
-      if (config.canSelect && this.displayedColumns != null) {
-        this.displayedColumns.unshift('select');
-      }
-      if (config.canDelete && this.displayedColumns != null) {
-        this.displayedColumns.push('delete');
-      }
-      this.dataSource = new MatTableDataSource(this.data);
-      this.totalSize = this.data.length;
-      this.pageSize = this.config.pageSize;
-      this.iterator();
     }
   }
 
 
 
   sortData(sort: Sort) {
-    if (sort.direction == "asc") {
-      this.config.data = this.sortObjectsArray(this.data, sort.active);
-      this.dataSource = new MatTableDataSource(this.data);
-    }
-    else {
-      this.config.data = this.config.data.reverse();
-      this.dataSource = new MatTableDataSource(this.data);
-    }
+    // if (sort.direction == "asc") {
+    //   this.config.data = this.sortObjectsArray(this.data, sort.active);
+    //   this.dataSource = new MatTableDataSource(this.data);
+    // }
+    // else {
+    //   this.config.data = this.config.data.reverse();
+    //   this.dataSource = new MatTableDataSource(this.data);
+    // }
   }
 
   deleteSelected(row): void {

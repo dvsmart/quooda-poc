@@ -10,7 +10,6 @@ import { Observable } from 'rxjs/Observable';
 import { AddtaskComponent } from './components/addtask/addtask.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
@@ -21,6 +20,9 @@ export class TaskComponent implements OnInit {
   taskFilters: TaskFilterList[] = [];
   data: Observable<Task[]>;
   dueTypes: DueType[] = [];
+  totalCount: number;
+  tasks: Task[];
+
   constructor(private dialog: MatDialog, private taskservice: TaskService, private routePath: ActivatedRoute) {
     this.routePath.params.subscribe(params => console.log(params));
   }
@@ -29,19 +31,28 @@ export class TaskComponent implements OnInit {
   selectedDuetype: any;
 
   getFilterData(filter) {
+    debugger;
     if (filter === undefined) {
       this.data = this.taskservice.getTasksData();
     } else {
-      this.data = this.taskservice.getTasksByStatus(filter);
+      this.taskservice.getTasksByStatus(filter).subscribe(x=> this.tasks = x);
     }
+  }
+
+  Initialize(){
+    this.dueTypes = this.taskservice.getDueTypes();
+    this.taskservice.get(1, 5).subscribe(x=>this.tasks = x);
+    this.tableConfig.canExpand = true;
+    this.tableConfig.canSort = true;
+    this.tableConfig.canSelect = true;
+    this.tableConfig.canDelete = true;
+    this.tableConfig.caption = "Tasks";
+    this.tableConfig.pageSize = 5;
   }
 
 
   ngOnInit() {
-    this.taskservice.getTaskStatus().subscribe(x => { x.forEach(ts => this.taskFilters.push(new TaskFilterList(ts.name, '/task/' + ts.name))); });
-    this.dueTypes = this.taskservice.getDueTypes();
-    this.data = this.taskservice.get(1, 5);
-    this.tableConfig.pageSize = 5;
+    this.Initialize();
     let columns =
       [
         {
@@ -81,26 +92,20 @@ export class TaskComponent implements OnInit {
       ];
     //this.tableConfig.columns = columns;
     this.tableConfig.detailComponent = TaskdetailComponent;
-    this.tableConfig.canExpand = true;
-    this.tableConfig.canSort = true;
-    this.tableConfig.canSelect = true;
-    this.tableConfig.canDelete = true;
   }
 
   deleteTask($event) {
     if ($event != null) {
-      this.taskservice.deleteTask($event.id).subscribe(x => { this.data = this.taskservice.getTasksData(); })
+      this.taskservice.deleteTask($event.id).subscribe(x =>
+        {
+          this.taskservice.get(1, this.tableConfig.pageSize).subscribe(x=>this.tasks = x);
+        })
     }
   }
 
   switchPage(event) {
-    debugger;
-    this.data = this.taskservice.get(event.pageIndex++,event.pageSize);
+    this.taskservice.get(event.pageIndex + 1, event.pageSize).subscribe(x=>this.tasks = x);
   }
-
-
-
-
 
   onDueTypechange(event) {
     this.selectedDuetype = event.value;
@@ -128,7 +133,7 @@ export class TaskComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data != "") {
-          this.data = this.taskservice.getTasksData();
+          this.taskservice.get(1, this.tableConfig.pageSize).subscribe(x=>this.tasks = x);
         }
       }
     );

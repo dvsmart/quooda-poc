@@ -2,7 +2,8 @@
 
 </div>
 <mat-sidenav-container class="task-wrapper">
-  <mat-sidenav #sidenav mode="side" opened style="background: transparent!important;" class="sidenav" fixedInViewport="Fixed" fixedTopGap="75">
+  <mat-sidenav #sidenav mode="side" opened style="background: transparent!important;" class="sidenav" fixedInViewport="Fixed"
+    fixedTopGap="75">
     <div class="header sidenav-sub">
       <div class="logo">
         <mat-icon style="font-size: 32px!important;width:32px!important;height: 32px!important;margin: 0 16px 0 0;">check_box</mat-icon>
@@ -42,14 +43,19 @@
         </button>
         <div class="search" flex="" fxlayout="row" fxlayoutalign="start center">
           <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">search</mat-icon>
-          <input class="ng-tns-c35-27 ng-untouched ng-pristine ng-valid" (keyup)="applyFilter($event.target.value)" fxflex="" placeholder="Search for a task" style="flex: 1 1 0%; box-sizing: border-box;">
+          <input class="ng-tns-c35-27 ng-untouched ng-pristine ng-valid" (keyup)="applyFilter($event.target.value)" fxflex="" placeholder="Search for a task"
+            style="flex: 1 1 0%; box-sizing: border-box;">
         </div>
       </div>
     </div>
     <div class="content-card mat-white-bg">
-      <div fxflexalign="row" *ngIf="data | async">
-        <minigrid [config]="tableConfig" [data]="data | async" (deletedRow)="deleteTask($event)" (onPageSwitch)="switchPage($event)"></minigrid>
+      <div fxflexalign="row">
+          <minigrid [config]="tableConfig" [records]="tasks" (deletedRow)="deleteTask($event)" (onPageSwitch)="switchPage($event)"></minigrid>
       </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+
+<!-- <minigrid [config]="tableConfig" [totalCount]="totalCount" [data]="data | async" (deletedRow)="deleteTask($event)" (onPageSwitch)="switchPage($event)"></minigrid> -->
