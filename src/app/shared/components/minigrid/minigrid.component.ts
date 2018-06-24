@@ -49,7 +49,10 @@ export class MinigridComponent {
 
   selection = new SelectionModel<any>(true, []);
 
-  constructor(private resolver: ComponentFactoryResolver, public dialog: MatDialog) {
+  constructor(
+      private resolver: ComponentFactoryResolver,
+      public dialog: MatDialog,
+      private gridservice: MinigridService) {
   }
 
   ngOnChanges() {
@@ -98,58 +101,64 @@ export class MinigridComponent {
   public getServerData(event?: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
-    //this.iterator();
   }
 
-  private iterator() {
-    const end = (this.currentPage + 1) * this.pageSize;
-    const start = this.currentPage * this.pageSize;
-    //const part = this.data.slice(start, end);
-    //this.dataSource = part;
+  Initialize(){
+    this.gridservice._config = this.config;
+    this.gridservice._apiResponse = this.records;
   }
 
   populateGrid() {
-    let config = this.config;
-    let gridResponse = this.records;
-    if (config != null && config != undefined && gridResponse != null && gridResponse != undefined) {
-      if (config.columns != null) {
-        this.columnMaps = config.columns.map(col => new ColumnMap(col));
-      } else {
-        debugger;
-        if (gridResponse.data.length > 0) {
-          this.message = "";
-          this.columnMaps = Object.keys(gridResponse.data[0])
-            .map(key => {
-              return new ColumnMap({
-                primaryKey: key,
-                header: key.slice(0, 1).toUpperCase() +
-                  key.replace(/_/g, ' ').slice(1),
-                format: 'default',
-              });
-            });
-        } else {
-          this.message = 'No data Found!';
-        }
-      }
-      this.dataSource = new MatTableDataSource(gridResponse.data);
-      this.totalSize = gridResponse.totalCount;
-      this.pageSize = gridResponse.pageSize;
-      this.caption = config != null ? config.caption : "";
-      if (gridResponse.data.length > 0) {
-        if (this.columnMaps != null && this.columnMaps != undefined) {
-          this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
-        }
-        if (config.canExpand && this.displayedColumns != null) {
-          this.displayedColumns.unshift('expand');
-        }
-        if (config.canSelect && this.displayedColumns != null) {
-          this.displayedColumns.unshift('select');
-        }
-        if (config.canDelete && this.displayedColumns != null) {
-          this.displayedColumns.push('delete');
-        }
-      }
-    }
+    debugger;
+    this.gridservice.Initialize(this.config,this.records);
+    this.gridservice.Setup();
+      this.displayedColumns = this.gridservice.displayedColumns;
+      this.columnMaps = this.gridservice.columns;
+      this.totalCount = this.gridservice.total;
+      this.totalSize = this.gridservice.total;
+      this.dataSource = this.gridservice.dataSource;
+
+    // let config = this.config;
+    // let gridResponse = this.records;
+    // if (config != null && config != undefined && gridResponse != null && gridResponse != undefined) {
+    //   if (config.columns != null) {
+    //     this.columnMaps = config.columns.map(col => new ColumnMap(col));
+    //   } else {
+    //     debugger;
+    //     if (gridResponse.data.length > 0) {
+    //       this.message = "";
+    //       this.columnMaps = Object.keys(gridResponse.data[0])
+    //         .map(key => {
+    //           return new ColumnMap({
+    //             primaryKey: key,
+    //             header: key.slice(0, 1).toUpperCase() +
+    //               key.replace(/_/g, ' ').slice(1),
+    //             format: 'default',
+    //           });
+    //         });
+    //     } else {
+    //       this.message = 'No data Found!';
+    //     }
+    //   }
+    //   this.dataSource = new MatTableDataSource(gridResponse.data);
+    //   this.totalSize = gridResponse.totalCount;
+    //   this.pageSize = gridResponse.pageSize;
+    //   this.caption = config != null ? config.caption : "";
+    //   if (gridResponse.data.length > 0) {
+    //     if (this.columnMaps != null && this.columnMaps != undefined) {
+    //       this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
+    //     }
+    //     if (config.canExpand && this.displayedColumns != null) {
+    //       this.displayedColumns.unshift('expand');
+    //     }
+    //     if (config.canSelect && this.displayedColumns != null) {
+    //       this.displayedColumns.unshift('select');
+    //     }
+    //     if (config.canDelete && this.displayedColumns != null) {
+    //       this.displayedColumns.push('delete');
+    //     }
+    //   }
+    // }
   }
 
 

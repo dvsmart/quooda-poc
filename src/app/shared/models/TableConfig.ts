@@ -11,9 +11,11 @@ export class TableConfig {
   pageSize: number;
 }
 
-export class PagedResult {
-  data: any[];
-  pageSize: number;
-  total: number;
-  currentPageNo: number;
+export class SmartGrid<T extends any>{
+
+
+
+  constructor() {
+  }
+
 }

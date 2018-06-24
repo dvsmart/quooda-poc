@@ -56,10 +56,6 @@ export class TaskComponent implements OnInit {
     let columns =
       [
         {
-          primaryKey: 'dataId',
-          header: 'Data Id'
-        },
-        {
           primaryKey: 'description',
           header: 'Description'
         },
@@ -68,29 +64,25 @@ export class TaskComponent implements OnInit {
           header: 'Task Name'
         },
         {
-          primaryKey: 'addedOn',
-          header: 'Added On',
+          primaryKey: 'startDate',
+          header: 'Start Date',
           format: 'date'
-        },
-        {
-          primaryKey: 'addedBy',
-          header: 'Added By',
-        },
-        {
-          primaryKey: 'tasktype',
-          header: 'Task Type'
-        },
-        {
-          primaryKey: 'status',
-          header: 'Status'
         },
         {
           primaryKey: 'dueDate',
           header: 'Due Date',
           format: 'date'
+        },
+        {
+          primaryKey: 'status',
+          header: 'Status',
+        },
+        {
+          primaryKey: 'priority',
+          header: 'Priority'
         }
       ];
-    //this.tableConfig.columns = columns;
+    this.tableConfig.columns = columns;
     this.tableConfig.detailComponent = TaskdetailComponent;
   }
 
