@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +24,8 @@ import { DoughnutComponent } from './components/charts/doughnut/doughnut.compone
 import { KeysPipe } from './pipes/enum-key.pipe';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { MinigridService } from './services/minigrid.service';
+import { DatatableComponent } from './components/datatable/datatable.component';
+import { ApiService } from './components/services/api.service';
 
 @NgModule({
   imports: [
@@ -43,25 +45,27 @@ import { MinigridService } from './services/minigrid.service';
     TabComponent,
     TilesComponent,
     MinigridComponent,
-    KeysPipe
+    KeysPipe,
+    DatatableComponent
   ],
-  providers:[CustomerService,ToasterService,MinigridService, LoadingService, CurrencyPipe, DatePipe, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
-  entryComponents:[ConfirmmodalComponent,ToasterComponent],
+  providers: [CustomerService, ToasterService, MinigridService, ApiService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  entryComponents: [ConfirmmodalComponent, ToasterComponent],
   declarations: [
-      GridComponent,
-      ConfirmmodalComponent,
-      PiechartComponent,
-      BarchartComponent,
-      LinechartComponent,
-      TabComponent,
-      TilesComponent,
-      LoaderComponent,
-      ToasterComponent,
-      MinigridComponent,
-      KeysPipe,
-      FormatCellPipe,
-      StyleCellDirective,
-      FormdialogComponent,
-      DoughnutComponent ]
+    GridComponent,
+    ConfirmmodalComponent,
+    PiechartComponent,
+    BarchartComponent,
+    LinechartComponent,
+    TabComponent,
+    TilesComponent,
+    LoaderComponent,
+    ToasterComponent,
+    MinigridComponent,
+    KeysPipe,
+    FormatCellPipe,
+    StyleCellDirective,
+    FormdialogComponent,
+    DoughnutComponent,
+    DatatableComponent]
 })
 export class SharedModule { }
