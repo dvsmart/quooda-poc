@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddtaskComponent } from './components/addtask/addtask.component';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { TaskfilterComponent } from './components/taskfilter/taskfilter.component';
+import { TasklistComponent } from './components/tasklist/tasklist.component';
 
 const routes: Routes = [
   {  path: '', component: TaskComponent },
@@ -28,7 +29,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [TaskService, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
-  declarations: [TaskComponent, TaskdetailComponent, AddtaskComponent, TaskfilterComponent],
+  declarations: [TaskComponent, TaskdetailComponent, AddtaskComponent, TaskfilterComponent, TasklistComponent],
   entryComponents: [AddtaskComponent, TaskdetailComponent]
 })
 export class TaskModule { }

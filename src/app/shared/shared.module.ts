@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
-import { GridComponent } from './components/grid/grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomerService } from '../services/customerService';
 import { ConfirmmodalComponent } from './components/confirmmodel/confirmmodel.component';
 import { PiechartComponent } from './components/charts/piechart/piechart.component';
 import { ChartsModule } from 'ng2-charts';
@@ -38,21 +36,18 @@ import { ApiService } from './components/services/api.service';
     MaterialModule
   ],
   exports: [
-    GridComponent,
     ChartsModule,
     PiechartComponent,
     BarchartComponent,
     LinechartComponent,
     TabComponent,
     TilesComponent,
-    MinigridComponent,
     KeysPipe,
     DatatableComponent
   ],
-  providers: [CustomerService, ToasterService, MinigridService, ApiService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [ToasterService, MinigridService, ApiService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   entryComponents: [ConfirmmodalComponent, ToasterComponent],
   declarations: [
-      GridComponent,
       ConfirmmodalComponent,
       PiechartComponent,
       BarchartComponent,

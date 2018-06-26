@@ -1,10 +1,34 @@
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
-    <ng-container *ngFor="let col of columns" [cdkColumnDef]="col">
-      <mat-header-cell *cdkHeaderCellDef> {{col}} </mat-header-cell>
-      <mat-cell *cdkCellDef="let row"> {{row[col]}} </mat-cell>
+  <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      GitHub's API rate limit has been reached. It will be reset in one minute.
+    </div>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" matSortDisableClear
+    matSortDirection="asc">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
     </ng-container>
-    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-    <mat-row matRipple routerLink="doesnt/exist" routerLinkActive="class-doesnt-even-exist" *matRowDef="let row; columns: columns;"></mat-row>
+
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+      <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row[column]}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+
+  <mat-paginator #paginator (page)="pageEvent($event)" [pageSize]="pageSize" [length]="resultsLength" [pageSizeOptions]="[5, 10, 50, 100]"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
 </div>

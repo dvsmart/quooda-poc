@@ -18,8 +18,14 @@ export class TaskComponent implements OnInit {
   taskFilters: TaskFilterList[] = [];
   dueTypes: DueType[] = [];
   tasks: Task[];
+  apiUrl: string;
 
   constructor(private dialog: MatDialog, private taskservice: TaskService) {
+    this.apiUrl = 'Task/Taskforgrid?page=' + 1 + '&pageSize=' + 10;
+  }
+
+  ngOnInit() {
+    this.Initialize();
   }
 
   searchValue: string;
@@ -35,7 +41,7 @@ export class TaskComponent implements OnInit {
 
   Initialize() {
     this.dueTypes = this.taskservice.getDueTypes();
-    this.taskservice.get(1, 5).subscribe(x => this.tasks = x);
+    //this.taskservice.get(1, 5).subscribe(x => this.tasks = x);
     this.tableConfig = new TableConfig(5);
     let columns =
       [
@@ -71,9 +77,7 @@ export class TaskComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    this.Initialize();
-  }
+  
 
   deleteTask($event) {
     if ($event != null) {

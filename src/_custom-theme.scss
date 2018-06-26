@@ -21,9 +21,9 @@ $custom-dark-theme: mat-dark-theme($custom-theme-primary, $custom-theme-accent, 
         border-bottom: 1px solid #f1f0ee!important;
     }
 
-    .mat-drawer-container{
-        background-color: #f1f0ee!important;
-    }
+    // .mat-drawer-container{
+    //     background-color: #f1f0ee!important;
+    // }
     @include angular-material-theme($custom-light-theme);
 }
 

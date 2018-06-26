@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { TableConfig } from '../models/TableConfig';
 import { ColumnSetting, ColumnMap } from '../models/columnsetting';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MinigridService {
-
+  api = environment.apiUrl;
   dataSource = new MatTableDataSource();
   columns: ColumnSetting[];
   message: string = "";
@@ -16,15 +18,36 @@ export class MinigridService {
 
   _config: TableConfig;
   _apiResponse: any;
+  data: any[];
+  constructor(private httpClient: HttpClient) { }
 
-  constructor() { }
 
-  Initialize(config: TableConfig,apiResponse: any){
+  getData(path) {
+    this.httpClient.get<any[]>(this.api + path).subscribe(x => {this.data = x; console.log(x);});
+  }
+  // Initialize(config: TableConfig,apiResponse: any){
+  //   this._config = config;
+  //   this._apiResponse = apiResponse;
+  // }
+
+  Initialize(config: TableConfig,path:string){
     this._config = config;
-    this._apiResponse = apiResponse;
+    this.getData(path);
   }
 
   Setup() {
+    if (this.isValidConfig() && this.isValidResponse()) {
+      this.setMessage();
+      this.setCaption();
+      this.setDataSource();
+      this.setColumnsFromConfig();
+      this.setColumnsFromDataRow();
+      this.setTableColumns();
+      this.setTablePagination();
+    }
+  }
+
+  gridSetup(path){
     if (this.isValidConfig() && this.isValidResponse()) {
       this.setMessage();
       this.setCaption();
@@ -56,7 +79,7 @@ export class MinigridService {
   }
 
   isValidResponse(): boolean {
-    if (this._apiResponse != null && this._apiResponse != undefined && this._apiResponse.data.length > 0) {
+    if (this.data != null && this.data != undefined && this.data.length > 0) {
       return true;
     }
     return false;
@@ -72,12 +95,12 @@ export class MinigridService {
   }
 
   setTablePagination() {
-    this.total = this._apiResponse.totalCount;
-    this.pageSize = this._apiResponse.pageSize;
+    //this.total = this.data.totalCount;
+    //this.pageSize = this.data.pageSize;
   }
 
   setDataSource() {
-    this.dataSource = new MatTableDataSource(this._apiResponse.data);
+    this.dataSource = new MatTableDataSource(this.data);
   }
 
   isValidConfig(): boolean {
@@ -103,7 +126,7 @@ export class MinigridService {
   }
 
   setColumnsFromDataRow() {
-    this.columns = Object.keys(this._apiResponse.data[0])
+    this.columns = Object.keys(this.data[0])
       .map(key => {
         return new ColumnMap({
           primaryKey: key,
