@@ -14,17 +14,20 @@ import { Router } from '@angular/router';
       state('collapsed', style({ transform: 'rotate(0deg)' })),
       state('expanded', style({ transform: 'rotate(180deg)' })),
       transition('expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
+        animate('1000ms cubic-bezier(0.1, 0.7, 1.0, 0.1)')
       ),
     ])
   ],
   encapsulation: ViewEncapsulation.None
 })
 export class SidemenuComponent implements OnInit {
+  @Input() isOpened;
+
   menuItems: Menu[];
   menu: Observable<Menu[]>;
   @Input() items: Menu[];
   expanded: boolean;
+  selectedId: number;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: any;
   @Input() depth: number;
@@ -40,11 +43,14 @@ export class SidemenuComponent implements OnInit {
   }
 
   onItemSelected(item: Menu) {
+    debugger;
+    this.expanded = !this.expanded;
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }
     if (item.children && item.children.length) {
-      this.expanded = !this.expanded;
+      this.selectedId = item.children[0].parentId;
+      this.expanded = this.expanded ? this.expanded : !this.expanded;
     }
   }
 

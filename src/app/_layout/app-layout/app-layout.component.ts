@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef,  NgZone, Renderer, HostListener  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, Renderer, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
 import { RouterEvent, NavigationStart, Router, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
@@ -20,7 +20,7 @@ export class AppLayoutComponent implements OnInit {
   }
 
   @ViewChild('sidenav') sidenav: MatSidenav;
-
+  open: boolean = true;
 
   @ViewChild('spinnerElement')
 
@@ -28,19 +28,23 @@ export class AppLayoutComponent implements OnInit {
   spinnerElement: ElementRef
 
   constructor(private router: Router,
-              private ngZone: NgZone,
-              private renderer: Renderer,
-              media: ObservableMedia
-              ) {
+    private ngZone: NgZone,
+    private renderer: Renderer,
+    media: ObservableMedia
+  ) {
     router.events.subscribe((event: RouterEvent) => {
-      this._navigationInterceptor(event)
+      //this._navigationInterceptor(event)
     });
     this.watcher = media.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
-      if ( change.mqAlias == 'xs') {
-         this.sidenav.close();
+      if (change.mqAlias == 'xs') {
+        this.open = false;
       }
     });
+  }
+
+  toggle($event) {
+    this.open = !this.open;
   }
 
 
@@ -87,9 +91,9 @@ export class AppLayoutComponent implements OnInit {
     })
   }
 
-  navigatetoAbout(){
+  navigatetoAbout() {
     this.router.navigate(['/about']);
   }
- 
+
 
 }

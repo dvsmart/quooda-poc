@@ -1,25 +1,21 @@
-<ng-container>
-
-
-  <mat-sidenav-container class="example-container">
-    <mat-sidenav #sidenav mode="side" opened="true" class="custom-light-theme sidenav">
-      <div class="branding text-center">
-        <h2>
-          <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">graphic_eq</mat-icon>
-          <span> Quooda</span>
-        </h2>
-      </div>
-      <mat-divider class="side-menu-seperator"></mat-divider>
-      <app-sidemenu></app-sidemenu>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <app-navbar [sidenav]="sidenav"></app-navbar>
-      <div class="loading-overlay" #spinnerElement style="opacity: 0;display: none;">
-        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
-      </div>
-      <div class="body-container">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</ng-container>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [opened]="open" class="custom-light-theme sidenav">
+    <div class="branding text-center">
+      <h2>
+        <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">graphic_eq</mat-icon>
+        <span> Quooda</span>
+      </h2>
+    </div>
+    <mat-divider class="side-menu-seperator"></mat-divider>
+    <app-sidemenu #sidenav></app-sidemenu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-navbar [sidenav]="sidenav" (triggerSidenav)="toggle($event)"></app-navbar>
+    <div class="loading-overlay"  style="opacity: 0;display: none;">
+      <mat-progress-bar mode="indeterminate" #spinnerElement color="accent"></mat-progress-bar>
+    </div>
+    <div class="body-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

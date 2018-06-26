@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
@@ -12,11 +12,18 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService,private router: Router ) { }
   @Input() sidenav: MatSidenav;
+
+  @Output() triggerSidenav = new EventEmitter();
+
   ngOnInit() {
   }
 
   logout(){
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleSidenav($event){
+    this.triggerSidenav.emit(true);
   }
 }

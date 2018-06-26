@@ -18,6 +18,11 @@ $custom-dark-theme: mat-dark-theme($custom-theme-primary, $custom-theme-accent, 
     .mat-toolbar {
         background-color: white !important;
         color: rgba(0, 0, 0, 0.64) !important;
+        border-bottom: 1px solid #f1f0ee!important;
+    }
+
+    .mat-drawer-container{
+        background-color: #f1f0ee!important;
     }
     @include angular-material-theme($custom-light-theme);
 }

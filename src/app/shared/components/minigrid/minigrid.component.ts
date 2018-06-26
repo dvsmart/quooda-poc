@@ -7,7 +7,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material';
 import { ConfirmmodalComponent } from '../confirmmodel/confirmmodel.component';
 import 'rxjs/add/operator/merge';
-import { TableConfig } from '../../models/TableConfig';
+import { TableConfig, SmartGrid } from '../../models/TableConfig';
 import { MinigridService } from '../../services/minigrid.service';
 
 @Component({
@@ -17,22 +17,22 @@ import { MinigridService } from '../../services/minigrid.service';
 })
 export class MinigridComponent {
 
-  loading: boolean = false;
+  
   @Input() config: TableConfig;
-  keys: string[];
+  @Input() records: any;
+
   caption?: string;
   columnMaps: ColumnSetting[];
+  loading: boolean = false;
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  pageEvent: PageEvent;
+
   displayedColumns;
   dataSource = new MatTableDataSource();
   public pageSize;
   public currentPage = 0;
   public totalSize = 0;
-  @Input() records: any;
-  // @Input() filter: string;
-
 
   totalCount: number;
   @Output() onDeleteCustomer = new EventEmitter();
@@ -42,21 +42,28 @@ export class MinigridComponent {
 
   @ViewChildren('matrow', { read: ViewContainerRef }) containers;
   expandedRow: number;
-
   toShow: boolean = false;
-
   @Output() deletedRow = new EventEmitter<any>();
-
   selection = new SelectionModel<any>(true, []);
 
   constructor(
-      private resolver: ComponentFactoryResolver,
-      public dialog: MatDialog,
-      private gridservice: MinigridService) {
+    private resolver: ComponentFactoryResolver,
+    public dialog: MatDialog,
+    private gridservice: MinigridService) {
   }
 
   ngOnChanges() {
     this.populateGrid();
+  }
+
+  populateGrid() {
+    this.gridservice.Initialize(this.config, this.records);
+    this.gridservice.Setup();
+    this.displayedColumns = this.gridservice.displayedColumns;
+    this.columnMaps = this.gridservice.columns;
+    this.totalCount = this.gridservice.total;
+    this.totalSize = this.gridservice.total;
+    this.dataSource = this.gridservice.dataSource;
   }
 
   ngAfterViewInit() {
@@ -103,63 +110,12 @@ export class MinigridComponent {
     this.pageSize = event.pageSize;
   }
 
-  Initialize(){
+  Initialize() {
     this.gridservice._config = this.config;
     this.gridservice._apiResponse = this.records;
   }
 
-  populateGrid() {
-    debugger;
-    this.gridservice.Initialize(this.config,this.records);
-    this.gridservice.Setup();
-      this.displayedColumns = this.gridservice.displayedColumns;
-      this.columnMaps = this.gridservice.columns;
-      this.totalCount = this.gridservice.total;
-      this.totalSize = this.gridservice.total;
-      this.dataSource = this.gridservice.dataSource;
 
-    // let config = this.config;
-    // let gridResponse = this.records;
-    // if (config != null && config != undefined && gridResponse != null && gridResponse != undefined) {
-    //   if (config.columns != null) {
-    //     this.columnMaps = config.columns.map(col => new ColumnMap(col));
-    //   } else {
-    //     debugger;
-    //     if (gridResponse.data.length > 0) {
-    //       this.message = "";
-    //       this.columnMaps = Object.keys(gridResponse.data[0])
-    //         .map(key => {
-    //           return new ColumnMap({
-    //             primaryKey: key,
-    //             header: key.slice(0, 1).toUpperCase() +
-    //               key.replace(/_/g, ' ').slice(1),
-    //             format: 'default',
-    //           });
-    //         });
-    //     } else {
-    //       this.message = 'No data Found!';
-    //     }
-    //   }
-    //   this.dataSource = new MatTableDataSource(gridResponse.data);
-    //   this.totalSize = gridResponse.totalCount;
-    //   this.pageSize = gridResponse.pageSize;
-    //   this.caption = config != null ? config.caption : "";
-    //   if (gridResponse.data.length > 0) {
-    //     if (this.columnMaps != null && this.columnMaps != undefined) {
-    //       this.displayedColumns = this.columnMaps.map(x => x.primaryKey);
-    //     }
-    //     if (config.canExpand && this.displayedColumns != null) {
-    //       this.displayedColumns.unshift('expand');
-    //     }
-    //     if (config.canSelect && this.displayedColumns != null) {
-    //       this.displayedColumns.unshift('select');
-    //     }
-    //     if (config.canDelete && this.displayedColumns != null) {
-    //       this.displayedColumns.push('delete');
-    //     }
-    //   }
-    // }
-  }
 
 
 

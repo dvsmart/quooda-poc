@@ -24,6 +24,7 @@ import { DoughnutComponent } from './components/charts/doughnut/doughnut.compone
 import { KeysPipe } from './pipes/enum-key.pipe';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { MinigridService } from './services/minigrid.service';
+import { TableDialogComponent } from './components/table-dialog/table-dialog.component';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { MinigridService } from './services/minigrid.service';
       FormatCellPipe,
       StyleCellDirective,
       FormdialogComponent,
-      DoughnutComponent ]
+      DoughnutComponent,
+      TableDialogComponent ]
 })
 export class SharedModule { }

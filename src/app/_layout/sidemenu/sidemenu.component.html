@@ -1,7 +1,7 @@
 <div class="sidebar-container">
   <div *ngFor="let item of menu | async">
     <mat-nav-list>
-      <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null">
+      <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null" routerLinkActive="active">
         <a matLine [routerLink]="item.route">
           <button mat-icon-button>
             <mat-icon>{{item.iconName}}</mat-icon>
@@ -9,14 +9,14 @@
           {{item.caption}}
           <span *ngIf="item.children && item.children.length" style="float:right">
             <!-- <span fxFlex></span> -->
-            <button mat-icon-button [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+            <button mat-icon-button [@indicatorRotate]="expanded && selectedId == item.id ? 'expanded': 'collapsed'">
               <mat-icon>expand_more</mat-icon>
             </button>
           </span>
         </a>
       </mat-list-item>
     </mat-nav-list>
-    <div *ngIf="expanded">
+    <div *ngIf="expanded && selectedId == item.id">
       <appitem *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
       </appitem>
     </div>

@@ -5,6 +5,11 @@ export class ColumnSetting {
   width?:number;
   type?:any;
   alternativeKeys?: string[];
+
+  constructor(key: string, title?: string) {
+    this.primaryKey = key;
+    this.header = title;
+  }
 }
 
 export class ColumnMap {

@@ -1,6 +1,6 @@
 <mat-nav-list>
   <mat-list-item>
-    <a mat-line [ngStyle]="{'padding-left': (depth * 30) + 'px'}" (click)="onItemSelected(item)" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
+    <a mat-line [ngStyle]="{'padding-left': (depth * 10) + 'px'}" (click)="onItemSelected(item)" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
       <button mat-icon-button>
         <mat-icon>{{item.iconName}}</mat-icon>
       </button>
