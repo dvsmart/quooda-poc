@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { GridComponent } from './components/grid/grid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +25,8 @@ import { KeysPipe } from './pipes/enum-key.pipe';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { MinigridService } from './services/minigrid.service';
 import { TableDialogComponent } from './components/table-dialog/table-dialog.component';
+import { DatatableComponent } from './components/datatable/datatable.component';
+import { ApiService } from './components/services/api.service';
 
 @NgModule({
   imports: [
@@ -44,10 +46,11 @@ import { TableDialogComponent } from './components/table-dialog/table-dialog.com
     TabComponent,
     TilesComponent,
     MinigridComponent,
-    KeysPipe
+    KeysPipe,
+    DatatableComponent
   ],
-  providers:[CustomerService,ToasterService,MinigridService, LoadingService, CurrencyPipe, DatePipe, {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
-  entryComponents:[ConfirmmodalComponent,ToasterComponent],
+  providers: [CustomerService, ToasterService, MinigridService, ApiService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  entryComponents: [ConfirmmodalComponent, ToasterComponent],
   declarations: [
       GridComponent,
       ConfirmmodalComponent,
@@ -64,6 +67,7 @@ import { TableDialogComponent } from './components/table-dialog/table-dialog.com
       StyleCellDirective,
       FormdialogComponent,
       DoughnutComponent,
-      TableDialogComponent ]
+      TableDialogComponent,
+      DatatableComponent ]
 })
 export class SharedModule { }

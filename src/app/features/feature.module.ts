@@ -15,6 +15,7 @@ import { NavbarComponent } from '../_layout/navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DatatableComponent } from '../shared/components/datatable/datatable.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
