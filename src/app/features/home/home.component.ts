@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs/Subscription';
 import { TableConfig } from '../../shared/models/TableConfig';
+import { NotifierService } from '../../shared/services/notifier.service';
+import { NotifierComponent } from '../../shared/components/notifier/notifier.component';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +17,14 @@ export class HomeComponent implements OnInit {
   columns: any[] = [];
   api:string;
   tableConfig: TableConfig;
+  counter = 0;
+  constructor(private media: ObservableMedia,private notify: NotifierService,private injector: Injector) {
+  }
 
-  constructor(private media: ObservableMedia) { }
+  showMessage(message: string){
+    this.counter++;
+    this.notify.show("Some new message " + this.counter);
+  }
 
   ngOnInit() {
     this.watcher = this.media.subscribe((change: MediaChange) => {

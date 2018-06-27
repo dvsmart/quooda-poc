@@ -24,6 +24,8 @@ import { MinigridService } from './services/minigrid.service';
 import { TableDialogComponent } from './components/table-dialog/table-dialog.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApiService } from './components/services/api.service';
+import { NotifierComponent } from './components/notifier/notifier.component';
+import { NotifierService } from './services/notifier.service';
 
 @NgModule({
   imports: [
@@ -44,7 +46,7 @@ import { ApiService } from './components/services/api.service';
     KeysPipe,
     DatatableComponent
   ],
-  providers: [ToasterService, MinigridService, ApiService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [NotifierService,  ToasterService, MinigridService, ApiService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   entryComponents: [ConfirmmodalComponent, ToasterComponent],
   declarations: [
       ConfirmmodalComponent,
@@ -61,6 +63,7 @@ import { ApiService } from './components/services/api.service';
       FormdialogComponent,
       DoughnutComponent,
       TableDialogComponent,
-      DatatableComponent ]
+      DatatableComponent,
+      NotifierComponent ]
 })
 export class SharedModule { }

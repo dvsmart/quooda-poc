@@ -5,21 +5,20 @@
     <span>Quooda POC</span>
     <span class="example-spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
-      <mat-icon>messages</mat-icon>
-      <span class="notification-label">2</span>
+      <mat-icon matBadgeColor="warn" matBadge="3">messages</mat-icon>
     </button>
     <mat-menu #appMenu="matMenu" yPosition="above">
       <button mat-menu-item>Settings</button>
       <button mat-menu-item>Help</button>
     </mat-menu>
     <button mat-icon-button>
-      <mat-icon>reorder</mat-icon>
+      <mat-icon matBadge="6" matBadgeColor="warn">home</mat-icon>
     </button>
     <button mat-icon-button>
-      <mat-icon>build</mat-icon>
+      <mat-icon matBadge="2" matBadgeColor="primary">build</mat-icon>
     </button>
     <button mat-icon-button>
-      <mat-icon>notification_important</mat-icon>
+      <mat-icon matBadge="4" matBadgeColor="accent">notification_important</mat-icon>
     </button>
     <button mat-icon-button (click)="logout()">
       <mat-icon>input</mat-icon>
