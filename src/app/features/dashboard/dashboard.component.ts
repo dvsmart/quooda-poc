@@ -9,6 +9,12 @@ import { Chart } from '../../shared/models/chart';
 })
 export class DashboardComponent implements OnInit {
   chartData: Chart[] = [];
+  cards = [
+    { title: 'Risks Assessment Summary', cols: 2, rows: 1,chartName:'<app-piechart [data]="chartData"></app-piechart>' },
+    { title: 'Compliance Summary', cols: 1, rows: 1,chartName:'<app-barchart></app-barchart>' },
+    { title: 'Incidents Summary', cols: 1, rows: 2,chartName:' <app-linechart></app-linechart>' },
+    { title: 'Live Risks', cols: 1, rows: 1,chartName:'<app-barchart></app-barchart>' }
+  ];
   constructor(private taskservice: TaskService) { }
 
   ngOnInit() {

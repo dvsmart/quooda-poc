@@ -1,7 +1,8 @@
 <div class="sidebar-container">
   <div *ngFor="let item of menu | async">
     <mat-nav-list>
-      <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null" routerLinkActive="active">
+      <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null" routerLinkActive="active"
+      [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}" q q>
         <a matLine [routerLink]="item.route">
           <button mat-icon-button>
             <mat-icon>{{item.iconName}}</mat-icon>
