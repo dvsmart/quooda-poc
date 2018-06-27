@@ -14,7 +14,6 @@ import { MaterialModule } from '../material.module';
 import { ToasterService } from './services/toaster.service';
 import { LoadingService } from './services/loading.service';
 import { ToasterComponent } from './components/toaster/toaster.component';
-import { MinigridComponent } from './components/minigrid/minigrid.component';
 import { FormatCellPipe } from './pipes/format-cell.pipe';
 import { StyleCellDirective } from './directives/cell.directive';
 import { FormdialogComponent } from './components/formdialog/formdialog.component';
@@ -56,7 +55,6 @@ import { ApiService } from './components/services/api.service';
       TilesComponent,
       LoaderComponent,
       ToasterComponent,
-      MinigridComponent,
       KeysPipe,
       FormatCellPipe,
       StyleCellDirective,

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Observable';
-import { SerializeHelper } from '../_config/serializer';
+import { Observable } from 'rxjs';
 
-@Injectable()
 export class GenericService<T extends any> {
   url: string;
   constructor(private http: HttpClient,private endpoint: string) {

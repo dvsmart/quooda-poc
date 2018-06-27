@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Menu } from '../viewmodel/menuModel';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import * as config from '../_config/endpoints';
 import { GenericService } from './generic.service';
 
 @Injectable()

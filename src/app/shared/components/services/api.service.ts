@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../environments/environment';
 import { MatTableDataSource } from '@angular/material';
 import { ColumnSetting, ColumnMap } from '../../models/columnsetting';
 import { TableConfig } from '../../models/TableConfig';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ApiService {
