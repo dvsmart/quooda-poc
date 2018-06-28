@@ -6,19 +6,11 @@
     border-left: 3.5px solid #03a9f4;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    a {
-        color: #03a9f4 !important;
-    }
 }
 
 :host {
     display: block;
     outline: none;
-    .mat-list-item.active {
-        border-left: 3.5px solid #03a9f4;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-    }
     &:hover,
     &:focus {
         >.mat-list-item:not(.expanded) {
@@ -34,8 +26,8 @@
     }
 }
 
-.submenu{
-  position: absolute;
-  margin-right: 30px;
-  margin-top: 7px;
+.submenu {
+    position: absolute;
+    margin-right: 30px;
+    margin-top: 7px;
 }

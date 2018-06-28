@@ -44,13 +44,17 @@ export class SidemenuComponent implements OnInit {
 
   onItemSelected(item: Menu) {
     debugger;
-    this.expanded = !this.expanded;
+    //this.expanded = !this.expanded;
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
     }
     if (item.children && item.children.length) {
       this.selectedId = item.children[0].parentId;
-      this.expanded = this.expanded ? this.expanded : !this.expanded;
+      if(this.selectedId == item.children[0].parentId && this.expanded){
+        this.expanded = !this.expanded
+      }else{
+        this.expanded = true;
+      }
     }
   }
 

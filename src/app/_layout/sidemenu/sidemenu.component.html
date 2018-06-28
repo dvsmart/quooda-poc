@@ -1,15 +1,13 @@
 <div class="sidebar-container">
   <div *ngFor="let item of menu | async">
     <mat-nav-list>
-      <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null" routerLinkActive="active"
-      [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}" q q>
+      <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
         <a matLine [routerLink]="item.route">
           <button mat-icon-button>
             <mat-icon>{{item.iconName}}</mat-icon>
           </button>
           {{item.caption}}
           <span *ngIf="item.children && item.children.length" style="float:right">
-            <!-- <span fxFlex></span> -->
             <button mat-icon-button [@indicatorRotate]="expanded && selectedId == item.id ? 'expanded': 'collapsed'">
               <mat-icon>expand_more</mat-icon>
             </button>

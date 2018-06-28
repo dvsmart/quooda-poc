@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { MatPaginator, MatTableDataSource, MatSort, PageEvent } from '@angular/material';
@@ -9,8 +9,9 @@ import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { environment } from '../../../../environments/environment';
-import {SelectionModel} from '@angular/cdk/collections';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { SelectionModel } from '@angular/cdk/collections';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ColumnMap, ColumnSetting } from '../../models/columnsetting';
 
 @Component({
   selector: 'app-datatable',
@@ -18,14 +19,17 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   styleUrls: ['./datatable.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
 })
 export class DatatableComponent implements OnInit {
-  displayedColumns = ['name', 'description', 'startDate', 'dueDate'];
+  //displayedColumns = ['name', 'description', 'startDate', 'dueDate'];
+  @Input() displayedColumns;
+  @Input() config;
+
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
   expandedElement: any
@@ -34,7 +38,8 @@ export class DatatableComponent implements OnInit {
   isRateLimitReached = false;
   currentPage = 0;
   pageSize = 10;
-  allSelected:boolean;
+  allSelected: boolean;
+  columnMaps: ColumnSetting[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -51,18 +56,55 @@ export class DatatableComponent implements OnInit {
     //this.isAllSelected() ? this.selection.clear() : this.selectAll();
   }
 
-  selectAll(){
+  selectAll() {
     this.allSelected = true;
     //this.dataSource.forEach(row => this.selection.select(row));
   }
 
   ngOnInit() {
+    this.setTableColumns();
+    this.setColumnsFromConfig();
+    this.setColumnsFromDataRow();
     this.exampleDatabase = new ExampleHttpDao(this.http);
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.loadData();
   }
 
+  setTableColumns() {
+    this.displayedColumns = this.config.columns.map(x => x.primaryKey);
+    if (this.config.canExpand && this.displayedColumns != null) {
+      this.displayedColumns.unshift('expand');
+    }
+    if (this.config.canSelect && this.displayedColumns != null) {
+      this.displayedColumns.unshift('select');
+    }
+    if (this.config.canDelete && this.displayedColumns != null) {
+      this.displayedColumns.push('delete');
+    }
+  }
+
+  setColumnsFromConfig() {
+    if (this.config.columns != null) {
+      this.columnMaps = this.config.columns.map(col => new ColumnMap(col));
+    }
+  }
+
+  setColumnsFromDataRow() {
+    if (this.config.columns == null) {
+      this.columnMaps = Object.keys(this.dataSource.data[0])
+        .map(key => {
+          return new ColumnMap({
+            primaryKey: key,
+            header: key.slice(0, 1).toUpperCase() +
+              key.replace(/_/g, ' ').slice(1),
+            format: 'default',
+          });
+        });
+    }
+  }
+
   loadData() {
+    this.isLoadingResults = true;
     merge(this.sort.sortChange, this.paginator.pageIndex)
       .pipe(
         startWith({}),
@@ -83,9 +125,9 @@ export class DatatableComponent implements OnInit {
           this.isRateLimitReached = true;
           return observableOf([]);
         })
-      ).subscribe(data => { 
-        this.dataSource = data 
-        if(this.allSelected){
+      ).subscribe(data => {
+        this.dataSource = data
+        if (this.allSelected) {
           this.dataSource.data.forEach(row => this.selection.select(row));
         }
       });

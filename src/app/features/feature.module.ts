@@ -15,7 +15,7 @@ import { NavbarComponent } from '../_layout/navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { DatatableComponent } from '../shared/components/datatable/datatable.component';
+import { SideuserComponent } from '../_layout/sideuser/sideuser.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -48,6 +48,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
   providers: [AuthGuard, AuthService, CookieService],
-  declarations: [HomeComponent, LoginComponent,NavbarComponent, AppLayoutComponent, SidemenuComponent, SideChildmenuComponent]
+  declarations: [HomeComponent, 
+    LoginComponent, NavbarComponent, AppLayoutComponent, SidemenuComponent, SideChildmenuComponent, SideuserComponent]
 })
 export class FeatureModule { }

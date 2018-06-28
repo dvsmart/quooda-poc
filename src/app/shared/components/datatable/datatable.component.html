@@ -2,13 +2,11 @@
   <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-      GitHub's API rate limit has been reached. It will be reset in one minute.
+      No data Available.
     </div>
   </div>
-
-  <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" matSortDisableClear
-    matSortDirection="asc">
-
+  <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" 
+  matSortDisableClear matSortDirection="asc" layout="row" layout-xs="column">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
@@ -20,10 +18,11 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-      <mat-header-cell *matHeaderCellDef> {{column}} </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row[column]}} </mat-cell>
+    <ng-container *ngFor="let map of columnMaps" matColumnDef="{{map.primaryKey}}">
+      <mat-header-cell *matHeaderCellDef mat-sort-header={{map.primaryKey}} class="col-md-3" flex> {{map.header}}</mat-header-cell>
+      <mat-cell flex *matCellDef="let row" class="col-md-3">{{ row[map.primaryKey] | formatCell:map.format }}</mat-cell>
     </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
@@ -32,3 +31,4 @@
     [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
+
