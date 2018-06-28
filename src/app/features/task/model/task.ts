@@ -16,3 +16,17 @@ export class Task{
     comments?:Array<number>;
     documents?:Array<number>;
 }
+
+// this.taskservice.getTasksData().subscribe(x =>
+//     x.reduce(function (r, a) {
+//       r[a.status] = r[a.status] || [];
+//       r[a.status].push(a);
+//       return r;
+//     }, Object.create(null))
+//   )
+  // Object.keys(a).forEach(k=>{
+  //   this.chartData.push({
+  //     label: k,
+  //     data:a[k].length
+  //   })
+  // })

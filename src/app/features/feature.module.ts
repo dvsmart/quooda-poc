@@ -16,6 +16,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideuserComponent } from '../_layout/sideuser/sideuser.component';
+import { PiechartComponent } from '../shared/components/charts/piechart/piechart.component';
+import { LinechartComponent } from '../shared/components/charts/linechart/linechart.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -49,6 +51,7 @@ const routes: Routes = [
   ],
   providers: [AuthGuard, AuthService, CookieService],
   declarations: [HomeComponent, 
-    LoginComponent, NavbarComponent, AppLayoutComponent, SidemenuComponent, SideChildmenuComponent, SideuserComponent]
+    LoginComponent, NavbarComponent, AppLayoutComponent, SidemenuComponent, SideChildmenuComponent, SideuserComponent],
+    
 })
 export class FeatureModule { }

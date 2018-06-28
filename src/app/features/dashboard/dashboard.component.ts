@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../task/service/task.service';
+import { Component, OnInit, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 import { Chart } from '../../shared/models/chart';
+import { WidgetDirective } from '../../shared/directives/widget-host';
+import { PiechartComponent } from '../../shared/components/charts/piechart/piechart.component';
+import { LinechartComponent } from '../../shared/components/charts/linechart/linechart.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,28 +11,46 @@ import { Chart } from '../../shared/models/chart';
 })
 export class DashboardComponent implements OnInit {
   chartData: Chart[] = [];
+  currentAdIndex = 1;
+
+  @ViewChild(WidgetDirective) widgetHost: WidgetDirective;
+  @ViewChild('messagecontainer', { read: ViewContainerRef }) entry;
+
   cards = [
     { title: 'Risks Assessment Summary', cols: 2, rows: 1,chartName:'<app-piechart [data]="chartData"></app-piechart>' },
     { title: 'Compliance Summary', cols: 1, rows: 1,chartName:'<app-barchart></app-barchart>' },
     { title: 'Incidents Summary', cols: 1, rows: 2,chartName:' <app-linechart></app-linechart>' },
     { title: 'Live Risks', cols: 1, rows: 1,chartName:'<app-barchart></app-barchart>' }
   ];
-  constructor(private taskservice: TaskService) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    this.taskservice.getTasksData().subscribe(x =>
-      x.reduce(function (r, a) {
-        r[a.status] = r[a.status] || [];
-        r[a.status].push(a);
-        return r;
-      }, Object.create(null))
-    )
-    // Object.keys(a).forEach(k=>{
-    //   this.chartData.push({
-    //     label: k,
-    //     data:a[k].length
-    //   })
-    // })
+    
+  }
+
+  ngAfterViewInit() {
+    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(LinechartComponent);
+
+    const contRef = this.entry;
+
+    contRef.clear();
+
+    let componentRef = contRef.createComponent(componentFactory);
+    componentRef.changeDetectorRef.detectChanges();
+    //(<PiechartComponent>componentRef.instance).data = this.chartData;
+  }
+
+  loadComponent() {
+    // debugger;
+
+    // let componentFactory = this.componentFactoryResolver.resolveComponentFactory(PiechartComponent);
+
+    // const contRef = this.yourComponentHost;
+
+    // contRef.clear();
+
+    // let componentRef = contRef.createComponent(componentFactory);
+    // (<PiechartComponent>componentRef.instance).data = this.chartData;
   }
 
 
