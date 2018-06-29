@@ -18,11 +18,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class SideChildmenuComponent {
   @Input() item: any;
+  selectedId: number;
   @ViewChild('childMenu') public childMenu;
   @Input() depth: number;
   expanded: boolean;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
-  constructor(private menuService: MenuService,public router: Router) {
+  constructor(private menuService: MenuService, public router: Router) {
     if (this.depth === undefined) {
       this.depth = 0;
     }
@@ -33,8 +34,12 @@ export class SideChildmenuComponent {
       this.router.navigate([item.route]);
     }
     if (item.children && item.children.length) {
-      this.expanded = !this.expanded;
+      this.selectedId = item.children[0].parentId;
+      if (this.selectedId == item.children[0].parentId && this.expanded) {
+        this.expanded = !this.expanded
+      } else {
+        this.expanded = true;
+      }
     }
   }
 }
-

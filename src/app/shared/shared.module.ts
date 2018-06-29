@@ -24,6 +24,7 @@ import { MinigridService } from './services/minigrid.service';
 import { TableDialogComponent } from './components/table-dialog/table-dialog.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { ApiService } from './components/services/api.service';
+import { ChartBaseComponent } from './components/charts/chart-base';
 
 @NgModule({
   imports: [
@@ -42,25 +43,27 @@ import { ApiService } from './components/services/api.service';
     TabComponent,
     TilesComponent,
     KeysPipe,
-    DatatableComponent
+    DatatableComponent,
+    ChartBaseComponent
   ],
-  providers: [ToasterService, MinigridService, ApiService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [ToasterService, LoadingService, CurrencyPipe, DatePipe, { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   entryComponents: [ConfirmmodalComponent, ToasterComponent],
   declarations: [
-      ConfirmmodalComponent,
-      PiechartComponent,
-      BarchartComponent,
-      LinechartComponent,
-      TabComponent,
-      TilesComponent,
-      LoaderComponent,
-      ToasterComponent,
-      KeysPipe,
-      FormatCellPipe,
-      StyleCellDirective,
-      FormdialogComponent,
-      DoughnutComponent,
-      TableDialogComponent,
-      DatatableComponent]
+    ConfirmmodalComponent,
+    PiechartComponent,
+    BarchartComponent,
+    LinechartComponent,
+    TabComponent,
+    TilesComponent,
+    LoaderComponent,
+    ToasterComponent,
+    KeysPipe,
+    FormatCellPipe,
+    StyleCellDirective,
+    FormdialogComponent,
+    DoughnutComponent,
+    TableDialogComponent,
+    DatatableComponent,
+    ChartBaseComponent]
 })
 export class SharedModule { }

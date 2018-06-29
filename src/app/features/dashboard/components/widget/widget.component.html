@@ -1,0 +1,7 @@
+<mat-grid-list cols="2" rowHeight="430px">
+    <mat-grid-tile *ngFor="let widgetItem of widgets" [colspan]="widgetItem.cols" [rowspan]="widgetItem.rows">
+      <mat-card class="dashboard-card">
+        <app-widget-item [widgetItem]="widgetItem"></app-widget-item>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

@@ -1,4 +1,4 @@
-export class Chart{
+export class ChartModel{
     label:string;
     data:number;
 

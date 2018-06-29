@@ -1,38 +1,44 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Chart } from '../../../models/chart';
-
+import { ChartModel } from '../../../models/chart';
+import { ChartBaseComponent } from '../chart-base';
+import { Chart } from 'chart.js';
 @Component({
   selector: 'app-piechart',
   templateUrl: './piechart.component.html',
   styleUrls: ['./piechart.component.scss']
 })
-export class PiechartComponent {
-  // Pie
-  @Input() data : Chart[]; 
+export class PiechartComponent extends ChartBaseComponent {
+  chart: any;
 
-  pieChartLabels:string[] = [];
-  pieChartData:number[] = [];
-  pieChartType:string = 'pie';
-  options :any = [];
- 
-  ngOnChanges(){
-    this.data.forEach(x=>{
-      this.pieChartLabels.push(x.label),
-      this.pieChartData.push(x.data)
-    })
-    this.options = {
-      legend:{
-        position:'right'
+  ngOnInit() {
+    this.chart =  new Chart('pie', {
+      type: 'pie',
+      data: {
+        labels: ["Red","Blue","Yellow"],
+        datasets: [
+          { 
+            data: [300,50,100],
+            fill: false,
+            backgroundColor:["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"]
+          }
+        ]
+      },
+      options: {
+        responsive:true,
+        title: { display: true, text: 'Risks Summary chartTitle'},
+        legend: {
+          display: true
+        }
       }
-    }
+    });
   }
 
   // events
-  chartClicked(e:any):void {
+  chartClicked(e: any): void {
     console.log(e);
   }
- 
-  chartHovered(e:any):void {
+
+  chartHovered(e: any): void {
     console.log(e);
   }
 
