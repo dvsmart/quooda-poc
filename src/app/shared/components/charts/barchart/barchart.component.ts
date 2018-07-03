@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartBaseComponent } from '../chart-base';
-import Chart = require('chart.js');
+import { Chart } from 'Chart.js'
 
 @Component({
   selector: 'app-barchart',

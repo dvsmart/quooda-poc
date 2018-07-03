@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { Widget } from '../../model/WidgetConfiguration';
 import { PiechartComponent } from '../../../../shared/components/charts/piechart/piechart.component';
 import { BarchartComponent } from '../../../../shared/components/charts/barchart/barchart.component';
 import { LinechartComponent } from '../../../../shared/components/charts/linechart/linechart.component';
 import { DoughnutComponent } from '../../../../shared/components/charts/doughnut/doughnut.component';
-import { BaseChartDirective } from 'ng2-charts';
 import { ChartBaseComponent } from '../../../../shared/components/charts/chart-base';
 
 @Component({

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ChartModel } from '../../../models/chart';
 import { ChartBaseComponent } from '../chart-base';
 import { Chart } from 'chart.js';
 

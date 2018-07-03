@@ -3,7 +3,6 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmmodalComponent } from './components/confirmmodel/confirmmodel.component';
 import { PiechartComponent } from './components/charts/piechart/piechart.component';
-import { ChartsModule } from 'ng2-charts';
 import { BarchartComponent } from './components/charts/barchart/barchart.component';
 import { LinechartComponent } from './components/charts/linechart/linechart.component';
 import { TabComponent } from './components/tab/tab.component';
@@ -20,10 +19,8 @@ import { FormdialogComponent } from './components/formdialog/formdialog.componen
 import { DoughnutComponent } from './components/charts/doughnut/doughnut.component';
 import { KeysPipe } from './pipes/enum-key.pipe';
 import { MAT_DATE_LOCALE } from '@angular/material';
-import { MinigridService } from './services/minigrid.service';
 import { TableDialogComponent } from './components/table-dialog/table-dialog.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
-import { ApiService } from './components/services/api.service';
 import { ChartBaseComponent } from './components/charts/chart-base';
 
 @NgModule({
@@ -31,12 +28,10 @@ import { ChartBaseComponent } from './components/charts/chart-base';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule,
     RouterModule,
     MaterialModule
   ],
   exports: [
-    ChartsModule,
     PiechartComponent,
     BarchartComponent,
     LinechartComponent,
