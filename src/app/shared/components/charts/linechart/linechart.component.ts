@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartBaseComponent } from '../chart-base';
-import { Chart } from 'chart.js';
+import { Chart } from 'Chart.js'
 
 @Component({
   selector: 'app-linechart',
