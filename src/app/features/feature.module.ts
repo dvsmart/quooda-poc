@@ -18,6 +18,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideuserComponent } from '../_layout/sideuser/sideuser.component';
 import { PiechartComponent } from '../shared/components/charts/piechart/piechart.component';
 import { LinechartComponent } from '../shared/components/charts/linechart/linechart.component';
+import { PropertiesComponent } from './asset/components/properties/properties.component';
+import { RiskComponent } from './risk/risk.component';
+import { UncontrolledRisksComponent } from './risk/components/uncontrolled-risks/uncontrolled-risks.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -30,8 +33,13 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'dashboard', loadChildren: 'app/features/dashboard/dashboard.module#DashboardModule' },
       { path: 'profile', loadChildren: 'app/features/profile/profile.module#ProfileModule' },
-      { path: 'task', loadChildren: 'app/features/task/task.module#TaskModule'},
-      { path: 'checklist', loadChildren: 'app/features/checklist/checklist.module#ChecklistModule' }
+      { path: 'task', loadChildren: 'app/features/task/task.module#TaskModule' },
+      { path: 'checklist', loadChildren: 'app/features/checklist/checklist.module#ChecklistModule' },
+      { path: 'asset', loadChildren: 'app/features/asset/asset.module#AssetModule' },
+      { path: 'assessment', loadChildren: 'app/features/assessment/assessment.module#AssessmentModule' },
+      { path: 'risks', loadChildren: 'app/features/risk/risk.module#RiskModule' },
+      { path: 'settings', loadChildren: 'app/features/user/user.module#UserModule' },
+      { path: 'settings', loadChildren: 'app/features/security/security.module#SecurityModule' }
     ]
   },
   { path: '**', redirectTo: '' }
@@ -50,8 +58,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
   providers: [AuthGuard, AuthService, CookieService],
-  declarations: [HomeComponent, 
+  declarations: [HomeComponent,
     LoginComponent, NavbarComponent, AppLayoutComponent, SidemenuComponent, SideChildmenuComponent, SideuserComponent],
-    
+
 })
 export class FeatureModule { }

@@ -1,7 +1,7 @@
 import { Input, ViewChild, Component, HostBinding } from "@angular/core";
 import { Menu } from "../../viewmodel/menuModel";
 import { MenuService } from "../../services/menu.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { animate, state, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'appitem',
@@ -23,7 +23,7 @@ export class SideChildmenuComponent {
   @Input() depth: number;
   expanded: boolean;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
-  constructor(private menuService: MenuService, public router: Router) {
+  constructor(private menuService: MenuService, public router: Router, private route: ActivatedRoute) {
     if (this.depth === undefined) {
       this.depth = 0;
     }
