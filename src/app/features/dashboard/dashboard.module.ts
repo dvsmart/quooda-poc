@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
-import { MaterialModule } from '../../material.module';
+import { MaterialModule } from '../../shared/material.module';
 import { PiechartComponent } from '../../shared/components/charts/piechart/piechart.component';
 import { LinechartComponent } from '../../shared/components/charts/linechart/linechart.component';
 import { WidgetComponent } from './components/widget/widget.component';
@@ -18,7 +17,6 @@ const routes: Routes = [{
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule,
     MaterialModule,
     RouterModule.forChild(routes)
   ],

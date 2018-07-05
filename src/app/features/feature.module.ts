@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material.module';
-import { SharedModule } from '../shared/shared.module';
+import { CommonModule, CurrencyPipe, DatePipe} from '@angular/common';
+import { MaterialModule } from '../shared/material.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
@@ -16,11 +15,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideuserComponent } from '../_layout/sideuser/sideuser.component';
-import { PiechartComponent } from '../shared/components/charts/piechart/piechart.component';
-import { LinechartComponent } from '../shared/components/charts/linechart/linechart.component';
-import { PropertiesComponent } from './asset/components/properties/properties.component';
-import { RiskComponent } from './risk/risk.component';
-import { UncontrolledRisksComponent } from './risk/components/uncontrolled-risks/uncontrolled-risks.component';
+import { FormatCellPipe } from '../shared/pipes/format-cell.pipe';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -51,13 +47,12 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     NoopAnimationsModule,
-    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  providers: [AuthGuard, AuthService, CookieService],
+  providers: [AuthGuard, AuthService, CookieService, CurrencyPipe, DatePipe],
   declarations: [HomeComponent,
     LoginComponent, NavbarComponent, AppLayoutComponent, SidemenuComponent, SideChildmenuComponent, SideuserComponent],
 

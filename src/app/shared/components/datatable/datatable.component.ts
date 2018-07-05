@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { MatPaginator, MatTableDataSource, MatSort, PageEvent } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
 import { of as observableOf } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators/catchError';
@@ -12,6 +12,7 @@ import { environment } from '../../../../environments/environment';
 import { SelectionModel } from '@angular/cdk/collections';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ColumnMap, ColumnSetting } from '../../models/columnsetting';
+import { FormatCellPipe } from '../../pipes/format-cell.pipe';
 
 @Component({
   selector: 'app-datatable',
@@ -23,10 +24,9 @@ import { ColumnMap, ColumnSetting } from '../../models/columnsetting';
       state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
-  ],
+  ]
 })
 export class DatatableComponent implements OnInit {
-  //displayedColumns = ['name', 'description', 'startDate', 'dueDate'];
   @Input() displayedColumns;
   @Input() config;
 
