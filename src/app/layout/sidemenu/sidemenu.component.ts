@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ViewChild, ViewEncapsulation, HostBinding } from '@angular/core';
-import { MenuService } from '../../services/menu.service';
-import { Menu } from '../../viewmodel/menuModel';
 import { Observable } from 'rxjs/Observable';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
+import { MenuService } from '../../core/SingletonServices/menu.service';
+import { Menu } from '../../core/models/menuModel';
 
 @Component({
   selector: 'app-sidemenu',
@@ -23,7 +23,6 @@ import { Router } from '@angular/router';
 export class SidemenuComponent implements OnInit {
   @Input() isOpened;
 
-  menuItems: Menu[];
   menu: Observable<Menu[]>;
   @Input() items: Menu[];
   expanded: boolean;
@@ -38,7 +37,6 @@ export class SidemenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.menuItems = this.menuService.getMenuItems();
     this.menu = this.menuService.getAll<Menu[]>();
   }
 

@@ -9,6 +9,7 @@ import { WidgetComponent } from './components/widget/widget.component';
 import { WidgetItemComponent } from './components/widget-item/widget-item.component';
 import { BarchartComponent } from '../../shared/components/charts/barchart/barchart.component';
 import { DoughnutComponent } from '../../shared/components/charts/doughnut/doughnut.component';
+import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [{
   path: '', component: DashboardComponent
@@ -17,7 +18,7 @@ const routes: Routes = [{
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [DashboardComponent,WidgetComponent,WidgetItemComponent],

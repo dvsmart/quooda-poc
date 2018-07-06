@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../core/authentication/auth.service';
 
 @Component({
   selector: 'login',
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       this.loading = false;
       this.errorMessage = "Invalid account";
     }
-    
+
     // .subscribe(data => {
     //   this.loading = false;
     //   this.router.navigateByUrl(this.returnUrl);

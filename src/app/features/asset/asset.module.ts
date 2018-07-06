@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PropertiesComponent } from '../Asset/components/properties/properties.component';
-import { PropertyDetailComponent } from '../Asset/components/property-detail/property-detail.component';
+import { PropertiesComponent } from './components/properties/properties.component';
+import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AssetComponent } from './asset.component';
+import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'asset' },
@@ -13,6 +14,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [PropertiesComponent, PropertyDetailComponent, AssetComponent]

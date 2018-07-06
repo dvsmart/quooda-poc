@@ -4,19 +4,19 @@ import { MaterialModule } from '../shared/material.module';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AppLayoutComponent } from '../_layout/app-layout/app-layout.component';
-import { AuthGuard } from '../auth/auth.guard';
-import { AuthService } from '../auth/auth.service';
-import { SidemenuComponent } from '../_layout/sidemenu/sidemenu.component';
-import { SideChildmenuComponent } from '../_layout/sidemenu/extra-menu-item.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from '../_layout/navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SideuserComponent } from '../_layout/sideuser/sideuser.component';
-import { FormatCellPipe } from '../shared/pipes/format-cell.pipe';
-
+import { AuthGuard } from '../core/guards/auth.guard';
+import { AuthService } from '../core/authentication/auth.service';
+import { AppLayoutComponent } from '../layout/app-layout/app-layout.component';
+import { CoreModule } from '../core/core.module';
+import { SidemenuComponent } from '../layout/sidemenu/sidemenu.component';
+import { SideuserComponent } from '../layout/sideuser/sideuser.component';
+import { SideChildmenuComponent } from '../layout/sidemenu/extra-menu-item.component';
+import { NavbarComponent } from '../layout/navbar/navbar.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -45,16 +45,20 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
     NoopAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
+    SharedModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
   providers: [AuthGuard, AuthService, CookieService, CurrencyPipe, DatePipe],
-  declarations: [HomeComponent,
-    LoginComponent, NavbarComponent, AppLayoutComponent, SidemenuComponent, SideChildmenuComponent, SideuserComponent],
+  declarations: [
+    HomeComponent,
+    LoginComponent,
+    AppLayoutComponent,
+    SidemenuComponent,
+    SideuserComponent,
+    SideChildmenuComponent,
+    NavbarComponent
+  ],
 
 })
 export class FeatureModule { }

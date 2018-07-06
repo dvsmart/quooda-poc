@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Menu } from '../viewmodel/menuModel';
 import { HttpClient } from '@angular/common/http';
-import { GenericService } from './generic.service';
+import { GenericService } from '../../services/generic.service';
+import { Menu } from '../models/menuModel';
+
 
 @Injectable()
 export class MenuService extends GenericService<Menu> {
@@ -14,7 +15,7 @@ export class MenuService extends GenericService<Menu> {
       'menu');
   }
 
-  
+
 
 
   getMenuItems():  any {

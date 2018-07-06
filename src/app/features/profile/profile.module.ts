@@ -4,6 +4,7 @@ import { ProfileComponent } from './profile.component';
 import { ProfileService } from './service/profile.service';
 import { MaterialModule } from '../../shared/material.module';
 import { Routes, RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [{
   path: '', component: ProfileComponent
@@ -12,7 +13,7 @@ const routes: Routes = [{
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   providers:[ProfileService],

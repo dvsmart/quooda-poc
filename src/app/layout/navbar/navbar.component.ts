@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/authentication/auth.service';
 
 @Component({
   selector: 'app-navbar',
