@@ -15,6 +15,7 @@ import { DatatableComponent } from "./components/datatable/datatable.component";
 import { FormdialogComponent } from "./components/formdialog/formdialog.component";
 import { FlexLayoutModule } from "../../../node_modules/@angular/flex-layout";
 import { FormatCellPipe } from "./pipes/format-cell.pipe";
+import { TableDialogComponent } from "./components/table-dialog/table-dialog.component";
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { FormatCellPipe } from "./pipes/format-cell.pipe";
     FormsModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableDialogComponent
   ],
   providers: [MinigridService,LoadingService,ToasterService],
   declarations:[
@@ -48,7 +50,8 @@ import { FormatCellPipe } from "./pipes/format-cell.pipe";
     ConfirmmodalComponent,
     DatatableComponent,
     FormdialogComponent,
-    FormatCellPipe
+    FormatCellPipe,
+    TableDialogComponent
   ]
 })
 export class SharedModule { }

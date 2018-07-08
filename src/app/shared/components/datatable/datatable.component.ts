@@ -12,7 +12,6 @@ import { environment } from '../../../../environments/environment';
 import { SelectionModel } from '@angular/cdk/collections';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ColumnMap, ColumnSetting } from '../../models/columnsetting';
-import { FormatCellPipe } from '../../pipes/format-cell.pipe';
 
 @Component({
   selector: 'app-datatable',
