@@ -19,7 +19,6 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [UserComponent, UserListComponent, UserDetailComponent],
-  entryComponents:[DatatableComponent]
+  declarations: [UserComponent, UserListComponent, UserDetailComponent]
 })
 export class UserModule { }

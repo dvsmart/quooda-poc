@@ -10,6 +10,7 @@ export class TableConfig {
   canDelete?: boolean = true;
   detailComponent?: any;
   pageSize: number;
+  url?:string;
 
   /**
    *

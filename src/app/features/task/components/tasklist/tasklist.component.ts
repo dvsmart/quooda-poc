@@ -12,9 +12,8 @@ export class TasklistComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // tslint:disable-next-line:whitespace
-    this.columns = ['name', 'description', 'startDate', 'dueDate','status','priority'];
     this.columnsConfig = new TableConfig(5);
+    this.columnsConfig.url = 'Task/Taskforgrid';
     const columns =
       [
         {

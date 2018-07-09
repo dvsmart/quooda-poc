@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
 import { of as observableOf } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators/catchError';
@@ -60,11 +60,20 @@ export class DatatableComponent implements OnInit {
     //this.dataSource.forEach(row => this.selection.select(row));
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   ngOnInit() {
+    this.config = this.config;
     this.setTableColumns();
     this.setColumnsFromConfig();
     this.setColumnsFromDataRow();
-    this.exampleDatabase = new ExampleHttpDao(this.http);
+    this.exampleDatabase = new ExampleHttpDao(this.http, this.config.url);
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.loadData();
   }
@@ -109,14 +118,12 @@ export class DatatableComponent implements OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.exampleDatabase!.getTasks(
+          return this.exampleDatabase!.getDataSource(
             this.sort.active, this.sort.direction, this.currentPage, this.pageSize);
         }),
         map(data => {
           this.isLoadingResults = false;
-          this.isRateLimitReached = false;
           this.resultsLength = data.totalCount;
-
           return data.data;
         }),
         catchError(() => {
@@ -145,11 +152,13 @@ export class DatatableComponent implements OnInit {
 }
 
 export class ExampleHttpDao {
-  constructor(private http: HttpClient) { }
-  getTasks(sort: string, order: string, page: number, pageSize: number): Observable<any> {
+  constructor(private http: HttpClient, private url: string) { }
+
+  getDataSource(sort: string, order: string, page: number, pageSize: number): Observable<any> {
     const api = environment.apiUrl;
     page = page == 0 ? 1 : page;
-    const requestUrl = api + 'Task/Taskforgrid?page=' + page + '&pageSize=' + pageSize;
+    //const requestUrl = api + 'Task/Taskforgrid?page=' + page + '&pageSize=' + pageSize;
+    const requestUrl = api + this.url + '?page=' + page + '&pageSize=' + pageSize;
     return this.http.get<any>(requestUrl);
   }
 }

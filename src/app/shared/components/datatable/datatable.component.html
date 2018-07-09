@@ -1,3 +1,6 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -5,8 +8,8 @@
       No data Available.
     </div>
   </div>
-  <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" 
-  matSortDisableClear matSortDirection="asc" layout="row" layout-xs="column">
+  <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" matSortDisableClear
+    matSortDirection="asc" layout="row" layout-xs="column">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
@@ -31,4 +34,3 @@
     [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
-

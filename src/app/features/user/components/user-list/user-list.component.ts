@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '../../../../../../node_modules/@angular/material';
 import { UserService } from '@app/features/user/service/user.service';
 import { DatatableComponent } from '@app/shared/components/datatable/datatable.component';
+import { TableConfig } from '@app/shared/models/TableConfig';
 
 @Component({
   selector: 'app-user-list',
@@ -9,23 +10,64 @@ import { DatatableComponent } from '@app/shared/components/datatable/datatable.c
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  constructor(public dialog: MatDialog, private userservice: UserService) { }
+  columnsConfig: TableConfig;
+  constructor(private userservice: UserService) { }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DatatableComponent, {
-      data: {
-        url: 'User'
-      },
-      width: '850px',
-      height: '550px',
-    });
+  // openDialog(): void {
+  //   const dialogRef = this.dialog.open(DatatableComponent, {
+  //     data: {
+  //       url: 'User',
+  //       config : this.columnsConfig
+  //     },
+  //     width: '850px',
+  //     height: '700px',
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //   });
+  // }
 
   ngOnInit() {
+    this.columnsConfig = new TableConfig(5);
+    this.columnsConfig.url = 'User';
+    const columns =
+      [
+        {
+          primaryKey: 'userName',
+          header: 'Username'
+        },
+        {
+          primaryKey: 'emailAddress',
+          header: 'Email'
+        },
+        {
+          primaryKey: 'firstName',
+          header: 'First Name'
+        },
+        {
+          primaryKey: 'lastName',
+          header: 'Last Name'
+        },
+        {
+          primaryKey: 'city',
+          header: 'City'
+        },
+        {
+          primaryKey: 'roleName',
+          header: 'Role'
+        },
+        {
+          primaryKey: 'userType',
+          header: 'Type'
+        },
+        {
+          primaryKey: 'addedDate',
+          header: 'Added On',
+          format: 'date'
+        }
+      ];
+    this.columnsConfig.columns = columns;
   }
 
 }
