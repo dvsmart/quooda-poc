@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class AppLayoutComponent implements OnInit {
   watcher: Subscription;
   activeMediaQuery = "";
+  mode:string = 'side';
   ngOnInit(): void {
   }
 
@@ -34,8 +35,9 @@ export class AppLayoutComponent implements OnInit {
     });
     this.watcher = media.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
-      if (change.mqAlias == 'xs') {
+      if (change.mqAlias == 'xs' || change.mqAlias == 'sm' || change.mqAlias == 'md') {
         this.open = false;
+        this.mode = 'over';
       }
     });
   }
