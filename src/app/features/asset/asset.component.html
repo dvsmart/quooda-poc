@@ -1,8 +1,41 @@
-<p>
-  asset works!
-</p>
 
+<div class="task-page-background">
 
-
-
-<app-properties></app-properties>
+</div>
+<div class="content">
+  <mat-sidenav-container class="task-wrapper">
+    <mat-sidenav #sidenav mode="side" opened style="background: transparent!important;" class="sidenav" fixedInViewport="Fixed"
+      fixedTopGap="75">
+      <div class="header sidenav-sub">
+          <div class="logo">
+            <mat-icon style="font-size: 32px!important;width:32px!important;height: 32px!important;margin: 0 16px 0 0;">check_box</mat-icon>
+            <span style="font-size: 24px;line-height: 24px;">Properties</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="p-24">
+            <button class="mat-primary add-todo-button w-100-p mat-raised-button" (click)="addTask()" aria-label="ADD TASK" mat-raised-button="">
+              <span class="mat-button-wrapper"> ADD New </span>
+              <div class="mat-button-ripple mat-ripple"></div>
+              <div class="mat-button-focus-overlay"></div>
+            </button>
+          </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content style="flex:1;">
+      <div class="content-card mat-white-bg">
+        <div fxflexalign="row">
+          <app-properties></app-properties>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<button class="mat-accent-bg mat-fab mat-accent ng-trigger ng-trigger-animate" aria-label="add contact" id="add-contact-button"
+  mat-fab="">
+  <span class="mat-button-wrapper">
+    <mat-icon class="mat-icon ng-tns-c71-442 material-icons" role="img" aria-hidden="true">person_add</mat-icon>
+  </span>
+  <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+  <div class="mat-button-focus-overlay"></div>
+</button>
