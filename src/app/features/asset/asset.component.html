@@ -1,14 +1,141 @@
-
-<div class="task-page-background">
-
+<div class="page-layout simple left-sidebar inner-sidebar inner-scroll" id="contacts">
+  <div class="header mat-accent-bg p-16 p-sm-24" fxlayout="column" fxlayout.gt-xs="row" fxlayoutalign="start start" fxlayoutalign.gt-xs="space-between center"
+    style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center space-between; align-items: center;">
+    <div class="ng-tns-c71-442" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+      <button class="sidebar-toggle mr-12 mat-icon-button" fxhide.gt-md (click)="sidenav.toggle()">
+        <span class="mat-button-wrapper">
+          <mat-icon class="mat-icon ng-tns-c71-442 material-icons" role="img" aria-hidden="true">menu</mat-icon>
+        </span>
+        <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+        <div class="mat-button-focus-overlay"></div>
+      </button>
+      <div class="logo" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+        <mat-icon class="logo-icon mr-16 mat-icon material-icons ng-trigger ng-trigger-animate" role="img" aria-hidden="true">assignment </mat-icon>
+        <span class="logo-text h1 ng-trigger ng-trigger-animate"> Properties </span>
+      </div>
+    </div>
+    <div class="search-input-wrapper mt-16 ml-8 m-sm-0" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+      <label class="mr-8" for="search">
+        <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">search</mat-icon>
+        <mat-form-field class="m-0 mat-form-field ng-tns-c20-97 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-hide-placeholder ng-pristine ng-valid ng-touched">
+          <input matInput placeholder="Search for Properties" class="mat-input-element mat-form-field-autofill-control ng-tns-c37-96 cdk-text-field-autofill-monitored ng-pristine ng-valid ng-touched">
+        </mat-form-field>
+      </label>
+    </div>
+  </div>
+  <div class="mat-accent-600-bg selectedCard" [@slideInOut]="animationState" style="flex-direction: row; box-sizing: border-box; transform: translateY(0px); display: flex;">
+    <div  class="p-24" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center; flex: 1 1 0%;">
+      <div  class="close-button-wrapper" fxflex="0 1 auto" fxflex.gt-sm="220px" style="flex: 1 1 220px; box-sizing: border-box; max-width: 220px; min-width: 220px;">
+        <button  (click)="trigger()" class="p-8 mat-button" fxlayout="row" fxlayoutalign="start center" mat-button="" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+          <span class="mat-button-wrapper">
+            <mat-icon  class="mr-8 mat-icon material-icons" role="img" aria-hidden="true">arrow_back</mat-icon>
+            <span  class="text-uppercase">Back</span>
+          </span>
+          <div class="mat-button-ripple mat-ripple" matripple=""></div>
+          <div class="mat-button-focus-overlay"></div>
+        </button>
+      </div>
+      <div  fxflex="" fxlayout="row" fxlayoutalign="end center" fxlayoutalign.gt-sm="space-between center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; place-content: center space-between; align-items: center;">
+        <div>
+          <span  class="selected-contacts-count">
+            <span  class="mr-4">1</span>
+            <span>selected</span>
+          </span>
+          <button  aria-haspopup="true" mat-icon-button="" class="mat-icon-button">
+            <span class="mat-button-wrapper">
+              <mat-icon  class="mat-icon material-icons" role="img" aria-hidden="true">arrow_drop_down</mat-icon>
+            </span>
+            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </button>
+          <mat-menu  class="ng-tns-c33-131">
+            <!---->
+          </mat-menu>
+        </div>
+        <div  class="multi-select-actions">
+          <button  aria-label="delete selected" mat-icon-button="" class="mat-icon-button">
+            <span class="mat-button-wrapper">
+              <mat-icon  class="mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
+            </span>
+            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="side" class="sidebar-wrapper" opened="true">
+        <div class="sidebar-content">
+          <div class="card mat-white-bg">
+            <div class="filter header p-24" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+              <mat-icon class="mat-icon material-icons mr-16" role="img" aria-hidden="true">filter_list</mat-icon>
+              <span class="h5">Filters</span>
+            </div>
+            <div class="content py-16 ps">
+              <div class="nav">
+                <div aria-label="inbox" class="nav-item">
+                  <a class="nav-link mat-ripple active mat-accent-bg" matripple="">
+                    <span class="title" (click)="trigger()">Live</span>
+                    <span class="example-spacer"></span>
+                    <span class="nav-link-badge ng-star-inserted" style="background-color: rgb(255, 111, 0); color: rgb(255, 255, 255);"> 3 </span>
+                  </a>
+                </div>
+                <div aria-label="frequently contacted" class="nav-item">
+                  <a class="nav-link mat-ripple" matripple="">
+                    <div class="title">Archived</div>
+                    <span class="example-spacer"></span>
+                    <span class="nav-link-badge ng-star-inserted" style="background-color: rgba(255, 0, 0, 0.842); color: rgb(255, 255, 255);">
+                      3 </span>
+                  </a>
+                </div>
+                <div aria-label="starred" class="nav-item">
+                  <a class="nav-link mat-ripple" matripple="">
+                    <div class="title">New</div>
+                    <span class="example-spacer"></span>
+                    <span class="nav-link-badge ng-star-inserted" style="background-color: rgba(18, 160, 49, 0.788); color: rgb(255, 255, 255);">
+                      3 </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content style="flex:1;" class="center p-24 pb-56 pr-sm-92 ps">
+        <div fxflexalign="row">
+          <app-properties></app-properties>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
 </div>
-<div class="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="task-page-background">
+</div>
+<div class="content" style="margin-top: 130px;">
   <mat-sidenav-container class="task-wrapper">
     <mat-sidenav #sidenav mode="side" opened style="background: transparent!important;" class="sidenav" fixedInViewport="Fixed"
       fixedTopGap="75">
       <div class="header sidenav-sub">
           <div class="logo">
-            <mat-icon style="font-size: 32px!important;width:32px!important;height: 32px!important;margin: 0 16px 0 0;">check_box</mat-icon>
+            <mat-icon style="font-size: 32px!important;width:32px!important;height: 32px!important;margin: 0 16px 0 0;">assignment</mat-icon>
             <span style="font-size: 24px;line-height: 24px;">Properties</span>
           </div>
         </div>
@@ -30,12 +157,4 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
-<button class="mat-accent-bg mat-fab mat-accent ng-trigger ng-trigger-animate" aria-label="add contact" id="add-contact-button"
-  mat-fab="">
-  <span class="mat-button-wrapper">
-    <mat-icon class="mat-icon ng-tns-c71-442 material-icons" role="img" aria-hidden="true">person_add</mat-icon>
-  </span>
-  <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
-  <div class="mat-button-focus-overlay"></div>
-</button>
+</div> -->

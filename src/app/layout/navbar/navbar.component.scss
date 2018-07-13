@@ -9,25 +9,6 @@
     flex: 1 1 auto;
 }
 
-mat-toolbar .notification-label {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    font-size: .75rem;
-    font-weight: 700;
-    line-height: .8125rem;
-    border-radius: 50%;
-    width: 13px;
-    height: 13px;
-    background-color: #f44336;
-    color: #fff;
-    text-align: center;
-}
-
-.bs-example {
-    margin: 20px;
-}
-
 .navbar-brand {
     position: relative;
     z-index: 2;
@@ -137,5 +118,43 @@ mat-toolbar .notification-label {
     .navbar.navbar-default .nav-collapse.in.slide-down,
     .navbar.navbar-inverse .nav-collapse.in.slide-down {
         transform: translate(0px, 0px);
+    }
+}
+
+[_nghost-c15] .mat-toolbar[_ngcontent-c15] {
+    background: inherit;
+    color: inherit;
+    position: relative;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    height: 64px;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .navbar-right {
+        float: right !important;
+        margin-right: -15px;
+        margin-top: 8px;
     }
 }

@@ -1,6 +1,5 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default p-0 mat-elevation-z1 mat-toolbar">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -17,7 +16,26 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon matBadgeColor="warn" matBadge="3">messages</mat-icon>
+        </button>
+        <mat-menu #appMenu="matMenu" yPosition="above">
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item>Help</button>
+        </mat-menu>
+        <button mat-icon-button>
+          <mat-icon matBadge="6" matBadgeColor="warn">home</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon matBadge="2" matBadgeColor="primary">build</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon matBadge="4" matBadgeColor="accent">notification_important</mat-icon>
+        </button>
+        <button mat-icon-button (click)="logout()">
+          <mat-icon>input</mat-icon>
+        </button>
+        <!-- <li>
           <a href="#">Home</a>
         </li>
         <li>
@@ -34,15 +52,17 @@
         </li>
         <li>
           <a href="#">Contact</a>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <a class="btn btn-default btn-outline btn-circle collapsed" data-toggle="collapse" href="#nav-collapse1" aria-expanded="false"
             aria-controls="nav-collapse1">Categories</a>
         </li>
         <li>
           <a class="btn btn-default btn-outline btn-circle collapsed" data-toggle="collapse" href="#nav-collapse3" aria-expanded="false"
-            aria-controls="nav-collapse3"><mat-icon>search</mat-icon></a>
-        </li>
+            aria-controls="nav-collapse3">
+            <mat-icon>search</mat-icon>
+          </a>
+        </li> -->
       </ul>
       <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
         <li>
@@ -75,9 +95,7 @@
         </form>
       </div>
     </div>
-    <!-- /.navbar-collapse -->
   </div>
-  <!-- /.container -->
 </nav>
 
 <!-- <mat-toolbar>
