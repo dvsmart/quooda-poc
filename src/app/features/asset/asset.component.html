@@ -24,38 +24,35 @@
     </div>
   </div>
   <div class="mat-accent-600-bg selectedCard" [@slideInOut]="animationState" style="flex-direction: row; box-sizing: border-box; transform: translateY(0px); display: flex;">
-    <div  class="p-24" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center; flex: 1 1 0%;">
-      <div  class="close-button-wrapper" fxflex="0 1 auto" fxflex.gt-sm="220px" style="flex: 1 1 220px; box-sizing: border-box; max-width: 220px; min-width: 220px;">
-        <button  (click)="trigger()" class="p-8 mat-button" fxlayout="row" fxlayoutalign="start center" mat-button="" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+    <div class="p-24" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center; flex: 1 1 0%;">
+      <div class="close-button-wrapper" fxflex="0 1 auto" fxflex.gt-sm="220px" style="flex: 1 1 220px; box-sizing: border-box; max-width: 220px; min-width: 220px;">
+        <button (click)="trigger()" class="p-8 mat-button" fxlayout="row" fxlayoutalign="start center" mat-button="" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
           <span class="mat-button-wrapper">
-            <mat-icon  class="mr-8 mat-icon material-icons" role="img" aria-hidden="true">arrow_back</mat-icon>
-            <span  class="text-uppercase">Back</span>
+            <mat-icon class="mr-8 mat-icon material-icons" role="img" aria-hidden="true">arrow_back</mat-icon>
+            <span class="text-uppercase">Back</span>
           </span>
           <div class="mat-button-ripple mat-ripple" matripple=""></div>
           <div class="mat-button-focus-overlay"></div>
         </button>
       </div>
-      <div  fxflex="" fxlayout="row" fxlayoutalign="end center" fxlayoutalign.gt-sm="space-between center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; place-content: center space-between; align-items: center;">
+      <div fxflex="" fxlayout="row" fxlayoutalign="end center" fxlayoutalign.gt-sm="space-between center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; place-content: center space-between; align-items: center;">
         <div>
-          <span  class="selected-contacts-count">
-            <span  class="mr-4">1</span>
+          <span class="selected-contacts-count">
+            <span class="mr-4">1</span>
             <span>selected</span>
           </span>
-          <button  aria-haspopup="true" mat-icon-button="" class="mat-icon-button">
-            <span class="mat-button-wrapper">
-              <mat-icon  class="mat-icon material-icons" role="img" aria-hidden="true">arrow_drop_down</mat-icon>
-            </span>
-            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
-            <div class="mat-button-focus-overlay"></div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>arrow_drop_down</mat-icon>
           </button>
-          <mat-menu  class="ng-tns-c33-131">
-            <!---->
+          <mat-menu #menu="matMenu" yPosition="below">
+            <button mat-menu-item>Select all</button>
+            <button mat-menu-item>Deselect all</button>
           </mat-menu>
         </div>
-        <div  class="multi-select-actions">
-          <button  aria-label="delete selected" mat-icon-button="" class="mat-icon-button">
+        <div class="multi-select-actions">
+          <button aria-label="delete selected" mat-icon-button="" class="mat-icon-button">
             <span class="mat-button-wrapper">
-              <mat-icon  class="mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
+              <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
             </span>
             <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
             <div class="mat-button-focus-overlay"></div>
