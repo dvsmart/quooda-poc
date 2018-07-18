@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { merge } from 'rxjs/observable/merge';
 import { of as observableOf } from 'rxjs/observable/of';
 import { catchError } from 'rxjs/operators/catchError';
@@ -55,12 +55,12 @@ import { trigger, state, style, transition, animate, group } from '@angular/anim
       ]
       )])
     ])
-  ]  
+  ]
 })
 export class DatatableComponent implements OnInit {
   @Input() displayedColumns;
   @Input() config;
-  animationState = 'out';
+
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
   expandedElement: any
@@ -74,35 +74,10 @@ export class DatatableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  selection = new SelectionModel<any>(true, []);
+
+  @Output() selectedRow = new EventEmitter();
+  selection = new SelectionModel<any>(true, [], true);
   constructor(private http: HttpClient) { }
-
-  trigger() {
-    this.animationState = this.animationState === 'out' ? 'in' : 'out';
-  }
-
-  isAllSelected() {
-    // const numSelected = this.selection.selected.length;
-    // const numRows = this.resultsLength;
-    // return numSelected === numRows;
-  }
-
-  masterToggle() {
-    //this.isAllSelected() ? this.selection.clear() : this.selectAll();
-  }
-
-  selectAll() {
-    this.allSelected = true;
-    //this.dataSource.forEach(row => this.selection.select(row));
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 
   ngOnInit() {
     this.config = this.config;
@@ -179,6 +154,11 @@ export class DatatableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
+
+  onRowSelect(row) {
+    this.selectedRow.emit(this.selection);
+  }
+
 
   pageEvent($event) {
     this.currentPage = $event.pageIndex + 1;

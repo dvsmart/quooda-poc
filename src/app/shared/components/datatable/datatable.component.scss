@@ -68,22 +68,32 @@
     font-size: 12px !important;
 }
 
-mat-header-cell[class="cdk-column-dataId"],
-mat-cell[class="cdk-column-dataId"] {
-    max-width: 85px !important;
+// mat-header-cell[class="cdk-column-dataId"],
+// mat-cell[class="cdk-column-dataId"] {
+//     max-width: 85px !important;
+// }
+// mat-header-cell[class*="cdk-column-"],
+// mat-cell[class*="cdk-column-"] {
+//     max-width: 165px;
+// }
+// .cdk-column-select{
+//     max-width: 100px;
+// }
+mat-cell {
+    overflow: visible;
 }
 
-mat-header-cell[class*="cdk-column-"],
-mat-cell[class*="cdk-column-"] {
-    max-width: 165px;
+.mat-table .mat-row {
+    position: relative;
+    cursor: pointer;
+    padding: 8px;
 }
 
-.selectedCard {
-    flex: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 120px;
-    z-index: 99;
+.mat-ripple {
+    overflow: hidden;
+}
+
+.mat-accent-50-bg {
+    background-color: #e1f5fe!important;
+    color: rgba(0,0,0,.87)!important;
 }

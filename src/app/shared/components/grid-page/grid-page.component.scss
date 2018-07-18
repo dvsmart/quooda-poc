@@ -451,6 +451,14 @@ input.mat-input-element {
     color: #fff!important;
 }
 
+.mr-4{
+    margin-right: 4px;
+}
+
+.mr-8{
+    margin-right: 8px;
+}
+
 .selectedCard {
     flex: 1;
     position: absolute;
@@ -459,12 +467,4 @@ input.mat-input-element {
     left: 0;
     height: 120px;
     z-index: 99;
-}
-
-.mr-4{
-    margin-right: 4px;
-}
-
-.mr-8{
-    margin-right: 8px;
 }
