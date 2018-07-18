@@ -1,6 +1,5 @@
-<!-- <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field> -->
+
+
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -8,17 +7,66 @@
       No data Available.
     </div>
   </div>
+  <div class="mat-accent-600-bg example-header example-selection-header" style="flex-direction: row; box-sizing: border-box; transform: translateY(0px); display: flex;">
+    <div class="p-24" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center; flex: 1 1 0%;">
+      <div class="close-button-wrapper" fxflex="0 1 auto" fxflex.gt-sm="220px" style="flex: 1 1 220px; box-sizing: border-box; max-width: 220px; min-width: 220px;">
+        <button (click)="trigger()" class="p-8 mat-button" fxlayout="row" fxlayoutalign="start center" mat-button="" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+          <span class="mat-button-wrapper">
+            <mat-icon class="mr-8 mat-icon material-icons" role="img" aria-hidden="true">arrow_back</mat-icon>
+            <span class="text-uppercase">Back</span>
+          </span>
+          <div class="mat-button-ripple mat-ripple" matripple=""></div>
+          <div class="mat-button-focus-overlay"></div>
+        </button>
+      </div>
+      <div fxflex="" fxlayout="row" fxlayoutalign="end center" fxlayoutalign.gt-sm="space-between center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; place-content: center space-between; align-items: center;">
+        <div>
+          <span class="selected-contacts-count">
+            <span class="mr-4">{{selection.selected.length}}
+              {{selection.selected.length == 1 ? 'user' : 'users'}}</span>
+            <span>selected</span>
+          </span>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" yPosition="below">
+            <button mat-menu-item>Select all</button>
+            <button mat-menu-item>Deselect all</button>
+          </mat-menu>
+        </div>
+        <div class="multi-select-actions">
+          <button aria-label="delete selected" mat-icon-button="" class="mat-icon-button">
+            <span class="mat-button-wrapper">
+              <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
+            </span>
+            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="example-header" [style.display]="selection.isEmpty() ? '' : 'none'">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput #filter placeholder="Filter users">
+    </mat-form-field>
+  </div>
+  <!-- <div class="example-header example-selection-header">
+    {{selection.selected.length}}
+    {{selection.selected.length == 1 ? 'user' : 'users'}}
+    selected
+  </div> -->
   <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" matSortDisableClear
     matSortDirection="asc" layout="row" layout-xs="column">
     <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      <mat-header-cell *matHeaderCellDef>
+        <!-- <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox> -->
+      </mat-header-cell>
+      <mat-cell  *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
         </mat-checkbox>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
-        </mat-checkbox>
-      </td>
+      </mat-cell>
     </ng-container>
 
     <ng-container *ngFor="let map of columnMaps" matColumnDef="{{map.primaryKey}}">

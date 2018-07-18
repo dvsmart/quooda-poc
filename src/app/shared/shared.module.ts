@@ -16,6 +16,7 @@ import { FormdialogComponent } from "./components/formdialog/formdialog.componen
 import { FlexLayoutModule } from "../../../node_modules/@angular/flex-layout";
 import { FormatCellPipe } from "./pipes/format-cell.pipe";
 import { TableDialogComponent } from "./components/table-dialog/table-dialog.component";
+import { GridPageComponent } from "@app/shared/components/grid-page/grid-page.component";
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { TableDialogComponent } from "./components/table-dialog/table-dialog.com
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    TableDialogComponent
+    TableDialogComponent,
+    GridPageComponent
   ],
   providers: [MinigridService,LoadingService,ToasterService],
   declarations:[
@@ -51,7 +53,8 @@ import { TableDialogComponent } from "./components/table-dialog/table-dialog.com
     DatatableComponent,
     FormdialogComponent,
     FormatCellPipe,
-    TableDialogComponent
+    TableDialogComponent,
+    GridPageComponent
   ]
 })
 export class SharedModule { }

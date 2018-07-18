@@ -1,6 +1,4 @@
-<app-grid-page [tableConfig]="columnsConfig"></app-grid-page>
-
-<!-- <div class="page-layout simple left-sidebar inner-sidebar inner-scroll" id="contacts">
+<div class="page-layout simple left-sidebar inner-sidebar inner-scroll" id="contacts">
   <div class="header mat-accent-bg p-16 p-sm-24" fxlayout="column" fxlayout.gt-xs="row" fxlayoutalign="start start" fxlayoutalign.gt-xs="space-between center"
     style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center space-between; align-items: center;">
     <div class="ng-tns-c71-442" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
@@ -66,9 +64,9 @@
       </mat-sidenav>
       <mat-sidenav-content style="flex:1;" class="center p-24 pb-56 pr-sm-92 ps">
         <div fxflexalign="row">
-          <app-properties (rowSelected)="addSelection($event)"></app-properties>
+          <app-datatable [config]="tableConfig"></app-datatable>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
-</div> -->
+</div>

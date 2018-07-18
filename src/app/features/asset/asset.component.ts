@@ -1,55 +1,73 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate, group } from '@angular/animations';
+import { TableConfig } from '@app/shared/models/TableConfig';
+
 
 @Component({
   selector: 'app-asset',
   templateUrl: './asset.component.html',
-  styleUrls: ['./asset.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      state('in', style({
-        'max-height': '500px', 'opacity': '1', 'visibility': 'visible'
-      })),
-      state('out', style({
-        'max-height': '0px', 'opacity': '0', 'visibility': 'hidden'
-      })),
-      transition('in => out', [group([
-        animate('400ms ease-in-out', style({
-          'opacity': '0'
-        })),
-        animate('600ms ease-in-out', style({
-          'max-height': '0px'
-        })),
-        animate('700ms ease-in-out', style({
-          'visibility': 'hidden'
-        }))
-      ]
-      )]),
-      transition('out => in', [group([
-        animate('1ms ease-in-out', style({
-          'visibility': 'visible'
-        })),
-        animate('600ms ease-in-out', style({
-          'max-height': '500px'
-        })),
-        animate('800ms ease-in-out', style({
-          'opacity': '1'
-        }))
-      ]
-      )])
-    ])
-  ]
+  styleUrls: ['./asset.component.scss']
 })
 export class AssetComponent implements OnInit {
   visible: boolean = false;
-  animationState = 'out';
+  columnsConfig: TableConfig;
+  selectedRows: any[] = [];
+  selectedCount = 0;
   constructor() { }
 
   ngOnInit() {
-  }
-
-  trigger() {
-    debugger;
-    this.animationState = this.animationState === 'out' ? 'in' : 'out';
+    this.columnsConfig = new TableConfig(5, false, true);
+    this.columnsConfig.url = 'AssetProperties';
+    const columns =
+      [
+        {
+          primaryKey: 'dataId',
+          header: 'ID'
+        },
+        {
+          primaryKey: 'addressLine1',
+          header: 'Address Line 1'
+        },
+        {
+          primaryKey: 'postCode',
+          header: 'Post Code'
+        },
+        {
+          primaryKey: 'city',
+          header: 'City'
+        },
+        {
+          primaryKey: 'portfolioName',
+          header: 'Portfolio'
+        },
+        {
+          primaryKey: 'subPortfolioName',
+          header: 'SubPortfolio'
+        },
+        {
+          primaryKey: 'addedDate',
+          header: 'Added On',
+          format: 'date'
+        },
+        {
+          primaryKey: 'assetType',
+          header: 'Asset Type'
+        }
+      ];
+    this.columnsConfig.columns = columns;
   }
 }
+
+
+
+  // addSelection(row) {
+  //   if (this.selectedRows.indexOf(row) == -1 || this.selectedRows.length === 0) {
+  //     this.selectedRows.push(row);
+  //   } else {
+  //     const index = this.selectedRows.indexOf(row);
+  //     if (index !== -1) {
+  //       this.selectedRows.splice(index, 1);
+  //     }
+  //   }
+  //   this.selectedCount = this.selectedRows.length;
+  // }
+

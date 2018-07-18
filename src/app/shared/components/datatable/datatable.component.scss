@@ -1,44 +1,89 @@
 /* Structure */
+
 .example-container {
-  display: flex;
-  flex-direction: column;
-  max-height: 680px;
-  min-width: 300px;
-  position: relative;
-  padding: 0px;
+    display: flex;
+    flex-direction: column;
+    max-height: 680px;
+    min-width: 300px;
+    position: relative;
+    padding: 0px;
+}
+
+// .example-header {
+//     min-height: 64px;
+//     display: flex;
+//     align-items: center;
+//     padding-left: 24px;
+// }
+.mat-input-container {
+    font-size: 14px;
+    flex-grow: 1;
+    margin-left: 32px;
+    margin-top: 8px;
+}
+
+.example-selection-header {
+    font-size: 18px;
+    background: rgba(255, 64, 129, 0.3);
+    border-bottom: 1px solid #d696ac;
 }
 
 .example-header {
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  padding-left: 24px;
+    min-height: 56px;
+    max-height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 8px 24px 0;
+    font-size: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
 }
 
 .example-table {
-  overflow: auto;
-  min-height: 300px;
+    overflow: auto;
+    min-height: 300px;
 }
 
 .example-loading-shade {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 56px;
-  right: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .example-rate-limit-reached {
-  color: #980000;
-  max-width: 360px;
-  text-align: center;
+    color: #980000;
+    max-width: 360px;
+    text-align: center;
 }
 
-.mat-cell, .mat-footer-cell {
-  font-size: 12px!important;
+.mat-cell,
+.mat-footer-cell {
+    font-size: 12px !important;
+}
+
+mat-header-cell[class="cdk-column-dataId"],
+mat-cell[class="cdk-column-dataId"] {
+    max-width: 85px !important;
+}
+
+mat-header-cell[class*="cdk-column-"],
+mat-cell[class*="cdk-column-"] {
+    max-width: 165px;
+}
+
+.selectedCard {
+    flex: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 120px;
+    z-index: 99;
 }

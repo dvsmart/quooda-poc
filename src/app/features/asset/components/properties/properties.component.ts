@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TableConfig } from '@app/shared/models/TableConfig';
 
 @Component({
@@ -8,10 +8,11 @@ import { TableConfig } from '@app/shared/models/TableConfig';
 })
 export class PropertiesComponent implements OnInit {
   columnsConfig: TableConfig;
+  @Output() rowSelected = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
-    this.columnsConfig = new TableConfig(5);
+    this.columnsConfig = new TableConfig(5,false,true);
     this.columnsConfig.url = 'AssetProperties';
     const columns =
       [
@@ -50,5 +51,9 @@ export class PropertiesComponent implements OnInit {
         }
       ];
     this.columnsConfig.columns = columns;
+  }
+
+  selectedRow(row){
+    this.rowSelected.emit(row);
   }
 }
