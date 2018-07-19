@@ -3,7 +3,7 @@
 .example-container {
     display: flex;
     flex-direction: column;
-    max-height: 680px;
+    max-height: 820px;
     min-width: 300px;
     position: relative;
     padding: 0px;
@@ -68,17 +68,15 @@
     font-size: 12px !important;
 }
 
-// mat-header-cell[class="cdk-column-dataId"],
-// mat-cell[class="cdk-column-dataId"] {
-//     max-width: 85px !important;
-// }
-// mat-header-cell[class*="cdk-column-"],
-// mat-cell[class*="cdk-column-"] {
-//     max-width: 165px;
-// }
-// .cdk-column-select{
-//     max-width: 100px;
-// }
+mat-header-cell[class="cdk-column-dataId"],
+mat-cell[class="cdk-column-dataId"] {
+    max-width: 85px !important;
+}
+mat-header-cell[class*="cdk-column-"],
+mat-cell[class*="cdk-column-"] {
+    max-width: 165px;
+}
+
 mat-cell {
     overflow: visible;
 }
