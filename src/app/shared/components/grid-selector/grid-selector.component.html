@@ -1,0 +1,31 @@
+<div class="mat-accent-600-bg selectedCard" *ngIf="!selectedRow.isEmpty()" [@slideInOut] style="z-index: 1;flex-direction: row; box-sizing: border-box; transform: translateY(0px); display: flex;">
+  <div class="p-24" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center; flex: 1 1 0%;">
+    <div class="close-button-wrapper" fxflex="0 1 auto" fxflex.gt-sm="220px" style="flex: 1 1 220px; box-sizing: border-box; max-width: 220px; min-width: 220px;">
+      <button mat-icon-button class="pl-15" (click)="selectedRow.clear()" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+        <mat-icon class="mat-icon material-icons mr-8" role="img" aria-hidden="true">arrow_back</mat-icon>
+        <span class="text-uppercase">Back</span>
+      </button>
+    </div>
+    <div fxflex="" fxlayout="row" fxlayoutalign="end center" fxlayoutalign.gt-sm="space-between center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; place-content: center space-between; align-items: center;">
+      <div>
+        <span class="selected-contacts-count">
+          <span class="mr-4"> {{selectedRow.selected.length}}
+          </span>
+          <span>selected</span>
+        </span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" yPosition="below">
+          <button mat-menu-item>Select all</button>
+          <button mat-menu-item>Deselect all</button>
+        </mat-menu>
+      </div>
+      <div class="mr-8">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

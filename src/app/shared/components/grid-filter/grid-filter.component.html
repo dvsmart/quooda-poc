@@ -1,0 +1,22 @@
+<div class="sidebar-content">
+  <div class="card mat-white-bg">
+    <div class="filter header p-24" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+      <mat-icon class="mat-icon material-icons mr-16" role="img" aria-hidden="true">filter_list</mat-icon>
+      <span class="h5 p-20">Filters</span>
+    </div>
+    <div class="content py-16 ps">
+      <div class="nav">
+        <div *ngFor="let filterItem of filterNavItems">
+          <div aria-label="starred" class="nav-item">
+            <a class="nav-link mat-accent-bg" mat-ripple>
+              <div class="title">{{filterItem.caption}}</div>
+              <span class="example-spacer"></span>
+              <span class="nav-link-badge" [ngStyle]="{'background-color':filterItem.color}">
+                {{filterItem.count}} </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+.header {
+    height: 100px;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    max-height: 100%;
+    align-items: center;
+}
+.mat-accent-bg {
+    background-color: #03a9f4 !important;
+    color: #fff !important;
+}
+
+.h1,
+h1 {
+    font-size: 24px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    font-weight: 400;
+}
+
+.mr-16 {
+    margin-right: 16px !important;
+}
+
+.ml-16{
+    margin-left: 16px !important;
+}
+
+.mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+}
+
+.logo {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    flex-direction: row;
+    display: flex;
+    max-height: 100%;
+    align-items: center;
+}
+
+.search-wrapper .search input {
+    height: 56px;
+    padding-left: 16px;
+    color: rgba(0, 0, 0, .54);
+    border: none;
+    outline: 0;
+}
+
+.header .search-wrapper .sidenav-toggle {
+    margin: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 0;
+    border-right: 1px solid rgba(0, 0, 0, .12);
+}
+
+.search {
+    margin-left: 16px;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    max-height: 100%;
+    place-content: center flex-start;
+    align-items: center;
+}
+
+.mt-16 {
+    margin-top: 16px !important;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
+@media (min-width: 600px) {
+    .m-sm-0 {
+        margin: 0 !important;
+    }
+}
+
+
+input.mat-input-element {
+    margin-top: -.0625em;
+}
+
+.mat-input-element {
+    font: inherit;
+    background: 0 0;
+    color: currentColor;
+    border: none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+}
+
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+}
+
+.mat-form-field {
+    font: 400 16px/1.125 Roboto, "Helvetica Neue", sans-serif;
+}

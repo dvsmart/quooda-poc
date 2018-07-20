@@ -1,0 +1,30 @@
+.selectedCard {
+    flex: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100px;
+    z-index: 99;
+}
+
+.mr-4{
+    margin-right: 4px;
+}
+
+.mat-accent-600-bg {
+    background-color: #039be5!important;
+    color: #fff!important;
+}
+
+.mr-8{
+    margin-right: 8px;
+}
+
+.text-uppercase{
+    text-transform: uppercase;
+}
+
+.pl-15{
+    padding-left: 15px;
+}

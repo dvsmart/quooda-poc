@@ -17,6 +17,9 @@ import { FlexLayoutModule } from "../../../node_modules/@angular/flex-layout";
 import { FormatCellPipe } from "./pipes/format-cell.pipe";
 import { TableDialogComponent } from "./components/table-dialog/table-dialog.component";
 import { GridPageComponent } from "@app/shared/components/grid-page/grid-page.component";
+import { GridFilterComponent } from "@app/shared/components/grid-filter/grid-filter.component";
+import { GridHeaderComponent } from "@app/shared/components/grid-header/grid-header.component";
+import { GridSelectorComponent } from "@app/shared/components/grid-selector/grid-selector.component";
 
 @NgModule({
   imports: [
@@ -41,7 +44,7 @@ import { GridPageComponent } from "@app/shared/components/grid-page/grid-page.co
     HttpClientModule,
     ReactiveFormsModule,
     TableDialogComponent,
-    GridPageComponent
+    GridPageComponent,
   ],
   providers: [MinigridService,LoadingService,ToasterService],
   declarations:[
@@ -54,7 +57,10 @@ import { GridPageComponent } from "@app/shared/components/grid-page/grid-page.co
     FormdialogComponent,
     FormatCellPipe,
     TableDialogComponent,
-    GridPageComponent
+    GridPageComponent,
+    GridFilterComponent,
+    GridHeaderComponent,
+    GridSelectorComponent
   ]
 })
 export class SharedModule { }
