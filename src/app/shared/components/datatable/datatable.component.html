@@ -5,18 +5,6 @@
       No data Available.
     </div>
   </div>
-
-  <!--  [style.display]="selection.isEmpty() ? '' : 'none'"> -->
-  <div class="example-header">
-    <mat-form-field floatPlaceholder="never">
-      <input matInput #filter placeholder="Filter users">
-    </mat-form-field>
-  </div>
-  <!-- <div class="example-header example-selection-header">
-    {{selection.selected.length}}
-    {{selection.selected.length == 1 ? 'user' : 'users'}}
-    selected
-  </div> -->
   <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" matSortDisableClear
     matSortDirection="asc" layout="row" layout-xs="column">
     <ng-container matColumnDef="select">

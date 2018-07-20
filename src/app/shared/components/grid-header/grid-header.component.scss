@@ -24,7 +24,7 @@ h1 {
 }
 
 .ml-16{
-    margin-left: 16px !important;
+    margin-left: 30px !important;
 }
 
 .mat-icon {
@@ -84,6 +84,12 @@ h1 {
     }
 }
 
+@media (max-width: 420px) {
+    .m-sm-0 {
+        margin: 0 !important;
+    }
+}
+
 
 input.mat-input-element {
     margin-top: -.0625em;
@@ -111,4 +117,16 @@ input.mat-input-element {
 
 .mat-form-field {
     font: 400 16px/1.125 Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mr-60{
+    margin-right: 60px!important;
+}
+
+.pl-35{
+    padding: 35px;
+}
+
+.mr-8{
+    margin-right: 8px;
 }

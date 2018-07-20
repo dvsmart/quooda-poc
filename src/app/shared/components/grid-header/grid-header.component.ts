@@ -10,10 +10,11 @@ export class GridHeaderComponent implements OnInit {
   @Input() title: string;
   @Output() searchStr = new EventEmitter<string>();
   @Output() toggleFilter = new EventEmitter<boolean>()
-
+  placeholderForSearch:string;
   constructor() { }
 
   ngOnInit() {
+    this.placeholderForSearch = 'Search for ' + this.title;
   }
 
   toggle(){
