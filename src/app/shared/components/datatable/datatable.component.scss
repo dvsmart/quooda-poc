@@ -94,3 +94,10 @@ mat-cell {
     background-color: #e1f5fe!important;
     color: rgba(0,0,0,.87)!important;
 }
+
+.add-button{
+    position: absolute;
+    z-index: 1000;
+    top: -15px;
+    right: -15px;
+}

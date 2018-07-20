@@ -5,6 +5,9 @@
       No data Available.
     </div>
   </div>
+  <button mat-fab class="add-button" color="primary" mat-ripple *ngIf="showAdd">
+    <mat-icon>add</mat-icon>
+  </button>
   <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" matSortDisableClear
     matSortDirection="asc" layout="row" layout-xs="column">
     <ng-container matColumnDef="select">

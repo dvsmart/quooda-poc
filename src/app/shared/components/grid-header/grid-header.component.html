@@ -1,7 +1,6 @@
-<div class="row header mat-accent-bg p-16 p-sm-24" fxlayout="column" fxlayout.gt-xs="row" fxlayoutalign="start start" fxlayoutalign.gt-xs="space-between center"
-  style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center space-between; align-items: center;">
-  <div class="col-xs-12" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
-    <button (click)="toggle()" mat-icon-button class="mr-12 ml-16" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+<div class="header mat-accent-bg p-16" fxlayout="row" fxlayout.gt-xs="row" fxlayoutalign="start start" fxlayoutalign.gt-xs="space-between center">
+  <div class="ng-tns-c55-220" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+    <button (click)="toggle()" mat-icon-button class="mr-12 ml-20" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
       <mat-icon class="mat-icon material-icons mr-8" role="img" aria-hidden="true">menu</mat-icon>
     </button>
     <div class="logo" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
@@ -9,12 +8,10 @@
       <span class="logo-text h1 ng-trigger ng-trigger-animate"> {{title}} </span>
     </div>
   </div>
-  <div class="col-xs-12 search-input-wrapper mt-16 ml-8 m-sm-0" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
-    <label class="mr-8" for="search">
-      <mat-icon class="mat-icon material-icons pl-35 mr-8" role="img" aria-hidden="true">search</mat-icon>
-      <mat-form-field class="mr-60 m-0 mat-form-field mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-hide-placeholder">
-        <input matInput [placeholder]="placeholderForSearch" class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored">
-      </mat-form-field>
-    </label>
+  <div fxlayout="row" fxlayout.gt-xs="column" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+    <mat-icon class="mat-icon ml-20 mr-8">search</mat-icon>
+    <mat-form-field color="accent">
+      <input matInput [placeholder]="placeholderForSearch">
+    </mat-form-field>
   </div>
 </div>

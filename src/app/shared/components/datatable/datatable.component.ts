@@ -71,6 +71,7 @@ export class DatatableComponent implements OnInit {
   pageSize = 10;
   allSelected: boolean;
   columnMaps: ColumnSetting[];
+  showAdd:boolean = true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

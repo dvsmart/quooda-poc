@@ -1,11 +1,19 @@
+.page-layout.simple.fullwidth>.header,
+.page-layout.simple.inner-sidebar>.header {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+}
+
 .header {
-    height: 100px;
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
-    max-height: 100%;
+    max-width: 100%;
+    place-content: center space-between;
     align-items: center;
 }
+
 .mat-accent-bg {
     background-color: #03a9f4 !important;
     color: #fff !important;
@@ -23,8 +31,12 @@ h1 {
     margin-right: 16px !important;
 }
 
-.ml-16{
+.ml-16 {
     margin-left: 30px !important;
+}
+
+.ml-20{
+    margin-left: 20px!important;
 }
 
 .mat-icon {
@@ -88,8 +100,27 @@ h1 {
     .m-sm-0 {
         margin: 0 !important;
     }
-}
+    .header {
+        flex-direction: column;
+        box-sizing: border-box;
+        display: flex;
+        max-width: 100%;
+        place-content: flex-start;
+        align-items: flex-start;
+    }
 
+    .ml-16 {
+        margin-left: 18px !important;
+    }
+
+    .mt-5{
+        margin-top: 5px!important;
+    }
+
+    .ml-20{
+        margin-left: 20px;
+    }
+}
 
 input.mat-input-element {
     margin-top: -.0625em;
@@ -119,14 +150,18 @@ input.mat-input-element {
     font: 400 16px/1.125 Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mr-60{
-    margin-right: 60px!important;
+.mr-60 {
+    margin-right: 60px !important;
 }
 
-.pl-35{
+.pl-35 {
     padding: 35px;
 }
 
-.mr-8{
+.mr-8 {
     margin-right: 8px;
+}
+
+.p-16 {
+    padding: 16px;
 }
