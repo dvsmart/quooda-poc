@@ -9,28 +9,29 @@
     <mat-icon>add</mat-icon>
   </button>
   <mat-table #table [dataSource]="dataSource" multiTemplateDataRows class="example-table" matSort matSortActive="dueDate" matSortDisableClear
-    matSortDirection="asc" layout="row" layout-xs="column">
-    <ng-container matColumnDef="select">
-      <mat-header-cell *matHeaderCellDef>
-        <!-- <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
-        </mat-checkbox> -->
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <mat-checkbox (click)="onRowSelect(selection)" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
-        </mat-checkbox>
-      </mat-cell>
-    </ng-container>
+  matSortDirection="asc" layout="row" layout-xs="column">
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <!-- <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox> -->
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="onRowSelect(selection)" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
 
-    <ng-container *ngFor="let map of columnMaps" matColumnDef="{{map.primaryKey}}">
-      <mat-header-cell *matHeaderCellDef mat-sort-header={{map.primaryKey}} class="col-md-3" flex> {{map.header}}</mat-header-cell>
-      <mat-cell flex *matCellDef="let row" class="col-md-3">{{ row[map.primaryKey] | formatCell:map.format }}</mat-cell>
-    </ng-container>
+  <ng-container *ngFor="let map of columnMaps" matColumnDef="{{map.primaryKey}}">
+    <mat-header-cell *matHeaderCellDef mat-sort-header={{map.primaryKey}} flex> {{map.header}}</mat-header-cell>
+    <mat-cell flex *matCellDef="let row">{{ row[map.primaryKey] | formatCell:map.format }}</mat-cell>
+  </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-    <mat-row mat-ripple class="mat-ripple" *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row mat-ripple class="mat-ripple" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
 
-  <mat-paginator #paginator (page)="pageEvent($event)" [pageSize]="pageSize" [length]="resultsLength" [pageSizeOptions]="[5, 10, 50, 100]"
-    [showFirstLastButtons]="true">
-  </mat-paginator>
+<mat-paginator #paginator (page)="pageEvent($event)" [pageSize]="pageSize" [length]="resultsLength" [pageSizeOptions]="[5, 10, 50, 100]"
+  [showFirstLastButtons]="true">
+</mat-paginator>
+ 
 </div>

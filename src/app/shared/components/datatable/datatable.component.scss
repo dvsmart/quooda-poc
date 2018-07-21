@@ -9,6 +9,20 @@
     padding: 0px;
 }
 
+.mat-table {
+    display: table;
+  
+    > .mat-header-row, > .mat-row {
+      display: table-row;
+  
+      > .mat-header-cell, > .mat-cell {
+        display: table-cell;
+        height: 48px;
+        vertical-align: middle;
+      }
+    }
+  }
+
 // .example-header {
 //     min-height: 64px;
 //     display: flex;
@@ -67,18 +81,19 @@
     font-size: 12px !important;
 }
 
-mat-header-cell[class="cdk-column-dataId"],
-mat-cell[class="cdk-column-dataId"] {
-    max-width: 85px !important;
-}
-mat-header-cell[class*="cdk-column-"],
-mat-cell[class*="cdk-column-"] {
-    max-width: 165px;
-}
+// mat-header-cell[class="cdk-column-dataId"],
+// mat-cell[class="cdk-column-dataId"] {
+//     max-width: 85px !important;
+// }
 
-mat-cell {
-    overflow: visible;
-}
+// mat-header-cell[class*="cdk-column-"],
+// mat-cell[class*="cdk-column-"] {
+//     max-width: 165px;
+// }
+
+// mat-cell {
+//     overflow: visible;
+// }
 
 .mat-table .mat-row {
     position: relative;
@@ -91,11 +106,11 @@ mat-cell {
 }
 
 .mat-accent-50-bg {
-    background-color: #e1f5fe!important;
-    color: rgba(0,0,0,.87)!important;
+    background-color: #e1f5fe !important;
+    color: rgba(0, 0, 0, .87) !important;
 }
 
-.add-button{
+.add-button {
     position: absolute;
     z-index: 1000;
     top: -15px;
