@@ -20,6 +20,7 @@ import { GridPageComponent } from "@app/shared/components/grid-page/grid-page.co
 import { GridFilterComponent } from "@app/shared/components/grid-filter/grid-filter.component";
 import { GridHeaderComponent } from "@app/shared/components/grid-header/grid-header.component";
 import { GridSelectorComponent } from "@app/shared/components/grid-selector/grid-selector.component";
+import { DeleteConfirmDialogComponent } from "@app/shared/components/delete-confirm-dialog/delete-confirm-dialog.component";
 
 @NgModule({
   imports: [
@@ -60,7 +61,11 @@ import { GridSelectorComponent } from "@app/shared/components/grid-selector/grid
     GridPageComponent,
     GridFilterComponent,
     GridHeaderComponent,
-    GridSelectorComponent
+    GridSelectorComponent,
+    DeleteConfirmDialogComponent
+  ],
+  entryComponents:[
+    DeleteConfirmDialogComponent
   ]
 })
 export class SharedModule { }

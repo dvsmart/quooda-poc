@@ -16,7 +16,7 @@ export class AssetComponent implements OnInit {
 
   ngOnInit() {
     this.columnsConfig = new TableConfig(5, false, true);
-    this.columnsConfig.url = 'AssetProperties';
+    this.columnsConfig.dataUrl = 'AssetProperties';
     const columns =
       [
         {
@@ -46,7 +46,8 @@ export class AssetComponent implements OnInit {
         {
           primaryKey: 'addedDate',
           header: 'Added On',
-          format: 'date'
+          format: 'date',
+          isVisibleForMobile:false
         },
         {
           primaryKey: 'assetType',

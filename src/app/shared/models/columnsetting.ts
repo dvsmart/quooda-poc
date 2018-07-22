@@ -5,6 +5,7 @@ export class ColumnSetting {
   width?:number;
   type?:any;
   alternativeKeys?: string[];
+  isVisibleForMobile?:boolean = true;
 
   constructor(key: string, title?: string) {
     this.primaryKey = key;
@@ -18,6 +19,7 @@ export class ColumnMap {
   private _format: string;
   private _width:number;
   alternativeKeys?: string[];
+  isVisibleForMobile:boolean;
 
   constructor(settings) {
     this.primaryKey = settings.primaryKey;

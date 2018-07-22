@@ -12,6 +12,7 @@ import { MatSidenav } from '../../../../../node_modules/@angular/material';
 export class GridPageComponent implements OnInit {
   @Input() tableConfig;
   @Input() title: string;
+
   animationState = 'out';
   selectedGridRow: SelectionModel<any>;
 

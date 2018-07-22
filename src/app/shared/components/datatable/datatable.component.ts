@@ -85,7 +85,7 @@ export class DatatableComponent implements OnInit {
     this.setTableColumns();
     this.setColumnsFromConfig();
     this.setColumnsFromDataRow();
-    this.exampleDatabase = new ExampleHttpDao(this.http, this.config.url);
+    this.exampleDatabase = new ExampleHttpDao(this.http, this.config.dataUrl);
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.loadData();
   }
