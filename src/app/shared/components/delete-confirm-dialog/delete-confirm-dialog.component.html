@@ -3,6 +3,6 @@
   <p>{{data.message}}</p>
 </div>
 <div mat-dialog-actions class="pt-24">
-  <button mat-raised-button (click)="confirm()" color="primary" matripple>Confirm</button>
-  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button (click)="confirm()" color="primary" matripple [mat-dialog-close]="true">Confirm</button>
+  <button mat-raised-button mat-dialog-close>Cancel</button>
 </div>

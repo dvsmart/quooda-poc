@@ -1,4 +1,4 @@
-import { ColumnSetting, ColumnMap } from "./columnsetting";
+import { ColumnSetting, ColumnMap } from "@app/shared/models/columnsetting";
 import { MatTableDataSource } from "@angular/material";
 
 export class TableConfig {

@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TaskStatus } from '../../model/TaskStatus';
-import { Priority, TaskPriority } from '../../model/TaskPriority';
-import { TaskService } from '../../service/task.service';
+import { TaskStatus } from '@app/features/task/model/TaskStatus';
+import { Priority, TaskPriority } from '@app/features/task/model/TaskPriority';
+import { TaskService } from '@app/features/task/service/task.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

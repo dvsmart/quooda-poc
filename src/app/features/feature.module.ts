@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe} from '@angular/common';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from '@app/features/home/home.component';
+import { LoginComponent } from '@app/features/login/login.component';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthGuard } from '../core/guards/auth.guard';
-import { AuthService } from '../core/authentication/auth.service';
-import { AppLayoutComponent } from '../layout/app-layout/app-layout.component';
-import { SidemenuComponent } from '../layout/sidemenu/sidemenu.component';
-import { SideuserComponent } from '../layout/sideuser/sideuser.component';
-import { SideChildmenuComponent } from '../layout/sidemenu/extra-menu-item.component';
-import { NavbarComponent } from '../layout/navbar/navbar.component';
-import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from '@app/core/guards/auth.guard';
+import { AuthService } from '@app/core/authentication/auth.service';
+import { AppLayoutComponent } from '@app/layout/app-layout/app-layout.component';
+import { SidemenuComponent } from '@app/layout/sidemenu/sidemenu.component';
+import { SideuserComponent } from '@app/layout/sideuser/sideuser.component';
+import { SideChildmenuComponent } from '@app/layout/sidemenu/extra-menu-item.component';
+import { NavbarComponent } from '@app/layout/navbar/navbar.component';
+import { SharedModule } from '@app/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 

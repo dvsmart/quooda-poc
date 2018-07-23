@@ -1,13 +1,13 @@
-import { TabformComponent } from './components/tabform/tabform.component';
-import { FormfieldsComponent } from './components/formfields/formfields.component';
+import { TabformComponent } from '@app/core/components/tabform/tabform.component';
+import { FormfieldsComponent } from '@app/core/components/formfields/formfields.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MaterialModule } from '../shared/material.module';
+import { MaterialModule } from '@app/shared/material.module';
 import { NgModule } from '@angular/core';
-import { MenuService } from './SingletonServices/menu.service';
-import { AuthService } from './authentication/auth.service';
-import { AuthGuard } from './guards/auth.guard';
-import { HttpClientModule } from '../../../node_modules/@angular/common/http';
-import { CommonModule } from '../../../node_modules/@angular/common';
+import { MenuService } from '@app/core/SingletonServices/menu.service';
+import { AuthService } from '@app/core/authentication/auth.service';
+import { AuthGuard } from '@app/core/guards/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({

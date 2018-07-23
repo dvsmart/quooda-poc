@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { CustomTab } from '../../../viewmodel/custom/customTab';
+import { CustomTab } from '@app/viewmodel/custom/customTab';
 import { FormBuilder, FormGroupName, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CustomField } from '../../../viewmodel/custom/CustomField';
+import { CustomField } from '@app/viewmodel/custom/CustomField';
 
 @Component({
   selector: 'app-formfields',

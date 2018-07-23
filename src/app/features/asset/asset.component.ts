@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TableConfig } from '@app/shared/models/TableConfig';
 
 
@@ -12,6 +12,9 @@ export class AssetComponent implements OnInit {
   columnsConfig: TableConfig;
   selectedRows: any[] = [];
   selectedCount = 0;
+  addRecordVisible: boolean;
+  formData: any;
+
   constructor() { }
 
   ngOnInit() {
@@ -56,19 +59,19 @@ export class AssetComponent implements OnInit {
       ];
     this.columnsConfig.columns = columns;
   }
+
+  addRecord(event){
+    this.addRecordVisible = event;
+  }
+
+  close(){
+    debugger;
+    this.addRecordVisible = false;
+  }
+
+  edit(record){
+    debugger;
+    this.addRecordVisible = true;
+    this.formData = record;
+  }
 }
-
-
-
-  // addSelection(row) {
-  //   if (this.selectedRows.indexOf(row) == -1 || this.selectedRows.length === 0) {
-  //     this.selectedRows.push(row);
-  //   } else {
-  //     const index = this.selectedRows.indexOf(row);
-  //     if (index !== -1) {
-  //       this.selectedRows.splice(index, 1);
-  //     }
-  //   }
-  //   this.selectedCount = this.selectedRows.length;
-  // }
-

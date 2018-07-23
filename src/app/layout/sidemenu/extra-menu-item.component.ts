@@ -1,8 +1,8 @@
 import { Input, ViewChild, Component, HostBinding } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MenuService } from "../../core/SingletonServices/menu.service";
-import { Menu } from "../../core/models/menuModel";
+import { MenuService } from "@app/core/SingletonServices/menu.service";
+import { Menu } from "@app/core/models/menuModel";
 
 @Component({
   selector: 'appitem',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { LoaderState } from '../models/LoaderState';
+import { LoaderState } from '@app/shared/models/LoaderState';
 
 @Injectable()
 export class LoadingService {

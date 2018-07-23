@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, Inject, Input } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { HttpClient } from '../../../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-table-dialog',

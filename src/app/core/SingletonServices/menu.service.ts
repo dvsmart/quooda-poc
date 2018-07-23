@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GenericService } from '../../services/generic.service';
-import { Menu } from '../models/menuModel';
+import { GenericService } from '@app/services/generic.service';
+import { Menu } from '@app/core/models/menuModel';
 
 
 @Injectable()

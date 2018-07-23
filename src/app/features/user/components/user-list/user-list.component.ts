@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '../../../../../../node_modules/@angular/material';
+import { MatDialog } from '@angular/material';
 import { UserService } from '@app/features/user/service/user.service';
 import { DatatableComponent } from '@app/shared/components/datatable/datatable.component';
 import { TableConfig } from '@app/shared/models/TableConfig';

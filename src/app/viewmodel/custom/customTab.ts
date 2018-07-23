@@ -1,4 +1,4 @@
-import { CustomField } from "./CustomField";
+import { CustomField } from "@app/viewmodel/custom/CustomField";
 import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 
 export class CustomTab {

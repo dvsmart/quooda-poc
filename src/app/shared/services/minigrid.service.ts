@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { TableConfig } from '../models/TableConfig';
-import { ColumnSetting, ColumnMap } from '../models/columnsetting';
+import { TableConfig } from '@app/shared/models/TableConfig';
+import { ColumnSetting, ColumnMap } from '@app/shared/models/columnsetting';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class MinigridService {

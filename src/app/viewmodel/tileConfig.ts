@@ -1,4 +1,4 @@
-import { ListConfig } from "./listConfig";
+import { ListConfig } from "@app/viewmodel/listConfig";
 
 export class TileConfig{
     lists: ListConfig[];

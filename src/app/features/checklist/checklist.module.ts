@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChecklistComponent } from './checklist.component';
-import { CategoryComponent } from './components/category/category.component';
-import { TemplateComponent } from './components/template/template.component';
-import { ChecklistService } from './service/checklist.service';
+import { ChecklistComponent } from '@app/features/checklist/checklist.component';
+import { CategoryComponent } from '@app/features/checklist/components/category/category.component';
+import { TemplateComponent } from '@app/features/checklist/components/template/template.component';
+import { ChecklistService } from '@app/features/checklist/service/checklist.service';
 import { Routes, RouterModule } from '@angular/router';
-import { ListComponent } from './components/list/list.component';
+import { ListComponent } from '@app/features/checklist/components/list/list.component';
 
 const routes: Routes = [
   { path: 'checklist', component: ChecklistComponent },

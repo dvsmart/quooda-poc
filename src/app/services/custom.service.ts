@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ListConfig } from '../viewmodel/listConfig';
-import { CustomEntity } from '../viewmodel/custom/customEntity';
-import { FieldOption, CustomField } from '../viewmodel/custom/CustomField';
-import { CustomTab } from '../viewmodel/custom/customTab';
+import { ListConfig } from '@app/viewmodel/listConfig';
+import { CustomEntity } from '@app/viewmodel/custom/customEntity';
+import { FieldOption, CustomField } from '@app/viewmodel/custom/CustomField';
+import { CustomTab } from '@app/viewmodel/custom/customTab';
 
 @Injectable()
 export class CustomService {

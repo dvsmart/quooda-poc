@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ViewChild} from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter} from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 
-import { MatSidenav } from '../../../../../node_modules/@angular/material';
+import { MatSidenav } from '@angular/material';
+
 
 @Component({
   selector: 'app-grid-page',
@@ -15,8 +16,11 @@ export class GridPageComponent implements OnInit {
 
   animationState = 'out';
   selectedGridRow: SelectionModel<any>;
+  hasModified: boolean = false;
 
   @ViewChild('sidenav') sidenav: MatSidenav;
+  @Output() addNewRecord = new EventEmitter();
+  @Output() editRecord = new EventEmitter();
 
   constructor() { }
 
@@ -27,8 +31,20 @@ export class GridPageComponent implements OnInit {
     this.selectedGridRow = selectedRow;
   }
 
+  editRow(row){
+    this.editRecord.emit(row);
+  }
+
   togglefiltersidenav() {
     this.sidenav.toggle();
+  }
+
+  refreshData(){
+    this.hasModified = true;
+  }
+
+  triggerAddNewEvent(event){
+    this.addNewRecord.emit(event);
   }
 
 }

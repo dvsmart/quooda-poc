@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { TaskFilterList } from './model/TaskFilterList';
-import { DueType } from './model/dueType';
-import { TaskService } from './service/task.service';
-import { TableConfig } from '../../shared/models/TableConfig';
-import { TaskdetailComponent } from './components/taskdetail/taskdetail.component';
-import { Task } from './model/task';
-import { AddtaskComponent } from './components/addtask/addtask.component';
+import { TaskFilterList } from '@app/features/task/model/TaskFilterList';
+import { DueType } from '@app/features/task/model/dueType';
+import { TaskService } from '@app/features/task/service/task.service';
+import { TableConfig } from '@app/shared/models/TableConfig';
+import { TaskdetailComponent } from '@app/features/task/components/taskdetail/taskdetail.component';
+import { Task } from '@app/features/task/model/task';
+import { AddtaskComponent } from '@app/features/task/components/addtask/addtask.component';
 
 @Component({
   selector: 'app-task',

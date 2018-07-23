@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { CustomTab } from '../../../viewmodel/custom/customTab';
-import { CustomField } from '../../../viewmodel/custom/CustomField';
+import { CustomTab } from '@app/viewmodel/custom/customTab';
+import { CustomField } from '@app/viewmodel/custom/CustomField';
 
 @Component({
   selector: 'app-tabform',

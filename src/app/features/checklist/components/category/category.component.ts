@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ListConfig } from '../../model/list';
+import { ListConfig } from '@app/features/checklist/model/list';
 
 @Component({
   selector: 'app-category',

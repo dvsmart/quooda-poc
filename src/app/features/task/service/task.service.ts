@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Task } from '../model/task';
-import { TaskStatus } from '../model/TaskStatus';
-import { DueType } from '../model/dueType';
+import { Task } from '@app/features/task/model/task';
+import { TaskStatus } from '@app/features/task/model/TaskStatus';
+import { DueType } from '@app/features/task/model/dueType';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+import { environment } from 'environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { TaskPriority } from '../model/TaskPriority';
+import { TaskPriority } from '@app/features/task/model/TaskPriority';
 
 @Injectable()
 export class TaskService {

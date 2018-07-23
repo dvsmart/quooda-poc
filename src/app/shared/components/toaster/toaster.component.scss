@@ -1,3 +1,20 @@
 .toaster-icon{
-  margin-right: 5px;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.fail{
+  color: red!important;
+}
+
+.success{
+  color: lightgreen!important;
+}
+
+.info{
+  color: rgb(201, 226, 57)!important;
+}
+
+.toaster-message{
+  font-size: 14px!important;
 }

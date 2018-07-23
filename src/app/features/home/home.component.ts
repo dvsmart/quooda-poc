@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs/Subscription';
-import { TableConfig } from '../../shared/models/TableConfig';
+import { TableConfig } from '@app/shared/models/TableConfig';
 
 @Component({
   selector: 'app-home',

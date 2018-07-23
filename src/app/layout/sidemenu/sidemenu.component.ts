@@ -2,8 +2,8 @@ import { Component, OnInit, Input, ViewChild, ViewEncapsulation, HostBinding } f
 import { Observable } from 'rxjs/Observable';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
-import { MenuService } from '../../core/SingletonServices/menu.service';
-import { Menu } from '../../core/models/menuModel';
+import { MenuService } from '@app/core/SingletonServices/menu.service';
+import { Menu } from '@app/core/models/menuModel';
 
 @Component({
   selector: 'app-sidemenu',

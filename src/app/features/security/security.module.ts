@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FeatureAccessControlComponent } from './components/feature-access-control/feature-access-control.component';
+import { FeatureAccessControlComponent } from '@app/features/security/components/feature-access-control/feature-access-control.component';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [

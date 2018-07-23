@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { TaskService } from '../../service/task.service';
-import { TaskFilterList } from '../../model/TaskFilterList';
+import { TaskService } from '@app/features/task/service/task.service';
+import { TaskFilterList } from '@app/features/task/model/TaskFilterList';
 import { Router } from '@angular/router';
 
 @Component({

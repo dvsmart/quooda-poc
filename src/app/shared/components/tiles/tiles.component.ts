@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TileConfig } from '../../../viewmodel/tileConfig';
-import { ListConfig } from '../../../viewmodel/listConfig';
+import { TileConfig } from '@app/viewmodel/tileConfig';
+import { ListConfig } from '@app/viewmodel/listConfig';
 
 
 @Component({

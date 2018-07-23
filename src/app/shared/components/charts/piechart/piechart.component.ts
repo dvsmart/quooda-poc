@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ChartBaseComponent } from '../chart-base';
+import { ChartBaseComponent } from '@app/shared/components/charts/chart-base';
 import { Chart } from 'Chart.js'
 @Component({
   selector: 'app-piechart',

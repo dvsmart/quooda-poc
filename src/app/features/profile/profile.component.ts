@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ToasterService } from '../../shared/services/toaster.service';
-import { LoadingService } from '../../shared/services/loading.service';
+import { ToasterService } from '@app/shared/services/toaster.service';
+import { LoadingService } from '@app/shared/services/loading.service';
 
 @Component({
   selector: 'app-profile',

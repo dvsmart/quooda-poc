@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskComponent } from './task.component';
-import { TaskdetailComponent } from './components/taskdetail/taskdetail.component';
+import { TaskComponent } from '@app/features/task/task.component';
+import { TaskdetailComponent } from '@app/features/task/components/taskdetail/taskdetail.component';
 import { Routes, RouterModule } from '@angular/router';
-import { TaskService } from './service/task.service';
-import { AddtaskComponent } from './components/addtask/addtask.component';
-import { TaskfilterComponent } from './components/taskfilter/taskfilter.component';
-import { TasklistComponent } from './components/tasklist/tasklist.component';
-import { SharedModule } from '../../shared/shared.module';
+import { TaskService } from '@app/features/task/service/task.service';
+import { AddtaskComponent } from '@app/features/task/components/addtask/addtask.component';
+import { TaskfilterComponent } from '@app/features/task/components/taskfilter/taskfilter.component';
+import { TasklistComponent } from '@app/features/task/components/tasklist/tasklist.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 const routes: Routes = [
   { path: '', component: TaskComponent },

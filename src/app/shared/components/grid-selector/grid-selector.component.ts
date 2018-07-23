@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SelectionModel } from '../../../../../node_modules/@angular/cdk/collections';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
 import { trigger, state, style, transition, animate, group } from '@angular/animations';
 import { MatDialog } from '@angular/material';
 import { DeleteConfirmDialogComponent } from '@app/shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
+import { ToasterService } from '@app/shared/services/toaster.service';
 
 @Component({
   selector: 'app-grid-selector',
@@ -25,13 +26,16 @@ export class GridSelectorComponent implements OnInit {
   @Input() selection;
   @Input() url:string;
 
+  @Output() deleteNotify = new EventEmitter();
+
   selectedRow = new SelectionModel<any>(true);
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,private toaster: ToasterService) { }
 
   ngOnInit() {
   }
 
   ngOnChanges() {
+    debugger;
     if (this.selection !== undefined) {
       this.selectedRow = this.selection;
     }
@@ -48,7 +52,13 @@ export class GridSelectorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if(result != undefined && result){
+        this.selection.clear();
+        this.toaster.showToasterComponent("Record has been deleted successfully","",1500,'success');
+        this.deleteNotify.emit(true);
+      }else{
+        this.toaster.showToasterComponent("Operation aborted","",1000,'success');
+      }
     });
   }
 

@@ -1,4 +1,4 @@
-import { CustomField } from "./CustomField";
+import { CustomField } from "@app/viewmodel/custom/CustomField";
 
 export class CustomForm {
   title?: string;

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DeleteService } from '@app/shared/services/delete.service';
 import { DeleteModel } from '@app/shared/models/deleteModel';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -13,6 +14,7 @@ export class DeleteConfirmDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data,
   private matDialogRef: MatDialogRef<DeleteConfirmDialogComponent>,private deleteService:DeleteService,) { }
   deleteModel: DeleteModel;
+  subscription: Subscription;
   ngOnInit() {
   }
 
@@ -21,7 +23,6 @@ export class DeleteConfirmDialogComponent implements OnInit {
   }
 
   populateModel(){
-    debugger;
     this.deleteModel = new DeleteModel();
     this.data.ids.forEach(element => {
       this.deleteModel.ids.push(element);
@@ -32,9 +33,16 @@ export class DeleteConfirmDialogComponent implements OnInit {
 
   confirm(){
     this.populateModel();
-    this.deleteService.deleteServiceWithId(this.deleteModel).subscribe();
+    this.subscription = this.deleteService.delete(this.deleteModel).subscribe(x=>{
+      this.matDialogRef.close(true);
+    });
   } 
 
+  ngOnDestroy(){
+    if(this.subscription != undefined){
+      this.subscription.unsubscribe();
+    }
+  }
 }
 
 

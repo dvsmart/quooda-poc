@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-toaster',
@@ -12,6 +11,7 @@ export class ToasterComponent {
   success: boolean = false;
   failure: boolean = false;
   loading: boolean = false;
+  info: boolean = false;
   message: any;
 
 
@@ -29,6 +29,9 @@ export class ToasterComponent {
         break;
       case "failure":
         this.failure = true;
+        break;
+      case "info":
+        this.info = true;
         break;
       case "loading":
         this.loading = true;

@@ -8,9 +8,9 @@ import { catchError } from 'rxjs/operators/catchError';
 import { map } from 'rxjs/operators/map';
 import { startWith } from 'rxjs/operators/startWith';
 import { switchMap } from 'rxjs/operators/switchMap';
-import { environment } from '../../../../environments/environment';
+import { environment } from 'environments/environment';
 import { SelectionModel } from '@angular/cdk/collections';
-import { ColumnMap, ColumnSetting } from '../../models/columnsetting';
+import { ColumnMap, ColumnSetting } from '@app/shared/models/columnsetting';
 import { trigger, state, style, transition, animate, group } from '@angular/animations';
 
 @Component({
@@ -71,12 +71,15 @@ export class DatatableComponent implements OnInit {
   pageSize = 10;
   allSelected: boolean;
   columnMaps: ColumnSetting[];
-  showAdd:boolean = true;
+  showAdd: boolean = true;
+  @Input() refresh: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   @Output() selectedRow = new EventEmitter();
+  @Output() addNew = new EventEmitter();
+
   selection = new SelectionModel<any>(true, [], true);
   constructor(private http: HttpClient) { }
 
@@ -88,6 +91,16 @@ export class DatatableComponent implements OnInit {
     this.exampleDatabase = new ExampleHttpDao(this.http, this.config.dataUrl);
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
     this.loadData();
+  }
+
+  ngOnChanges() {
+    if(this.refresh){
+      this.loadData();
+    }
+  }
+
+  addNewEvent(){
+    this.addNew.emit(true);
   }
 
   setTableColumns() {
@@ -158,6 +171,10 @@ export class DatatableComponent implements OnInit {
 
   onRowSelect(row) {
     this.selectedRow.emit(this.selection);
+  }
+
+  editRow(row){
+    this.selectedRow.emit(row);
   }
 
 

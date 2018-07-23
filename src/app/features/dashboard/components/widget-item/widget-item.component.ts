@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { PiechartComponent } from '../../../../shared/components/charts/piechart/piechart.component';
-import { BarchartComponent } from '../../../../shared/components/charts/barchart/barchart.component';
-import { LinechartComponent } from '../../../../shared/components/charts/linechart/linechart.component';
-import { DoughnutComponent } from '../../../../shared/components/charts/doughnut/doughnut.component';
-import { ChartBaseComponent } from '../../../../shared/components/charts/chart-base';
+import { PiechartComponent } from '@app/shared/components/charts/piechart/piechart.component';
+import { BarchartComponent } from '@app/shared/components/charts/barchart/barchart.component';
+import { LinechartComponent } from '@app/shared/components/charts/linechart/linechart.component';
+import { DoughnutComponent } from '@app/shared/components/charts/doughnut/doughnut.component';
+import { ChartBaseComponent } from '@app/shared/components/charts/chart-base';
 
 @Component({
   selector: 'app-widget-item',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Task } from '../../model/task';
+import { Task } from '@app/features/task/model/task';
 
 @Component({
   selector: 'app-taskdetail',

@@ -1,6 +1,6 @@
 <div class="page-layout simple left-sidebar inner-sidebar inner-scroll">
   <app-grid-header (toggleFilter)="togglefiltersidenav($event)" [title]="title"></app-grid-header>
-  <app-grid-selector [selection]="selectedGridRow" [url]="tableConfig.dataUrl"></app-grid-selector>
+  <app-grid-selector [selection]="selectedGridRow" [url]="tableConfig.dataUrl" (deleteNotify)="refreshData($event)"></app-grid-selector>
   <div class="content">
     <mat-sidenav-container>
       <mat-sidenav #sidenav mode="side" class="sidebar-wrapper" opened="true">
@@ -8,7 +8,7 @@
       </mat-sidenav>
       <mat-sidenav-content style="flex:1;" class="center p-24 pb-56 pr-sm-92 ps">
         <div fxflexalign="row">
-          <app-datatable [config]="tableConfig" (selectedRow)='selectedValue($event)'></app-datatable>
+          <app-datatable [config]="tableConfig" (selectedRow)='selectedValue($event)' [refresh]="hasModified" (addNew)="triggerAddNewEvent($event)"></app-datatable>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>

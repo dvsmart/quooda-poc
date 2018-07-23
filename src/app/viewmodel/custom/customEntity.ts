@@ -1,4 +1,4 @@
-import { CustomTab } from "./customTab";
+import { CustomTab } from "@app/viewmodel/custom/customTab";
 
 export class CustomEntity{
   id: number;

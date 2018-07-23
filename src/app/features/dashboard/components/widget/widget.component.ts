@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Widget } from '../../model/WidgetConfiguration';
+import { Widget } from '@app/features/dashboard/model/WidgetConfiguration';
 
 @Component({
   selector: 'app-widget',
