@@ -13,7 +13,7 @@ export class PropertiesComponent implements OnInit {
 
   ngOnInit() {
     this.columnsConfig = new TableConfig(5,false,true);
-    this.columnsConfig.url = 'AssetProperties';
+    this.columnsConfig.dataUrl = 'AssetProperties';
     const columns =
       [
         {

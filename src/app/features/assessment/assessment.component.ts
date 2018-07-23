@@ -12,7 +12,7 @@ export class AssessmentComponent implements OnInit {
 
   ngOnInit() {
     this.columnsConfig = new TableConfig(5, false, true);
-    this.columnsConfig.url = 'Assessment';
+    this.columnsConfig.dataUrl = 'Assessment';
     const columns =
       [
         {

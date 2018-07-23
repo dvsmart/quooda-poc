@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.columnsConfig = new TableConfig(5);
-    this.columnsConfig.url = 'User';
+    this.columnsConfig.dataUrl = 'User';
     const columns =
       [
         {

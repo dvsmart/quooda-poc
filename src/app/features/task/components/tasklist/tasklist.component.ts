@@ -13,7 +13,7 @@ export class TasklistComponent implements OnInit {
 
   ngOnInit() {
     this.columnsConfig = new TableConfig(5);
-    this.columnsConfig.url = 'Task/Taskforgrid';
+    this.columnsConfig.dataUrl = 'Task/Taskforgrid';
     const columns =
       [
         {
