@@ -78,6 +78,7 @@ export class DatatableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   @Output() selectedRow = new EventEmitter();
+  @Output() clickRow = new EventEmitter();
   @Output() addNew = new EventEmitter();
 
   selection = new SelectionModel<any>(true, [], true);
@@ -169,12 +170,15 @@ export class DatatableComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  onRowSelect(row) {
+  onRowSelect(row,$event) {
+    debugger;
+    $event.stopPropagation();
     this.selectedRow.emit(this.selection);
   }
 
   editRow(row){
-    this.selectedRow.emit(row);
+    debugger;
+    this.clickRow.emit(row);
   }
 
 

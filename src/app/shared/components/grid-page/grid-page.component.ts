@@ -35,6 +35,10 @@ export class GridPageComponent implements OnInit {
     this.editRecord.emit(row);
   }
 
+  rowClicked(r){
+    this.editRow(r);
+  }
+
   togglefiltersidenav() {
     this.sidenav.toggle();
   }
