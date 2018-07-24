@@ -13,6 +13,7 @@ export class PropertyDetailComponent implements OnInit {
   @Output() cancelNotify = new EventEmitter<boolean>();
   @Input() data: any;
   title: string;
+  @Output() saveNotify = new EventEmitter<boolean>(false);
   constructor(private assetservice: AssetService, private toaster: ToasterService) { }
 
   ngOnInit() {
@@ -33,11 +34,15 @@ export class PropertyDetailComponent implements OnInit {
       GrossInternalSize: new FormControl(''),
       NumberOfFloors: new FormControl(''),
       NumberOfPlantRooms: new FormControl(''),
-      StatusStartDate: new FormControl('')
+      StatusStartDate: new FormControl(''),
+      id: new FormControl(0),
+      assetId: new FormControl(0)
     });
     if (this.data != null && this.data != undefined) {
       this.title = 'Edit Property - ' + this.data.dataId;
       this.formGroup.patchValue({
+        id: this.data.id,
+        dataId: this.data.dataId,
         AddressLine1: this.data.addressLine1,
         PropertyReference: this.data.propertyReference,
         AddressLine2: this.data.addressLine2,
@@ -50,7 +55,8 @@ export class PropertyDetailComponent implements OnInit {
         GrossInternalSize: this.data.grossInternalSize,
         NumberOfFloors: this.data.numberOfFloors,
         NumberOfPlantRooms: this.data.numberOfPlantRooms,
-        StatusStartDate: this.data.statusStartDate
+        StatusStartDate: this.data.statusStartDate,
+        assetId: this.data.assetId
       })
     } else {
       this.title = 'Create New Property';
@@ -66,13 +72,30 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   save() {
-    this.assetservice.add(this.formGroup.value).subscribe(x => 
-        { 
-            this.title = 'Edit Property - ' + x['savedDataId'];
-            if(x['saveSuccessful'] === true){
-              this.toaster.open("Saved successfully.");
-            }
-        });
+    debugger;
+    if (this.formGroup.value.id == "") {
+
+      this.assetservice.add(this.formGroup.value).subscribe(x => {
+        this.title = 'Edit Property - ' + x['savedDataId'];
+        if (x['saveSuccessful'] === true) {
+          this.toaster.open("Saved successfully.");
+          this.saveNotify.emit(true);
+        }
+        else {
+          this.toaster.open(x['errorMessage']);
+        }
+      });
+    } else {
+      this.assetservice.update(this.formGroup.value.id, this.formGroup.value).subscribe(x => {
+        this.title = 'Edit Property - ' + x['savedDataId'];
+        if (x['saveSuccessful'] === true) {
+          this.toaster.open("Saved successfully.");
+          this.saveNotify.emit(true);
+        } else {
+          this.toaster.open(x['errorMessage']);
+        }
+      });
+    }
   }
 
 }

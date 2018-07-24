@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class GenericService<T extends any> {
   url: string;
   constructor(private http: HttpClient,private endpoint: string) {
-    this.url = environment.apiUrl + '/' + endpoint + '/';
+    this.url = environment.apiUrl + endpoint + '/';
   }
 
   public getAll<T>(): Observable<T> {

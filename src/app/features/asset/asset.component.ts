@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TableConfig } from '@app/shared/models/TableConfig';
 import { FormGroup } from '../../../../node_modules/@angular/forms';
+import { AssetService } from '@app/features/asset/service/asset.service';
 
 
 @Component({
@@ -15,8 +16,9 @@ export class AssetComponent implements OnInit {
   selectedCount = 0;
   addRecordVisible: boolean;
   formData: any;
+  notify;
 
-  constructor() { }
+  constructor(private assetservice: AssetService) { }
 
   ngOnInit() {
     this.columnsConfig = new TableConfig(5, false, true);
@@ -70,8 +72,17 @@ export class AssetComponent implements OnInit {
     this.addRecordVisible = false;
   }
 
+  savedResponse(e){
+    if(this.notify){
+      this.notify = false;
+    }
+    this.notify = e;
+  }
+
   edit(record){
     this.addRecordVisible = true;
-    this.formData = record;
+    //this.formData = record;
+    debugger;
+    this.assetservice.getSingle(record.id).subscribe(x=> {this.formData = x; console.log(x);});
   }
 }

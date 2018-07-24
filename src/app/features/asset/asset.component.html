@@ -1,5 +1,5 @@
 <div *ngIf="addRecordVisible">
-    <app-property-detail (cancelNotify)="close($event)" [data]="formData"></app-property-detail>
+    <app-property-detail (cancelNotify)="close($event)" [data]="formData" (saveNotify)="savedResponse($event)"></app-property-detail>
 </div>
 
-<app-grid-page [tableConfig]="columnsConfig" [title]="'Properties'" (addNewRecord)="addRecord($event)" (editRecord)="edit($event)"></app-grid-page>
+<app-grid-page [tableConfig]="columnsConfig" [title]="'Properties'" [refresh]="notify" (addNewRecord)="addRecord($event)" (editRecord)="edit($event)"></app-grid-page>

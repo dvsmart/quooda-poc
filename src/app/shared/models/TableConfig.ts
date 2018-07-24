@@ -12,6 +12,7 @@ export class TableConfig {
   pageSize: number;
   dataUrl?:string;
   deleteUrl?:string;
+  notify?:boolean;
 
   /**
    *

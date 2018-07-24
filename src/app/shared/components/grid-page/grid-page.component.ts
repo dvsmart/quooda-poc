@@ -13,6 +13,7 @@ import { MatSidenav } from '@angular/material';
 export class GridPageComponent implements OnInit {
   @Input() tableConfig;
   @Input() title: string;
+  @Input() refresh: boolean;
 
   animationState = 'out';
   selectedGridRow: SelectionModel<any>;
@@ -25,6 +26,12 @@ export class GridPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(){
+    if(this.refresh){
+      this.hasModified = true;
+    }
   }
 
   selectedValue(selectedRow) {

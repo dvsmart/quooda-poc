@@ -15,4 +15,5 @@ export interface CreateAssetPropertyRequest
         StatusStartDate: Date | string | null;
         CountyId: number | null;
         CountryId: number | null;
+        AssetId:number;
     }
