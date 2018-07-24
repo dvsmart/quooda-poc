@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '../../../../../../node_modules/@angular/forms';
+import { AssetService } from '@app/features/asset/service/asset.service';
+import { ToasterService } from '@app/shared/services/toaster.service';
 
 @Component({
   selector: 'app-property-detail',
@@ -10,10 +12,14 @@ export class PropertyDetailComponent implements OnInit {
   formGroup: FormGroup;
   @Output() cancelNotify = new EventEmitter<boolean>();
   @Input() data: any;
-  constructor() { }
+  title: string;
+  constructor(private assetservice: AssetService, private toaster: ToasterService) { }
 
   ngOnInit() {
-    debugger;
+    this.createFormGroup();
+  }
+
+  createFormGroup() {
     this.formGroup = new FormGroup({
       PropertyReference: new FormControl('', Validators.required),
       AddressLine1: new FormControl('', Validators.required),
@@ -29,24 +35,44 @@ export class PropertyDetailComponent implements OnInit {
       NumberOfPlantRooms: new FormControl(''),
       StatusStartDate: new FormControl('')
     });
-    if(this.data != null && this.data != undefined){
+    if (this.data != null && this.data != undefined) {
+      this.title = 'Edit Property - ' + this.data.dataId;
       this.formGroup.patchValue({
-        AddressLine1: this.data.addressLine1
+        AddressLine1: this.data.addressLine1,
+        PropertyReference: this.data.propertyReference,
+        AddressLine2: this.data.addressLine2,
+        AddressLine3: this.data.addressLine3,
+        City: this.data.city,
+        Postcode: this.data.postcode,
+        KnownAs: this.data.knownAs,
+        PropertySize: this.data.propertySize,
+        NetInternalSize: this.data.netInternalSize,
+        GrossInternalSize: this.data.grossInternalSize,
+        NumberOfFloors: this.data.numberOfFloors,
+        NumberOfPlantRooms: this.data.numberOfPlantRooms,
+        StatusStartDate: this.data.statusStartDate
       })
+    } else {
+      this.title = 'Create New Property';
     }
   }
 
-  ngOnChanges(){
-    debugger;
-    
+  ngOnChanges() {
+    this.createFormGroup();
   }
 
-  cancel(){
+  cancel() {
     this.cancelNotify.emit(true);
   }
 
-  save(){
-    alert(this.formGroup.value);
+  save() {
+    this.assetservice.add(this.formGroup.value).subscribe(x => 
+        { 
+            this.title = 'Edit Property - ' + x['savedDataId'];
+            if(x['saveSuccessful'] === true){
+              this.toaster.open("Saved successfully.");
+            }
+        });
   }
 
 }

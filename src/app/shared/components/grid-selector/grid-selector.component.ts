@@ -32,13 +32,12 @@ export class GridSelectorComponent implements OnInit {
   constructor(public dialog: MatDialog,private toaster: ToasterService) { }
 
   ngOnInit() {
-  }
-
-  ngOnChanges() {
-    debugger;
     if (this.selection !== undefined) {
       this.selectedRow = this.selection;
     }
+  }
+
+  ngOnChanges() {
   }
 
   confirmDelete() {

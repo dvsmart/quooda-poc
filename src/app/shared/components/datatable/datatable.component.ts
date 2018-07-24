@@ -171,16 +171,13 @@ export class DatatableComponent implements OnInit {
   }
 
   onRowSelect(row,$event) {
-    debugger;
     $event.stopPropagation();
     this.selectedRow.emit(this.selection);
   }
 
   editRow(row){
-    debugger;
     this.clickRow.emit(row);
   }
-
 
   pageEvent($event) {
     this.currentPage = $event.pageIndex + 1;

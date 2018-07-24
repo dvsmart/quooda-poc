@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TableConfig } from '@app/shared/models/TableConfig';
+import { FormGroup } from '../../../../node_modules/@angular/forms';
 
 
 @Component({
@@ -62,15 +63,14 @@ export class AssetComponent implements OnInit {
 
   addRecord(event){
     this.addRecordVisible = event;
+    this.formData = null;
   }
 
   close(){
-    debugger;
     this.addRecordVisible = false;
   }
 
   edit(record){
-    debugger;
     this.addRecordVisible = true;
     this.formData = record;
   }
