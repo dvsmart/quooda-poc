@@ -22,6 +22,7 @@ import { GridHeaderComponent } from "@app/shared/components/grid-header/grid-hea
 import { GridSelectorComponent } from "@app/shared/components/grid-selector/grid-selector.component";
 import { DeleteConfirmDialogComponent } from "@app/shared/components/delete-confirm-dialog/delete-confirm-dialog.component";
 import { ToasterComponent } from "@app/shared/components/toaster/toaster.component";
+import { MessageService } from "@app/shared/services/message.service";
 
 @NgModule({
   imports: [
@@ -48,7 +49,7 @@ import { ToasterComponent } from "@app/shared/components/toaster/toaster.compone
     TableDialogComponent,
     GridPageComponent,
   ],
-  providers: [MinigridService,LoadingService,ToasterService],
+  providers: [MinigridService,LoadingService,ToasterService,MessageService],
   declarations:[
     PiechartComponent,
     LinechartComponent,

@@ -4,6 +4,7 @@ import { trigger, state, style, transition, animate, group } from '@angular/anim
 import { MatDialog } from '@angular/material';
 import { DeleteConfirmDialogComponent } from '@app/shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 import { ToasterService } from '@app/shared/services/toaster.service';
+import { MessageService } from '@app/shared/services/message.service';
 
 @Component({
   selector: 'app-grid-selector',
@@ -29,22 +30,23 @@ export class GridSelectorComponent implements OnInit {
   @Output() deleteNotify = new EventEmitter();
 
   selectedRow = new SelectionModel<any>(true);
-  constructor(public dialog: MatDialog,private toaster: ToasterService) { }
+  constructor(public dialog: MatDialog,private toaster: ToasterService,private messageservice: MessageService) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
     if (this.selection !== undefined) {
       this.selectedRow = this.selection;
     }
   }
 
-  ngOnChanges() {
-  }
-
   confirmDelete() {
+    debugger;
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
       data: {
         message: 'Are you sure you want to delete all selected records?',
-        actionUrl: this.url,
+        actionUrl: this.url + '/deleteAll',
         ids: this.selection.selected.map(x=>x.id),
         key:'ids'
       }
@@ -53,8 +55,10 @@ export class GridSelectorComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result != undefined && result){
         this.selection.clear();
+        debugger;
         this.toaster.showToasterComponent("Record has been deleted successfully","",1500,'success');
-        this.deleteNotify.emit(true);
+        this.messageservice.sendMessage("some message sent from grid-selector");
+        //this.deleteNotify.emit(true);
       }else{
         this.toaster.showToasterComponent("Operation aborted","",1000,'success');
       }

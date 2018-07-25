@@ -1,13 +1,23 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TableConfig } from '@app/shared/models/TableConfig';
-import { FormGroup } from '../../../../node_modules/@angular/forms';
 import { AssetService } from '@app/features/asset/service/asset.service';
-
+import { trigger, transition, animate, style } from '@angular/animations'
 
 @Component({
   selector: 'app-asset',
   templateUrl: './asset.component.html',
-  styleUrls: ['./asset.component.scss']
+  styleUrls: ['./asset.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateY(-100%)'}),
+        animate('100ms ease-in', style({transform: 'translateY(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+      ])
+    ])
+  ]
 })
 export class AssetComponent implements OnInit {
   visible: boolean = false;
@@ -53,7 +63,7 @@ export class AssetComponent implements OnInit {
           primaryKey: 'addedDate',
           header: 'Added On',
           format: 'date',
-          isVisibleForMobile:false
+          isVisibleForMobile: false
         },
         {
           primaryKey: 'assetType',
@@ -63,26 +73,30 @@ export class AssetComponent implements OnInit {
     this.columnsConfig.columns = columns;
   }
 
-  addRecord(event){
+  addRecord(event) {
     this.addRecordVisible = event;
     this.formData = null;
   }
 
-  close(){
+  close() {
     this.addRecordVisible = false;
   }
 
-  savedResponse(e){
-    if(this.notify){
+  savedResponse(e) {
+    if (this.notify) {
       this.notify = false;
     }
     this.notify = e;
   }
 
-  edit(record){
-    this.addRecordVisible = true;
-    //this.formData = record;
-    debugger;
-    this.assetservice.getSingle(record.id).subscribe(x=> {this.formData = x; console.log(x);});
+  edit(record) {
+    this.addRecordVisible = false;
+    this.assetservice.getSingle(record.id).subscribe(x => {
+      this.formData = x;
+      if (x != null) {
+        this.addRecordVisible = true;
+      }
+    }
+    );
   }
 }

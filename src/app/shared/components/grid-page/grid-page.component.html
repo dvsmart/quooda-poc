@@ -1,6 +1,6 @@
 <div class="page-layout simple left-sidebar inner-sidebar inner-scroll">
   <app-grid-header (toggleFilter)="togglefiltersidenav($event)" [title]="title"></app-grid-header>
-  <app-grid-selector [selection]="selectedGridRow" [url]="tableConfig.dataUrl" (deleteNotify)="refreshData($event)"></app-grid-selector>
+  <app-grid-selector [selection]="selectedGridRow" [url]="tableConfig.dataUrl"></app-grid-selector>
   <div class="content">
     <mat-sidenav-container>
       <mat-sidenav #sidenav mode="side" class="sidebar-wrapper" opened="true">

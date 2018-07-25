@@ -1,4 +1,4 @@
-<div *ngIf="addRecordVisible">
+<div *ngIf="addRecordVisible" [@slideInOut]>
     <app-property-detail (cancelNotify)="close($event)" [data]="formData" (saveNotify)="savedResponse($event)"></app-property-detail>
 </div>
 

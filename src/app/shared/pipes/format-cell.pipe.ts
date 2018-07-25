@@ -26,13 +26,6 @@ export class FormatCellPipe implements PipeTransform {
       }
     }
 
-    if(typeof value === "string"){
-      if(moment(value).isValid()){
-        value = moment(value).format('DD/MM/YYYY')
-      }
-      return value;
-    }
-
     if (format === 'currency') {
       return this.currencyPipe.transform(value, 'GBP', 'symbol');
     }

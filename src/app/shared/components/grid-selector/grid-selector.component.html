@@ -1,4 +1,4 @@
-<div class="mat-accent-600-bg selectedCard" *ngIf="selectedRow != undefined && !selectedRow.isEmpty()" [@slideInOut] style="z-index: 1;flex-direction: row; box-sizing: border-box; transform: translateY(0px); display: flex;">
+<div class="mat-accent-600-bg selectedCard" *ngIf="!selectedRow.isEmpty()" [@slideInOut] style="z-index: 1;flex-direction: row; box-sizing: border-box; transform: translateY(0px); display: flex;">
   <div class="p-24" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center flex-start; align-items: center; flex: 1 1 0%;">
     <div class="close-button-wrapper" fxflex="0 1 auto" fxflex.gt-sm="220px" style="flex: 1 1 220px; box-sizing: border-box; max-width: 220px; min-width: 220px;">
       <button mat-icon-button class="pl-15" (click)="selectedRow.clear()" fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">

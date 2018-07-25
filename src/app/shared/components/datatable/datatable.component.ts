@@ -12,6 +12,8 @@ import { environment } from 'environments/environment';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ColumnMap, ColumnSetting } from '@app/shared/models/columnsetting';
 import { trigger, state, style, transition, animate, group } from '@angular/animations';
+import { Subscription } from 'rxjs';
+import { MessageService } from '@app/shared/services/message.service';
 
 @Component({
   selector: 'app-datatable',
@@ -76,13 +78,16 @@ export class DatatableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  subscription: Subscription;
   @Output() selectedRow = new EventEmitter();
   @Output() clickRow = new EventEmitter();
   @Output() addNew = new EventEmitter();
 
   selection = new SelectionModel<any>(true, [], true);
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient,private messageservice: MessageService) { 
+    this.subscription = this.messageservice.getMessage().subscribe(message => { this.loadData(); });
+  }
 
   ngOnInit() {
     this.config = this.config;
@@ -95,6 +100,7 @@ export class DatatableComponent implements OnInit {
   }
 
   ngOnChanges() {
+    debugger;
     if(this.refresh){
       this.loadData();
     }
@@ -176,6 +182,9 @@ export class DatatableComponent implements OnInit {
   }
 
   editRow(row){
+    debugger;
+    console.log(window.screenTop);
+    window.scroll(0, 0);
     this.clickRow.emit(row);
   }
 
