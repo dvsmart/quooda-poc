@@ -1,17 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { TableConfig } from '@app/shared/models/TableConfig';
+import { MessageService, Payload } from '@app/shared/services/message.service';
+import { Subscription } from 'rxjs';
+import { AssessmentService } from '@app/features/assessment/service/assessment.service';
+import { BaseComponent } from '@app/shared/models/BaseComponent';
 
 @Component({
   selector: 'app-assessment',
   templateUrl: './assessment.component.html',
   styleUrls: ['./assessment.component.scss']
 })
-export class AssessmentComponent implements OnInit {
+export class AssessmentComponent extends BaseComponent {
   columnsConfig: TableConfig;
-  constructor() { }
+  showEditForm: boolean;
+  formData: any;
+  constructor(messageservice: MessageService, private assessmentservice: AssessmentService) {
+    super(messageservice);
+  }
+
+  //  addRecord() {
+  //   this.showEditForm = true;
+  //   this.formData = null;
+  // }
+
+  // close() {
+  //   this.showEditForm = false;
+  // }
+
+  edit(record) {
+    this.assessmentservice.getSingle(record).subscribe(x => {
+      this.formData = x;
+      if (x != null) {
+        this.showEditForm = true;
+      }
+    }
+    );
+  }
 
   ngOnInit() {
-    this.columnsConfig = new TableConfig(5, false, true);
+    this.columnsConfig = new TableConfig('Assessments', 5, false, true);
     this.columnsConfig.dataUrl = 'Assessment';
     const columns =
       [

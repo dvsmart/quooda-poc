@@ -21,7 +21,6 @@ export class TaskComponent implements OnInit {
   apiUrl: string;
 
   constructor(private dialog: MatDialog, private taskservice: TaskService) {
-    this.apiUrl = 'Task/Taskforgrid?page=' + 1 + '&pageSize=' + 10;
   }
 
   ngOnInit() {
@@ -41,39 +40,6 @@ export class TaskComponent implements OnInit {
 
   Initialize() {
     this.dueTypes = this.taskservice.getDueTypes();
-    //this.taskservice.get(1, 5).subscribe(x => this.tasks = x);
-    this.tableConfig = new TableConfig(5);
-    let columns =
-      [
-        {
-          primaryKey: 'description',
-          header: 'Description'
-        },
-        {
-          primaryKey: 'name',
-          header: 'Task Name'
-        },
-        {
-          primaryKey: 'startDate',
-          header: 'Start Date',
-          format: 'date'
-        },
-        {
-          primaryKey: 'dueDate',
-          header: 'Due Date',
-          format: 'date'
-        },
-        {
-          primaryKey: 'status',
-          header: 'Status',
-        },
-        {
-          primaryKey: 'priority',
-          header: 'Priority'
-        }
-      ];
-    this.tableConfig.detailComponent = TaskdetailComponent;
-    this.tableConfig.columns = columns;
   }
 
 

@@ -1,5 +1,4 @@
-<div *ngIf="addRecordVisible" [@slideInOut]>
-    <app-property-detail (cancelNotify)="close($event)" [data]="formData" (saveNotify)="savedResponse($event)"></app-property-detail>
+<div *ngIf="showEditForm" [@slideInOut]>
+    <app-property-detail [data]="formData"></app-property-detail>
 </div>
-
-<app-grid-page [tableConfig]="columnsConfig" [title]="'Properties'" [refresh]="notify" (addNewRecord)="addRecord($event)" (editRecord)="edit($event)"></app-grid-page>
+<app-grid-page [tableConfig]="assetGrid"></app-grid-page>

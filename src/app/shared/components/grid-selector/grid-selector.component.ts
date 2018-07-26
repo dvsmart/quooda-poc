@@ -4,7 +4,8 @@ import { trigger, state, style, transition, animate, group } from '@angular/anim
 import { MatDialog } from '@angular/material';
 import { DeleteConfirmDialogComponent } from '@app/shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 import { ToasterService } from '@app/shared/services/toaster.service';
-import { MessageService } from '@app/shared/services/message.service';
+import { MessageService, Payload } from '@app/shared/services/message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-grid-selector',
@@ -24,43 +25,42 @@ import { MessageService } from '@app/shared/services/message.service';
   ]
 })
 export class GridSelectorComponent implements OnInit {
-  @Input() selection;
-  @Input() url:string;
-
-  @Output() deleteNotify = new EventEmitter();
+  @Input() url: string;
+  subscription: Subscription;
 
   selectedRow = new SelectionModel<any>(true);
-  constructor(public dialog: MatDialog,private toaster: ToasterService,private messageservice: MessageService) { }
+  constructor(public dialog: MatDialog, private toaster: ToasterService, private messageservice: MessageService) {
+    this.subscription = this.messageservice.getMessage().subscribe((payload: Payload) => {
+      if (payload.action === 'delete' && payload.extra != undefined) {
+        this.selectedRow = payload.extra;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
   }
 
-  ngOnChanges() {
-    if (this.selection !== undefined) {
-      this.selectedRow = this.selection;
-    }
-  }
-
   confirmDelete() {
-    debugger;
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
       data: {
         message: 'Are you sure you want to delete all selected records?',
         actionUrl: this.url + '/deleteAll',
-        ids: this.selection.selected.map(x=>x.id),
-        key:'ids'
+        ids: this.selectedRow.selected.map(x => x.id),
+        key: 'ids'
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result != undefined && result){
-        this.selection.clear();
-        debugger;
-        this.toaster.showToasterComponent("Record has been deleted successfully","",1500,'success');
-        this.messageservice.sendMessage("some message sent from grid-selector");
-        //this.deleteNotify.emit(true);
-      }else{
-        this.toaster.showToasterComponent("Operation aborted","",1000,'success');
+      if (result != undefined && result) {
+        this.selectedRow.clear();
+        this.toaster.showToasterComponent("Record has been deleted successfully", "", 1500, 'success');
+        this.messageservice.refreshMessage();
+      } else {
+        this.toaster.showToasterComponent("Operation aborted", "", 1000, 'success');
       }
     });
   }

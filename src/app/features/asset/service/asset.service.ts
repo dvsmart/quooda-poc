@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '../../../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CreateAssetPropertyRequest } from '@app/features/asset/model/CreateAssetPropertyRequest';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
+import { GenericService } from '@app/services/generic.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AssetService {
+export class AssetService  {
   api = environment.apiUrl + 'AssetProperties/create';
   constructor(private http: HttpClient) { }
 

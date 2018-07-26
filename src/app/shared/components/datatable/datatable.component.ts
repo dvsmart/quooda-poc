@@ -13,7 +13,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ColumnMap, ColumnSetting } from '@app/shared/models/columnsetting';
 import { trigger, state, style, transition, animate, group } from '@angular/animations';
 import { Subscription } from 'rxjs';
-import { MessageService } from '@app/shared/services/message.service';
+import { MessageService, Payload } from '@app/shared/services/message.service';
 
 @Component({
   selector: 'app-datatable',
@@ -74,19 +74,19 @@ export class DatatableComponent implements OnInit {
   allSelected: boolean;
   columnMaps: ColumnSetting[];
   showAdd: boolean = true;
-  @Input() refresh: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   subscription: Subscription;
-  @Output() selectedRow = new EventEmitter();
-  @Output() clickRow = new EventEmitter();
-  @Output() addNew = new EventEmitter();
 
   selection = new SelectionModel<any>(true, [], true);
 
-  constructor(private http: HttpClient,private messageservice: MessageService) { 
-    this.subscription = this.messageservice.getMessage().subscribe(message => { this.loadData(); });
+  constructor(private http: HttpClient, private messageservice: MessageService) {
+    this.subscription = this.messageservice.getMessage().subscribe((payload: Payload) => {
+      if (payload.IsRefresh()) {
+        this.loadData();
+      }
+    });
   }
 
   ngOnInit() {
@@ -99,15 +99,8 @@ export class DatatableComponent implements OnInit {
     this.loadData();
   }
 
-  ngOnChanges() {
-    debugger;
-    if(this.refresh){
-      this.loadData();
-    }
-  }
-
-  addNewEvent(){
-    this.addNew.emit(true);
+  addNew() {
+    this.messageservice.createMessage();
   }
 
   setTableColumns() {
@@ -176,16 +169,13 @@ export class DatatableComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  onRowSelect(row,$event) {
+  onRowSelect(row, $event) {
     $event.stopPropagation();
-    this.selectedRow.emit(this.selection);
+    this.messageservice.selectMessage(this.selection);
   }
 
-  editRow(row){
-    debugger;
-    console.log(window.screenTop);
-    window.scroll(0, 0);
-    this.clickRow.emit(row);
+  editRow(row) {
+    this.messageservice.editMessage(row.id);
   }
 
   pageEvent($event) {
@@ -197,11 +187,9 @@ export class DatatableComponent implements OnInit {
 
 export class ExampleHttpDao {
   constructor(private http: HttpClient, private url: string) { }
-
   getDataSource(sort: string, order: string, page: number, pageSize: number): Observable<any> {
     const api = environment.apiUrl;
     page = page == 0 ? 1 : page;
-    //const requestUrl = api + 'Task/Taskforgrid?page=' + page + '&pageSize=' + pageSize;
     const requestUrl = api + this.url + '?page=' + page + '&pageSize=' + pageSize;
     return this.http.get<any>(requestUrl);
   }

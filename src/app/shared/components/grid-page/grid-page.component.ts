@@ -2,9 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter} from '@angul
 import { SelectionModel } from '@angular/cdk/collections';
 
 import { MatSidenav } from '@angular/material';
-import { Subscription } from 'rxjs';
-import { MessageService } from '@app/shared/services/message.service';
-
+import { TableConfig } from '@app/shared/models/TableConfig';
 
 @Component({
   selector: 'app-grid-page',
@@ -13,59 +11,15 @@ import { MessageService } from '@app/shared/services/message.service';
   
 })
 export class GridPageComponent implements OnInit {
-  @Input() tableConfig;
-  @Input() title: string;
-  @Input() refresh: boolean;
-  message: string;
-  subscription: Subscription;
-
-  animationState = 'out';
-  selectedGridRow: SelectionModel<any>;
-  hasModified: boolean = false;
+  @Input() tableConfig : TableConfig;
 
   @ViewChild('sidenav') sidenav: MatSidenav;
-  @Output() addNewRecord = new EventEmitter();
-  @Output() editRecord = new EventEmitter();
 
-  constructor(private messageservice: MessageService) { 
-    //this.subscription = this.messageservice.getMessage().subscribe(message => {debugger; this.message = message; alert("message"); });
-  }
+  constructor() {}
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-}
-
-  ngOnInit() {
-  }
-
-  ngOnChanges(){
-  }
-
-  selectedValue(selectedRow) {
-    this.selectedGridRow = selectedRow;
-  }
-
-  editRow(row){
-    this.editRecord.emit(row);
-  }
-
-  rowClicked(r){
-    this.editRow(r);
-  }
+  ngOnInit() {}
 
   togglefiltersidenav() {
     this.sidenav.toggle();
   }
-
-  refreshData(){
-    debugger;
-    // this.hasModified = !this.hasModified;
-    // this.hasModified = true;
-    
-  }
-
-  triggerAddNewEvent(event){
-    this.addNewRecord.emit(event);
-  }
-
 }

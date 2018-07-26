@@ -10,14 +10,14 @@ export class TableConfig {
   canDelete?: boolean = true;
   detailComponent?: any;
   pageSize: number;
-  dataUrl?:string;
-  deleteUrl?:string;
-  notify?:boolean;
+  dataUrl?: string;
+  deleteUrl?: string;
 
   /**
    *
    */
-  constructor(pageSize:number, canExpand?:boolean,multiSelect?:boolean,canDelete?:boolean) {
+  constructor(caption: string, pageSize: number, canExpand?: boolean, multiSelect?: boolean, canDelete?: boolean) {
+    this.caption = caption;
     this.canExpand = canExpand;
     this.canSelect = multiSelect;
     this.canDelete = canDelete;

@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { TableConfig } from '@app/shared/models/TableConfig';
 import { AssetService } from '@app/features/asset/service/asset.service';
 import { trigger, transition, animate, style } from '@angular/animations'
+import { MessageService, Payload } from '@app/shared/services/message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-asset',
@@ -10,29 +12,42 @@ import { trigger, transition, animate, style } from '@angular/animations'
   animations: [
     trigger('slideInOut', [
       transition(':enter', [
-        style({transform: 'translateY(-100%)'}),
-        animate('100ms ease-in', style({transform: 'translateY(0%)'}))
+        style({ transform: 'translateY(-100%)' }),
+        animate('100ms ease-in', style({ transform: 'translateY(0%)' }))
       ]),
       transition(':leave', [
-        animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+        animate('200ms ease-in', style({ transform: 'translateY(-100%)' }))
       ])
     ])
   ]
 })
-export class AssetComponent implements OnInit {
-  visible: boolean = false;
-  columnsConfig: TableConfig;
-  selectedRows: any[] = [];
-  selectedCount = 0;
-  addRecordVisible: boolean;
+export class AssetComponent {
+  assetGrid: TableConfig;
+  showEditForm: boolean;
   formData: any;
-  notify;
+  subscription: Subscription;
 
-  constructor(private assetservice: AssetService) { }
+  constructor(private assetservice: AssetService, private messageservice: MessageService) {
+    this.subscription = this.messageservice.getMessage().subscribe((payload: Payload) => {
+      if (payload.IsNew()) {
+        this.addRecord();
+      }
+      if (payload.IsEdit()) {
+        this.edit(payload.id);
+      }
+      if (payload.IsCancel()) {
+        this.close();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
-    this.columnsConfig = new TableConfig(5, false, true);
-    this.columnsConfig.dataUrl = 'AssetProperties';
+    this.assetGrid = new TableConfig('Properties', 5, false, true);
+    this.assetGrid.dataUrl = 'AssetProperties';
     const columns =
       [
         {
@@ -70,31 +85,23 @@ export class AssetComponent implements OnInit {
           header: 'Asset Type'
         }
       ];
-    this.columnsConfig.columns = columns;
+    this.assetGrid.columns = columns;
   }
 
-  addRecord(event) {
-    this.addRecordVisible = event;
+  addRecord() {
+    this.showEditForm = true;
     this.formData = null;
   }
 
   close() {
-    this.addRecordVisible = false;
-  }
-
-  savedResponse(e) {
-    if (this.notify) {
-      this.notify = false;
-    }
-    this.notify = e;
+    this.showEditForm = false;
   }
 
   edit(record) {
-    this.addRecordVisible = false;
-    this.assetservice.getSingle(record.id).subscribe(x => {
+    this.assetservice.getSingle(record).subscribe(x => {
       this.formData = x;
       if (x != null) {
-        this.addRecordVisible = true;
+        this.showEditForm = true;
       }
     }
     );

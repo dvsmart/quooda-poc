@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '../../../../../../node_modules/@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AssetService } from '@app/features/asset/service/asset.service';
 import { ToasterService } from '@app/shared/services/toaster.service';
+import { MessageService } from '@app/shared/services/message.service';
 
 @Component({
   selector: 'app-property-detail',
@@ -10,11 +11,9 @@ import { ToasterService } from '@app/shared/services/toaster.service';
 })
 export class PropertyDetailComponent implements OnInit {
   formGroup: FormGroup;
-  @Output() cancelNotify = new EventEmitter<boolean>();
   @Input() data: any;
   title: string;
-  @Output() saveNotify = new EventEmitter<boolean>(false);
-  constructor(private assetservice: AssetService, private toaster: ToasterService) { }
+  constructor(private assetservice: AssetService, private toaster: ToasterService,private messageservice: MessageService) { }
 
   ngOnInit() {
     this.createFormGroup();
@@ -68,18 +67,16 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   cancel() {
-    this.cancelNotify.emit(true);
+    this.messageservice.cancelMessage();
   }
 
   save() {
-    debugger;
     if (this.formGroup.value.id == "") {
-
       this.assetservice.add(this.formGroup.value).subscribe(x => {
-        this.title = 'Edit Property - ' + x['savedDataId'];
         if (x['saveSuccessful'] === true) {
+          this.title = 'Edit Property - ' + x['savedDataId'];
           this.toaster.open("Saved successfully.");
-          this.saveNotify.emit(true);
+          this.messageservice.refreshMessage();
         }
         else {
           this.toaster.open(x['errorMessage']);
@@ -87,10 +84,10 @@ export class PropertyDetailComponent implements OnInit {
       });
     } else {
       this.assetservice.update(this.formGroup.value.id, this.formGroup.value).subscribe(x => {
-        this.title = 'Edit Property - ' + x['savedDataId'];
         if (x['saveSuccessful'] === true) {
+          this.title = 'Edit Property - ' + x['savedDataId'];
           this.toaster.open("Saved successfully.");
-          this.saveNotify.emit(true);
+          this.messageservice.refreshMessage();
         } else {
           this.toaster.open(x['errorMessage']);
         }

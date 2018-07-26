@@ -34,7 +34,21 @@ export class ToasterService {
     this.snackBar.open(msg, this.action ? this.actionButtonLabel : undefined, config);
   }
 
+  newRecordSuccessNotifier(){
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open('New record has been created successfully', this.action ? this.actionButtonLabel : undefined, config);
+  }
 
+  updateRecordSuccessNotifier(){
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    this.snackBar.open('Record has been updated successfully', this.action ? this.actionButtonLabel : undefined, config);
+  }
 
   closeToasterWithMessage() {
     this.snackBar.openFromComponent(ToasterComponent, {

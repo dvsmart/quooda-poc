@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class GridHeaderComponent implements OnInit {
   @Input() title: string;
+  
   @Output() searchStr = new EventEmitter<string>();
   @Output() toggleFilter = new EventEmitter<boolean>()
   placeholderForSearch:string;
