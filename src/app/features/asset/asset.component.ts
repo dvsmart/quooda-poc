@@ -4,6 +4,8 @@ import { AssetService } from '@app/features/asset/service/asset.service';
 import { trigger, transition, animate, style } from '@angular/animations'
 import { MessageService, Payload } from '@app/shared/services/message.service';
 import { Subscription } from 'rxjs';
+import { BaseComponent } from '@app/shared/models/BaseComponent';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asset',
@@ -21,24 +23,12 @@ import { Subscription } from 'rxjs';
     ])
   ]
 })
-export class AssetComponent {
+export class AssetComponent extends BaseComponent {
   assetGrid: TableConfig;
   showEditForm: boolean;
-  formData: any;
-  subscription: Subscription;
 
-  constructor(private assetservice: AssetService, private messageservice: MessageService) {
-    this.subscription = this.messageservice.getMessage().subscribe((payload: Payload) => {
-      if (payload.IsNew()) {
-        this.addRecord();
-      }
-      if (payload.IsEdit()) {
-        this.edit(payload.id);
-      }
-      if (payload.IsCancel()) {
-        this.close();
-      }
-    });
+  constructor(private assetservice: AssetService, messageservice: MessageService,private router: Router) {
+    super(messageservice);
   }
 
   ngOnDestroy() {
@@ -90,7 +80,6 @@ export class AssetComponent {
 
   addRecord() {
     this.showEditForm = true;
-    this.formData = null;
   }
 
   close() {
@@ -98,12 +87,9 @@ export class AssetComponent {
   }
 
   edit(record) {
-    this.assetservice.getSingle(record).subscribe(x => {
-      this.formData = x;
-      if (x != null) {
-        this.showEditForm = true;
-      }
-    }
-    );
+    debugger;
+    this.router.navigateByUrl('/properties/' + record);
+    this.showEditForm = true;
+
   }
 }

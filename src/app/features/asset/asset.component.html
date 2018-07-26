@@ -1,4 +1,5 @@
 <div *ngIf="showEditForm" [@slideInOut]>
-    <app-property-detail [data]="formData"></app-property-detail>
+    <!-- <app-property-detail></app-property-detail> -->
+    <router-outlet></router-outlet>
 </div>
 <app-grid-page [tableConfig]="assetGrid"></app-grid-page>

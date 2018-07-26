@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AssetService } from '@app/features/asset/service/asset.service';
 import { ToasterService } from '@app/shared/services/toaster.service';
 import { MessageService } from '@app/shared/services/message.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-property-detail',
@@ -11,12 +12,17 @@ import { MessageService } from '@app/shared/services/message.service';
 })
 export class PropertyDetailComponent implements OnInit {
   formGroup: FormGroup;
-  @Input() data: any;
+  data: any;
   title: string;
-  constructor(private assetservice: AssetService, private toaster: ToasterService,private messageservice: MessageService) { }
+  id:number;
+  constructor(private assetservice: AssetService, private toaster: ToasterService,private messageservice: MessageService,
+    private route: ActivatedRoute) {
+      this.route.params.subscribe( params => console.log(params) );
+     }
 
 
   ngOnInit() {
+    this.assetservice.getSingle(1).subscribe(x => this.data = x);
     this.createFormGroup();
   }
 

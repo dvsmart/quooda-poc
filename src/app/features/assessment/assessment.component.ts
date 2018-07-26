@@ -4,11 +4,23 @@ import { MessageService, Payload } from '@app/shared/services/message.service';
 import { Subscription } from 'rxjs';
 import { AssessmentService } from '@app/features/assessment/service/assessment.service';
 import { BaseComponent } from '@app/shared/models/BaseComponent';
+import { trigger, transition, animate, style } from '@angular/animations'
 
 @Component({
   selector: 'app-assessment',
   templateUrl: './assessment.component.html',
-  styleUrls: ['./assessment.component.scss']
+  styleUrls: ['./assessment.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateY(-100%)' }),
+        animate('100ms ease-in', style({ transform: 'translateY(0%)' }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ transform: 'translateY(-100%)' }))
+      ])
+    ])
+  ]
 })
 export class AssessmentComponent extends BaseComponent {
   columnsConfig: TableConfig;
@@ -18,16 +30,17 @@ export class AssessmentComponent extends BaseComponent {
     super(messageservice);
   }
 
-  //  addRecord() {
-  //   this.showEditForm = true;
-  //   this.formData = null;
-  // }
+   addRecord() {
+    this.showEditForm = true;
+    this.formData = null;
+  }
 
-  // close() {
-  //   this.showEditForm = false;
-  // }
+  close() {
+    this.showEditForm = false;
+  }
 
   edit(record) {
+    debugger;
     this.assessmentservice.getSingle(record).subscribe(x => {
       this.formData = x;
       if (x != null) {
