@@ -1,5 +1,5 @@
 <div class="sidebar-container">
-  <div *ngFor="let item of menu | async">
+  <div *ngFor="let item of menu">
     <mat-nav-list>
       <mat-list-item (click)="onItemSelected(item)" *ngIf="item.parentId == null" [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
         <a matLine [routerLink]="item.route">

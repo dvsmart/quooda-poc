@@ -15,6 +15,7 @@ export class PropertyDetailComponent implements OnInit {
   title: string;
   constructor(private assetservice: AssetService, private toaster: ToasterService,private messageservice: MessageService) { }
 
+
   ngOnInit() {
     this.createFormGroup();
   }

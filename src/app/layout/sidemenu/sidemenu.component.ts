@@ -14,7 +14,7 @@ import { Menu } from '@app/core/models/menuModel';
       state('collapsed', style({ transform: 'rotate(0deg)' })),
       state('expanded', style({ transform: 'rotate(180deg)' })),
       transition('expanded <=> collapsed',
-        animate('1000ms cubic-bezier(0.1, 0.7, 1.0, 0.1)')
+        animate('200ms cubic-bezier(0.1, 0.7, 1.0, 0.1)')
       ),
     ])
   ],
@@ -23,7 +23,7 @@ import { Menu } from '@app/core/models/menuModel';
 export class SidemenuComponent implements OnInit {
   @Input() isOpened;
 
-  menu: Observable<Menu[]>;
+  menu: Menu[];
   @Input() items: Menu[];
   expanded: boolean;
   selectedId: number;
@@ -37,7 +37,7 @@ export class SidemenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.menu = this.menuService.getAll<Menu[]>();
+    this.menuService.getMenuItems().subscribe(x=> this.menu = x);
   }
 
   onItemSelected(item: Menu) {

@@ -44,19 +44,6 @@ export class MessageService {
         let payload = new Payload('refresh');
         this.subject.next(payload);
     }
-
-    open(){
-        this.isOpened.next(true);
-    }
-
-    close(){
-        this.isOpened.next(false);
-    }
-
-    toggle(): Observable<boolean>{
-        return this.isOpened.asObservable();
-    }
-
 }
 
 export class Payload {
@@ -78,7 +65,6 @@ export class Payload {
     }
 
     IsEdit(){
-        this.toggle = true;
         return (this.id != undefined && this.id != null) && this.action === 'edit';
     }
 
@@ -91,7 +77,6 @@ export class Payload {
     }
 
     IsCancel(){
-        this.toggle = false;
         return this.action === 'cancel';
     }
     
