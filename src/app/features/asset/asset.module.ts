@@ -8,7 +8,6 @@ import { SharedModule } from '@app/shared/shared.module';
 const routes: Routes = [
   { path: '', redirectTo: 'asset' },
   { path: 'properties', component: AssetComponent},
-  { path: 'properties/:id', component: PropertyDetailComponent}
 ];
 
 @NgModule({

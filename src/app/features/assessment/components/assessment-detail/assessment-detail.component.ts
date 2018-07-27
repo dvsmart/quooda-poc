@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AssessmentService } from '@app/features/assessment/service/assessment.service';
 import { ToasterService } from '@app/shared/services/toaster.service';
 import { MessageService } from '@app/shared/services/message.service';
@@ -25,6 +25,8 @@ export class AssessmentDetailComponent implements OnInit {
       reference: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       scope: new FormControl(''),
+      status:new FormControl(''),
+      assessmentDate:new FormControl(''),
       id: new FormControl(0)
     });
     if (this.data != null && this.data != undefined) {
@@ -35,7 +37,8 @@ export class AssessmentDetailComponent implements OnInit {
         title: this.data.title,
         reference: this.data.reference,
         type: this.data.assessmentType,
-        scope: this.data.assessmentScope
+        scope: this.data.assessmentScope,
+        assessmentDate: this.data.assessmentDate
       })
     } else {
       this.title = 'Create New Assessment';

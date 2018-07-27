@@ -1,3 +1,94 @@
-<p>
-  assessment-detail works!
-</p>
+<div class="content-card bg-white">
+  <mat-toolbar>{{title}}</mat-toolbar>
+  <form (ngSubmit)='save()' [formGroup]='formGroup' novalidate class="form">
+    <div class="content-card-form">
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Details
+          </ng-template>
+          <div class="form-group">
+            <div class="example-container">
+              <mat-form-field>
+                <input matInput placeholder="PropertyReference" formControlName='title'>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="AddressLine1" formControlName='reference'>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="AddressLine2" formControlName='scope'>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput [matDatepicker]="assessmentDate" placeholder="Status Start Date" formControlName='assessmentDate'>
+                <mat-datepicker-toggle matSuffix [for]="assessmentDate"></mat-datepicker-toggle>
+                <mat-datepicker #assessmentDate></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Associations
+          </ng-template>
+          <div class="form-group">
+            <div class="example-container">
+              
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Risks
+          </ng-template>
+          <div class="form-group">
+            <div class="example-container">
+              <p>Nothing</p>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Status
+          </ng-template>
+          <div>
+            
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Documents
+          </ng-template>
+          <div class="form-group">
+            <div class="example-container">
+              <p>Attach Documents</p>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Images & Videos
+          </ng-template>
+          <div class="form-group">
+            <div class="example-container">
+              <p>Attach Images & Videos</p>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Notes & Observations
+          </ng-template>
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="Leave a comment"></textarea>
+            </mat-form-field>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div mat-dialog-actions class="pt-24" align="end">
+      <button mat-raised-button type="submit" class="mr-10" color="primary" matripple>Save</button>
+      <button mat-raised-button type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

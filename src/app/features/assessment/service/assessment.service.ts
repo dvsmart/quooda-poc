@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { HttpClient } from '../../../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CreateAssessmentRequest } from '@app/features/assessment/model/CreateAssessmentRequest';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssessmentService {
-  api = environment.apiUrl + 'Assessments/';
+  api = environment.apiUrl + 'Assessment/';
   constructor(private http: HttpClient) { }
 
   public add(propertyModel: CreateAssessmentRequest): Observable<boolean> {

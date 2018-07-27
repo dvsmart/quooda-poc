@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { CreateAssetPropertyRequest } from '@app/features/asset/model/CreateAssetPropertyRequest';
 import { Observable } from 'rxjs';
 import { environment } from 'environments/environment';
-import { GenericService } from '@app/services/generic.service';
 
 @Injectable({
   providedIn: 'root'

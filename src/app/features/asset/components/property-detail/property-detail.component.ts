@@ -1,28 +1,28 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AssetService } from '@app/features/asset/service/asset.service';
 import { ToasterService } from '@app/shared/services/toaster.service';
-import { MessageService } from '@app/shared/services/message.service';
-import { ActivatedRoute } from '@angular/router';
+import { MessageService, Payload } from '@app/shared/services/message.service';
+import { BaseComponent } from '@app/shared/models/BaseComponent';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-property-detail',
   templateUrl: './property-detail.component.html',
   styleUrls: ['./property-detail.component.scss']
 })
-export class PropertyDetailComponent implements OnInit {
+export class PropertyDetailComponent {
   formGroup: FormGroup;
-  data: any;
+  @Input() data: any;
   title: string;
-  id:number;
-  constructor(private assetservice: AssetService, private toaster: ToasterService,private messageservice: MessageService,
-    private route: ActivatedRoute) {
-      this.route.params.subscribe( params => console.log(params) );
-     }
-
+  constructor(private toaster: ToasterService, private messageservice: MessageService, private assetservice: AssetService) {
+  }
 
   ngOnInit() {
-    this.assetservice.getSingle(1).subscribe(x => this.data = x);
+    this.createFormGroup();
+  }
+
+  ngOnChanges() {
     this.createFormGroup();
   }
 
@@ -68,10 +68,7 @@ export class PropertyDetailComponent implements OnInit {
       this.title = 'Create New Property';
     }
   }
-
-  ngOnChanges() {
-    this.createFormGroup();
-  }
+  
 
   cancel() {
     this.messageservice.cancelMessage();

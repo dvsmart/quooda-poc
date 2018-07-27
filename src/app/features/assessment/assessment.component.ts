@@ -30,7 +30,7 @@ export class AssessmentComponent extends BaseComponent {
     super(messageservice);
   }
 
-   addRecord() {
+  addRecord() {
     this.showEditForm = true;
     this.formData = null;
   }

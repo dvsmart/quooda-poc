@@ -23,12 +23,24 @@ import { Router } from '@angular/router';
     ])
   ]
 })
-export class AssetComponent extends BaseComponent {
+export class AssetComponent {
   assetGrid: TableConfig;
   showEditForm: boolean;
+  subscription: Subscription;
+  data:any;
 
-  constructor(private assetservice: AssetService, messageservice: MessageService,private router: Router) {
-    super(messageservice);
+  constructor(private messageservice: MessageService,private assetservice: AssetService) {
+    this.subscription = this.messageservice.getMessage().subscribe((payload: Payload) => {
+      if (payload.IsNew()) {
+        this.addRecord();
+      }
+      if (payload.IsCancel()) {
+        this.close();
+      }
+      if (payload.IsEdit()) {
+        this.edit(payload.id);
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -86,10 +98,9 @@ export class AssetComponent extends BaseComponent {
     this.showEditForm = false;
   }
 
-  edit(record) {
-    debugger;
-    this.router.navigateByUrl('/properties/' + record);
+  edit(id) {
     this.showEditForm = true;
-
+    this.assetservice.getSingle(id).subscribe(x => {this.data = x;});
   }
+
 }
