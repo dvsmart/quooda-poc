@@ -10,18 +10,25 @@
           <div class="form-group">
             <div class="example-container">
               <mat-form-field>
-                <input matInput placeholder="PropertyReference" formControlName='title'>
+                <input matInput placeholder="Title" formControlName='title'>
               </mat-form-field>
               <mat-form-field>
-                <input matInput placeholder="AddressLine1" formControlName='reference'>
+                <input matInput placeholder="Reference" formControlName='reference'>
               </mat-form-field>
               <mat-form-field>
-                <input matInput placeholder="AddressLine2" formControlName='scope'>
+                <input matInput placeholder="Scope" formControlName='scope'>
               </mat-form-field>
               <mat-form-field>
-                <input matInput [matDatepicker]="assessmentDate" placeholder="Status Start Date" formControlName='assessmentDate'>
+                <input matInput [matDatepicker]="assessmentDate" placeholder="Assessment Date" formControlName='assessmentDate'>
                 <mat-datepicker-toggle matSuffix [for]="assessmentDate"></mat-datepicker-toggle>
                 <mat-datepicker #assessmentDate></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Scope" formControlName='scope' [compareWith]="compareFn">
+                  <mat-option *ngFor="let scope of scopes" [value]="scope.id">
+                    {{scope.name}}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
           </div>
