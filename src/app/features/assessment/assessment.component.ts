@@ -40,7 +40,6 @@ export class AssessmentComponent extends BaseComponent {
   }
 
   edit(record) {
-    debugger;
     this.assessmentservice.getSingle(record).subscribe(x => {
       this.formData = x;
       if (x != null) {

@@ -10,13 +10,17 @@
           <div class="form-group">
             <div class="example-container">
               <mat-form-field>
+                <mat-select placeholder="Assessment Type" formControlName='assessmentTypeId' [compareWith]="compareFn">
+                  <mat-option *ngFor="let type of types" [value]="type.id">
+                    {{type.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
                 <input matInput placeholder="Title" formControlName='title'>
               </mat-form-field>
               <mat-form-field>
                 <input matInput placeholder="Reference" formControlName='reference'>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Scope" formControlName='scope'>
               </mat-form-field>
               <mat-form-field>
                 <input matInput [matDatepicker]="assessmentDate" placeholder="Assessment Date" formControlName='assessmentDate'>
@@ -24,12 +28,19 @@
                 <mat-datepicker #assessmentDate></mat-datepicker>
               </mat-form-field>
               <mat-form-field>
-                <mat-select placeholder="Scope" formControlName='scope' [compareWith]="compareFn">
+                <mat-select placeholder="Assessment Scope" formControlName='scopeId' [compareWith]="compareFn">
                   <mat-option *ngFor="let scope of scopes" [value]="scope.id">
                     {{scope.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+              <mat-form-field>
+                  <mat-select placeholder="Frequency" formControlName='frequencyId' [compareWith]="compareFn">
+                    <mat-option *ngFor="let frequency of frequencies" [value]="frequency.id">
+                      {{frequency.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
             </div>
           </div>
         </mat-tab>
@@ -39,7 +50,7 @@
           </ng-template>
           <div class="form-group">
             <div class="example-container">
-              
+
             </div>
           </div>
         </mat-tab>
@@ -58,7 +69,7 @@
             Status
           </ng-template>
           <div>
-            
+
           </div>
         </mat-tab>
         <mat-tab>

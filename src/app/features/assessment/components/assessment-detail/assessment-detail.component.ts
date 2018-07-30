@@ -15,29 +15,43 @@ export class AssessmentDetailComponent implements OnInit {
   @Input() data: any;
   title: string;
   scopes: ReferenceModel[];
+  types: ReferenceModel[];
+  frequencies: ReferenceModel[];
 
   constructor(private assessmentservice: AssessmentService, private toaster: ToasterService,private messageservice: MessageService) { }
 
   ngOnInit() {
     this.createFormGroup();
     this.getScopes();
+    this.getTypes();
+    this.getFrequencies();
   }
 
   getScopes(){
     this.assessmentservice.getscopes().subscribe(x=> this.scopes = x);
   }
 
+  getTypes(){
+    this.assessmentservice.getTypes().subscribe(x=> this.types = x);
+  }
+
+  getFrequencies(){
+    this.assessmentservice.getFrequencies().subscribe(x=> this.frequencies = x);
+  }
+
   createFormGroup() {
     this.formGroup = new FormGroup({
       title: new FormControl('', Validators.required),
       reference: new FormControl('', Validators.required),
-      type: new FormControl('', Validators.required),
+      assessmentTypeId: new FormControl('', Validators.required),
       scope: new FormControl(''),
       scopeId: new FormControl(''),
       status:new FormControl(''),
       assessmentDate:new FormControl(''),
       id: new FormControl(0),
-      publishedBy:new FormControl('')
+      publishedBy:new FormControl(''),
+      frequencyId: new FormControl(''),
+      dataId: new FormControl(0)
     });
     if (this.data != null && this.data != undefined) {
       this.title = 'Edit Assessment - ' + this.data.dataId;
@@ -46,11 +60,12 @@ export class AssessmentDetailComponent implements OnInit {
         dataId: this.data.dataId,
         title: this.data.title,
         reference: this.data.reference,
-        type: this.data.assessmentType,
+        assessmentTypeId: this.data.assessmentTypeId,
         scope: this.data.scope,
         assessmentDate: this.data.assessmentDate,
         publishedBy: this.data.publishedBy,
-        scopeId:this.data.scopeId
+        scopeId:this.data.scopeId,
+        frequencyId: this.data.frequencyId
       })
     } else {
       this.title = 'Create New Assessment';
@@ -60,7 +75,6 @@ export class AssessmentDetailComponent implements OnInit {
   compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
 compareByValue(f1: any, f2: any) { 
-  debugger;
   return f1 && f2 && f1.value === f2.value; 
 }
 

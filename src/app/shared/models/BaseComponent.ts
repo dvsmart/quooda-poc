@@ -8,7 +8,6 @@ export abstract class BaseComponent implements OnInit {
     formData: any;
     constructor(public messageservice: MessageService) {
         this.subscription = this.messageservice.getMessage().subscribe((payload: Payload) => {
-            debugger;
             if (payload.IsNew()) {
                 this.addRecord();
             }

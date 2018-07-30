@@ -31,4 +31,7 @@ export class AssessmentService {
   public getTypes(): Observable<ReferenceModel[]> {
     return this.http.get<ReferenceModel[]>(this.referenceApi + 'Types');
   }
+  public getFrequencies(): Observable<ReferenceModel[]> {
+    return this.http.get<ReferenceModel[]>(this.referenceApi + 'Frequencies');
+  }
 }
