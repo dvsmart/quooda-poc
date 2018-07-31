@@ -1,57 +1,43 @@
-<div class="task-page-background">
+<div class="task-page-background"></div>
 
-</div>
 <mat-sidenav-container class="task-wrapper">
-  <mat-sidenav #sidenav mode="side" opened style="background: transparent!important;" class="sidenav"
-  fixedInViewport="Fixed"
-    fixedTopGap="75">
-    <div class="header sidenav-sub">
+  <mat-sidenav mode="side" opened="opened" style="background: transparent!important;" class="sidenav" fixedInViewport="Fixed"
+    fixedTopGap="30">
+    <!-- <div class="header sidenav-sub">
       <div class="logo">
         <mat-icon style="font-size: 32px!important;width:32px!important;height: 32px!important;margin: 0 16px 0 0;">check_box</mat-icon>
         <span style="font-size: 24px;line-height: 24px;">Tasks</span>
       </div>
       <div>
         <mat-form-field color="accent">
-          <mat-select placeholder="Due Tasks" (change)="onDueTypechange($event)" disableOptionCentering>
-            <mat-option *ngFor="let dueType of dueTypes" [value]="dueType.value">
-              {{ dueType.caption }}
-            </mat-option>
+          <mat-select placeholder="Due Tasks" (change)="onDueTypechange($event)" disableOptionCentering="disableOptionCentering">
+            <mat-option *ngFor="let dueType of dueTypes" [value]="dueType.value">{{ dueType.caption }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-    </div>
-    <div class="content">
-      <div class="p-24">
-        <button class="mat-primary add-todo-button w-100-p mat-raised-button" (click)="addTask()" aria-label="ADD TASK" mat-raised-button="">
-          <span class="mat-button-wrapper"> ADD TASK </span>
-          <div class="mat-button-ripple mat-ripple"></div>
-          <div class="mat-button-focus-overlay"></div>
-        </button>
+    </div> -->
+    <div class="header mat-accent-bg p-24 pb-4" fxlayout="column" fxlayoutalign="space-between start" style="flex-direction: column; box-sizing: border-box; display: flex; max-width: 100%; place-content: flex-start space-between; align-items: flex-start;">
+      <div class="logo" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex: 1 1 1e-09px; box-sizing: border-box; flex-direction: row; display: flex; place-content: center flex-start; align-items: center;">
+        <mat-icon class="logo-icon s-32 mat-icon material-icons ng-trigger ng-trigger-animate" role="img"
+          aria-hidden="true"> check_box </mat-icon>
+        <span class="logo-text ng-trigger ng-trigger-animate">To-Do</span>
       </div>
-      <app-taskfilter (selected)='getFilterData($event)'></app-taskfilter>
+      <div class="account ng-trigger ng-trigger-animate" fxlayout="column" style="flex-direction: column; box-sizing: border-box; display: flex;">
+        <div class="title">John Doe</div>
+      </div>
+    </div>
+    <div class="content ps ng-trigger ng-trigger-animate ps--active-y">
+      <div class="p-24">
+        <button mat-raised-button="mat-raised-button" color="primary" class="w-100-p" (click)="addTask()">ADD TASK</button>
+      </div>
+      <app-taskfilter (selected)="getFilterData($event)"></app-taskfilter>
     </div>
   </mat-sidenav>
   <mat-sidenav-content style="flex:1;">
-    <div class="header">
-      <div class="search-wrapper mat-white-bg" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; align-items: center;">
-        <button class="sidenav-toggle mat-icon-button" aria-label="Toggle Sidenav" fusematsidenavtoggler="carded-left-sidenav" fxhide.gt-md=""
-          mat-icon-button="" style="display: block;">
-          <span class="mat-button-wrapper">
-            <mat-icon (click)="sidenav.toggle()" class="mat-icon ng-tns-c35-27 material-icons" role="img" aria-hidden="true">menu</mat-icon>
-          </span>
-          <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
-          <div class="mat-button-focus-overlay"></div>
-        </button>
-        <div class="search" flex="" fxlayout="row" fxlayoutalign="start center">
-          <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">search</mat-icon>
-          <input class="ng-tns-c35-27 ng-untouched ng-pristine ng-valid" (keyup)="applyFilter($event.target.value)" fxflex="" placeholder="Search for a task"
-            style="flex: 1 1 0%; box-sizing: border-box;">
-        </div>
-      </div>
-    </div>
+    <app-taskheader></app-taskheader>
     <div class="content-card mat-white-bg">
       <div fxflexalign="row">
-          <app-tasklist></app-tasklist>
+        <app-tasklist></app-tasklist>
       </div>
     </div>
   </mat-sidenav-content>

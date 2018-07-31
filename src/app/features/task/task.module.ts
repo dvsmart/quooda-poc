@@ -8,6 +8,7 @@ import { AddtaskComponent } from '@app/features/task/components/addtask/addtask.
 import { TaskfilterComponent } from '@app/features/task/components/taskfilter/taskfilter.component';
 import { TasklistComponent } from '@app/features/task/components/tasklist/tasklist.component';
 import { SharedModule } from '@app/shared/shared.module';
+import { TaskheaderComponent } from '@app/features/task/components/taskheader/taskheader.component';
 
 const routes: Routes = [
   { path: '', component: TaskComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
     TaskdetailComponent,
     AddtaskComponent,
     TaskfilterComponent,
-    TasklistComponent],
+    TasklistComponent,
+    TaskheaderComponent],
   entryComponents: [AddtaskComponent, TaskdetailComponent]
 })
 export class TaskModule { }

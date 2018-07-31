@@ -1,0 +1,17 @@
+<div class="header">
+  <div class="search-wrapper mat-white-bg" fxflex="" fxlayout="row" fxlayoutalign="start center" style="flex: 1 1 0%; box-sizing: border-box; flex-direction: row; display: flex; align-items: center;">
+    <button class="sidenav-toggle mat-icon-button" aria-label="Toggle Sidenav" fxhide.gt-md=""
+      mat-icon-button="" style="display: block;">
+      <span class="mat-button-wrapper">
+        <mat-icon (click)="sidenav.toggle()" class="mat-icon ng-tns-c35-27 material-icons" role="img" aria-hidden="true">menu</mat-icon>
+      </span>
+      <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </button>
+    <div class="search" flex="" fxlayout="row" fxlayoutalign="start center">
+      <mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">search</mat-icon>
+      <input class="ng-tns-c35-27 ng-untouched ng-pristine ng-valid" (keyup)="applyFilter($event.target.value)" fxflex="" placeholder="Search for a task"
+        style="flex: 1 1 0%; box-sizing: border-box;">
+    </div>
+  </div>
+</div>
