@@ -71,6 +71,10 @@ export class AssessmentComponent extends BaseComponent {
           header: 'Reference'
         },
         {
+          primaryKey: 'title',
+          header: 'Title'
+        },
+        {
           primaryKey: 'addedDate',
           header: 'Added On',
           format: 'date'

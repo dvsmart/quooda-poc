@@ -27,20 +27,23 @@
                 <mat-datepicker-toggle matSuffix [for]="assessmentDate"></mat-datepicker-toggle>
                 <mat-datepicker #assessmentDate></mat-datepicker>
               </mat-form-field>
+              <div>
+                  <mat-form-field>
+                      <mat-select placeholder="Assessment Scope" formControlName='scopeId' [compareWith]="compareFn">
+                        <mat-option *ngFor="let scope of scopes" [value]="scope.id">
+                          {{scope.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-icon (click)="onClickScope()">search</mat-icon>
+              </div>
               <mat-form-field>
-                <mat-select placeholder="Assessment Scope" formControlName='scopeId' [compareWith]="compareFn">
-                  <mat-option *ngFor="let scope of scopes" [value]="scope.id">
-                    {{scope.name}}
+                <mat-select placeholder="Frequency" formControlName='frequencyId' [compareWith]="compareFn">
+                  <mat-option *ngFor="let frequency of frequencies" [value]="frequency.id">
+                    <textarea matInput placeholder="Leave a comment">{{frequency.name}}</textarea>
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field>
-                  <mat-select placeholder="Frequency" formControlName='frequencyId' [compareWith]="compareFn">
-                    <mat-option *ngFor="let frequency of frequencies" [value]="frequency.id">
-                      {{frequency.name}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
             </div>
           </div>
         </mat-tab>

@@ -22,6 +22,10 @@
     flex-direction: column;
   }
 
+  .example-container > * {
+      width: 50%;
+  }
+
 .form-group{
     padding: 10px;
 }

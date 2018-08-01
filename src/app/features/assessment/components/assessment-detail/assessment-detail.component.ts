@@ -4,6 +4,8 @@ import { AssessmentService } from '@app/features/assessment/service/assessment.s
 import { ToasterService } from '@app/shared/services/toaster.service';
 import { MessageService } from '@app/shared/services/message.service';
 import { ReferenceModel } from '@app/features/assessment/model/ReferenceModel';
+import { MatDialog } from '../../../../../../node_modules/@angular/material';
+import { TableDialogComponent } from '@app/shared/components/table-dialog/table-dialog.component';
 
 @Component({
   selector: 'app-assessment-detail',
@@ -18,7 +20,7 @@ export class AssessmentDetailComponent implements OnInit {
   types: ReferenceModel[];
   frequencies: ReferenceModel[];
 
-  constructor(private assessmentservice: AssessmentService, private toaster: ToasterService,private messageservice: MessageService) { }
+  constructor(private assessmentservice: AssessmentService, private toaster: ToasterService, private messageservice: MessageService, public dialogRef: MatDialog) { }
 
   ngOnInit() {
     this.createFormGroup();
@@ -27,16 +29,31 @@ export class AssessmentDetailComponent implements OnInit {
     this.getFrequencies();
   }
 
-  getScopes(){
-    this.assessmentservice.getscopes().subscribe(x=> this.scopes = x);
+  getScopes() {
+    this.assessmentservice.getscopes().subscribe(x => this.scopes = x);
   }
 
-  getTypes(){
-    this.assessmentservice.getTypes().subscribe(x=> this.types = x);
+  getTypes() {
+    this.assessmentservice.getTypes().subscribe(x => this.types = x);
   }
 
-  getFrequencies(){
-    this.assessmentservice.getFrequencies().subscribe(x=> this.frequencies = x);
+  getFrequencies() {
+    this.assessmentservice.getFrequencies().subscribe(x => this.frequencies = x);
+  }
+
+  onClickScope() {
+    const dialog = this.dialogRef.open(TableDialogComponent, {
+      width:'700',
+      height:'1000',
+      data: this.scopes
+    })
+    dialog.afterClosed().subscribe(result => {
+      if(result != null){
+        this.formGroup.patchValue({
+          scopeId : result
+        })
+      }
+    });
   }
 
   createFormGroup() {
@@ -46,10 +63,10 @@ export class AssessmentDetailComponent implements OnInit {
       assessmentTypeId: new FormControl('', Validators.required),
       scope: new FormControl(''),
       scopeId: new FormControl(''),
-      status:new FormControl(''),
-      assessmentDate:new FormControl(''),
+      status: new FormControl(''),
+      assessmentDate: new FormControl(''),
       id: new FormControl(0),
-      publishedBy:new FormControl(''),
+      publishedBy: new FormControl(''),
       frequencyId: new FormControl(''),
       dataId: new FormControl(0)
     });
@@ -64,7 +81,7 @@ export class AssessmentDetailComponent implements OnInit {
         scope: this.data.scope,
         assessmentDate: this.data.assessmentDate,
         publishedBy: this.data.publishedBy,
-        scopeId:this.data.scopeId,
+        scopeId: this.data.scopeId,
         frequencyId: this.data.frequencyId
       })
     } else {
@@ -74,9 +91,9 @@ export class AssessmentDetailComponent implements OnInit {
 
   compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
 
-compareByValue(f1: any, f2: any) { 
-  return f1 && f2 && f1.value === f2.value; 
-}
+  compareByValue(f1: any, f2: any) {
+    return f1 && f2 && f1.value === f2.value;
+  }
 
   ngOnChanges() {
     this.createFormGroup();

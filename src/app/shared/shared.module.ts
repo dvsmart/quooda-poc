@@ -69,6 +69,7 @@ import { MessageService } from "@app/shared/services/message.service";
   ],
   entryComponents:[
     DeleteConfirmDialogComponent,
+    TableDialogComponent,
     ToasterComponent
   ]
 })

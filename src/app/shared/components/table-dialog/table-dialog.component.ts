@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, Inject, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Input, EventEmitter } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
+import { ReferenceModel } from '@app/features/assessment/model/referenceModel';
 
 @Component({
   selector: 'app-table-dialog',
@@ -10,27 +11,25 @@ import { Observable } from 'rxjs';
   styleUrls: ['./table-dialog.component.scss']
 })
 export class TableDialogComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  // @Input() displayedColumns;
-  // @Input() config;
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['id', 'name'];
+  
+  dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   exampleDatabase: dialogTableDao | null;
   constructor(public dialogRef: MatDialogRef<TableDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient) {
-    // Create 100 users
-    //const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.exampleDatabase = new dialogTableDao(this.http,this.data.url);
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.dataSource = new MatTableDataSource<ReferenceModel>(this.data);
   }
 
+  highlight(row){
+    this.dialogRef.close(row.id);
+  }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   ngOnInit() {
