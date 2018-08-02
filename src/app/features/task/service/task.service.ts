@@ -56,6 +56,10 @@ export class TaskService {
     return this.http.delete(this.api + '/' +id);
   }
 
+  public getSingle(id: number): Observable<Task> {
+    return this.http.get<Task>(environment.apiUrl + 'AssetProperties/' + id);
+  }
+
   // getTasks() {
   //   for (let index = 1; index < 10; index++) {
   //     this.tasks.push(

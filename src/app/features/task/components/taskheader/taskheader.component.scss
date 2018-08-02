@@ -46,3 +46,10 @@
     place-content: center flex-start;
     align-items: center;
 }
+
+.header {
+    display: flex;
+    height: 136px;
+    min-height: 136px;
+    max-height: 136px;
+}

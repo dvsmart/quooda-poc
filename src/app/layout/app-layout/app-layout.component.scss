@@ -121,3 +121,15 @@ img {
     max-width: 100%;
     vertical-align: middle;
 }
+
+.content {
+    position: relative;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}

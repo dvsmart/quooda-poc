@@ -14,12 +14,9 @@ export class TasklistComponent implements OnInit {
   ngOnInit() {
     this.columnsConfig = new TableConfig('Tasks',5);
     this.columnsConfig.dataUrl = 'Task/Taskforgrid';
+    this.columnsConfig.enableAdd = false;
     const columns =
       [
-        {
-          primaryKey: 'description',
-          header: 'Description'
-        },
         {
           primaryKey: 'name',
           header: 'Task Name'
@@ -33,15 +30,16 @@ export class TasklistComponent implements OnInit {
           primaryKey: 'dueDate',
           header: 'Due Date',
           format: 'date'
-        },
-        {
-          primaryKey: 'status',
-          header: 'Status',
-        },
-        {
-          primaryKey: 'priority',
-          header: 'Priority'
         }
+        // ,
+        // {
+        //   primaryKey: 'status',
+        //   header: 'Status',
+        // },
+        // {
+        //   primaryKey: 'priority',
+        //   header: 'Priority'
+        // }
       ];
     this.columnsConfig.columns = columns;
   }

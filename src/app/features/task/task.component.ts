@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatSidenav } from '@angular/material';
 import { TaskFilterList } from '@app/features/task/model/TaskFilterList';
 import { DueType } from '@app/features/task/model/dueType';
 import { TaskService } from '@app/features/task/service/task.service';
 import { TableConfig } from '@app/shared/models/TableConfig';
-import { TaskdetailComponent } from '@app/features/task/components/taskdetail/taskdetail.component';
 import { Task } from '@app/features/task/model/task';
 import { AddtaskComponent } from '@app/features/task/components/addtask/addtask.component';
+import { Subscription } from '../../../../node_modules/rxjs';
+import { MessageService, Payload } from '@app/shared/services/message.service';
 
 @Component({
   selector: 'app-task',
@@ -14,17 +15,53 @@ import { AddtaskComponent } from '@app/features/task/components/addtask/addtask.
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  tableConfig: TableConfig;
+  taskGrid: TableConfig;
   taskFilters: TaskFilterList[] = [];
   dueTypes: DueType[] = [];
   tasks: Task[];
   apiUrl: string;
+  showEditForm: boolean;
+  subscription: Subscription;
+  data: any;
+  @ViewChild('sidenav') sidenav : MatSidenav;
+ 
+  constructor(private messageservice: MessageService,private taskservice: TaskService, private dialog: MatDialog) {
+    this.subscription = this.messageservice.getMessage().subscribe((payload: Payload) => {
+      if (payload.IsNew()) {
+        this.addRecord();
+      }
+      if (payload.IsCancel()) {
+        this.close();
+      }
+      if (payload.IsEdit()) {
+        this.edit(payload.id);
+      }
+    });
+  }
 
-  constructor(private dialog: MatDialog, private taskservice: TaskService) {
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  addRecord() {
+    this.showEditForm = true;
+  }
+
+  close() {
+    this.showEditForm = false;
+  }
+
+  edit(id) {
+    this.showEditForm = true;
+    this.taskservice.getSingle(id).subscribe(x => {this.data = x;});
   }
 
   ngOnInit() {
     this.Initialize();
+  }
+
+  toggleSidenav(){
+    this.sidenav.toggle();
   }
 
   searchValue: string;
@@ -40,6 +77,26 @@ export class TaskComponent implements OnInit {
 
   Initialize() {
     this.dueTypes = this.taskservice.getDueTypes();
+    this.taskGrid = new TableConfig('Tasks', 5, false, true);
+    this.taskGrid.dataUrl = 'Task/Taskforgrid';
+    const columns =
+      [
+        {
+          primaryKey: 'name',
+          header: 'Task Name'
+        },
+        {
+          primaryKey: 'startDate',
+          header: 'Start Date',
+          format: 'date'
+        },
+        {
+          primaryKey: 'dueDate',
+          header: 'Due Date',
+          format: 'date'
+        }
+      ];
+    this.taskGrid.columns = columns;
   }
 
 
@@ -48,7 +105,7 @@ export class TaskComponent implements OnInit {
   deleteTask($event) {
     if ($event != null) {
       this.taskservice.deleteTask($event.id).subscribe(() => {
-        this.taskservice.get(1, this.tableConfig.pageSize).subscribe(x => this.tasks = x);
+        this.taskservice.get(1, this.taskGrid.pageSize).subscribe(x => this.tasks = x);
       })
     }
   }
@@ -83,7 +140,7 @@ export class TaskComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data != "") {
-          this.taskservice.get(1, this.tableConfig.pageSize).subscribe(x => this.tasks = x);
+          this.taskservice.get(1, this.taskGrid.pageSize).subscribe(x => this.tasks = x);
         }
       }
     );

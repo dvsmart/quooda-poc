@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-taskheader',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./taskheader.component.scss']
 })
 export class TaskheaderComponent implements OnInit {
-
+  @Output() toggle = new EventEmitter<boolean>(false);
   constructor() { }
 
   ngOnInit() {
+  }
+
+  openSidenav(){
+    this.toggle.emit(true);
   }
 
 }

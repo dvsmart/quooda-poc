@@ -23,6 +23,7 @@ import { GridSelectorComponent } from "@app/shared/components/grid-selector/grid
 import { DeleteConfirmDialogComponent } from "@app/shared/components/delete-confirm-dialog/delete-confirm-dialog.component";
 import { ToasterComponent } from "@app/shared/components/toaster/toaster.component";
 import { MessageService } from "@app/shared/services/message.service";
+import { SidebarComponent } from "@app/shared/components/sidebar/sidebar.component";
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { MessageService } from "@app/shared/services/message.service";
     ReactiveFormsModule,
     TableDialogComponent,
     GridPageComponent,
+    SidebarComponent
   ],
   providers: [MinigridService,LoadingService,ToasterService,MessageService],
   declarations:[
@@ -65,7 +67,8 @@ import { MessageService } from "@app/shared/services/message.service";
     GridHeaderComponent,
     GridSelectorComponent,
     DeleteConfirmDialogComponent,
-    ToasterComponent
+    ToasterComponent,
+    SidebarComponent
   ],
   entryComponents:[
     DeleteConfirmDialogComponent,
